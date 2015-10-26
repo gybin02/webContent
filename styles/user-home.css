@@ -1,0 +1,191 @@
+.left-box{
+    float: left;
+    width:70%;
+}
+
+.center-box{
+    padding-left: 15px;
+    width: 83%;
+}
+
+/*登陆用户主页功能样式*/
+.dash_board{
+    width: 13%;
+    min-width:130px;
+}
+
+#banner{
+	margin-top:15px;
+}
+
+#user_avatar
+{
+    text-align: center;
+    margin: auto;
+}
+
+#user_avatar img
+{
+    width: 70px;
+    height: 70px;
+    /*border: 2px solid #a2ddf5;*/
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.dash_board p
+{
+    color:#22aee6 ;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+.dash_board ul{
+    padding-top: 5px;
+    background-color: #f7f6f4;
+    display: inline-block;
+    width: 100%;
+}
+
+.dash_board ul li{
+    margin-left: 0px;
+    padding-left: 10px;
+    height: 31px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-left: 5px solid #f7f6f4;
+    line-height: 31px;
+    cursor: pointer;
+}
+.dash_board > ul > li > span.badge{
+	margin-top:9px;
+	position: absolute;
+	font-size: 12px;
+}
+.click_border{
+    border-left: solid;
+    border-width: 5px ;
+    border-color:#22aee6 !important;
+    line-height: 35px;
+}
+
+.dash_board ul li span{
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.dash_board .split{
+    margin-top: 0px;
+    margin-left: 2px;
+    text-align: center;
+    height:1px;
+    float: left;
+    border:0px;
+    background-color:#D5D5D5;
+    color:#D5D5D5;
+    width: 104px;
+}
+
+
+
+/*登录用户主页 自选股面板*/
+.collections{
+    height: 463px;
+}
+
+.stock_tab li a{
+    text-decoration: none;
+    color: #333333;
+}
+
+.stock_trends{
+    margin-top: 30px;
+}
+
+.stock_trends li{
+    float: left;
+    width:126px ;
+}
+
+.stock_trends li a{
+    text-align: left;
+    color: #333333;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.increase{
+    color: #e0491b !important;
+}
+
+.decrease{
+    color: #629421 !important;
+}
+
+.refresh{
+    text-align: right !important;
+    width: 30px !important;
+}
+
+.light_green_color{
+    background-color: #f5fbfc !important;
+}
+
+#code_data ul{
+    margin-top: 10px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover{
+    background-color: #22aee6 !important;
+}
+
+.send-diy{
+    background-color: #22aee6 !important;
+    height: 30px;
+    width: 125px;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.media-left .avatar{
+	border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+.media-body{
+	font-size:14px;
+}
+
+.user_trends p{
+    color: #333333;
+}
+.user_trends hr{
+	margin:8px 0;
+}
+.user_trends .media{
+	margin-top:0px;
+}
+.reply,.detail{
+    color: #b3b3b3 !important;
+}
+.hr_clear{
+    padding: 0px;
+    margin: 0px;
+}
+
+.errMsg{
+	color: red;
+	font-size: 18px;
+	margin-top: 50px;
+}
+
+.vipImg{
+	vertical-align: text-bottom;
+}
+
+.nickImg{
+	vertical-align: text-top;
+	line-height: 19px;
+}

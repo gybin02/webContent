@@ -1,0 +1,43 @@
+<!--<div class="pagination-main">
+    <div>
+        <ul class="pagination" ng-show="conf.totalItems > 0">
+            <li ng-show="conf.currentPageNum != 1" ng-click="prevPage()">
+                <span>&lt&lt&lt</span>
+            </li>
+            <li ng-repeat="item in pageList track by $index"
+                ng-class="{active: item == conf.currentPageNum, separate: item == '...'}"
+                ng-click="changecurrentPageNum(item)">
+                <span>{{ item }}</span>
+            </li>
+            <li ng-show="conf.currentPageNum != conf.numberOfPages" ng-click="nextPage()">
+                <span>&gt&gt&gt</span>
+            </li>
+            <li class="page-total" ng-if="conf.numberOfPages > 1">
+                <select ng-options="index for index in pageSelect.pageListSelect"
+                        ng-model="pageSelect.jumpPageNum" ng-change="jumpToPage()">
+                </select>
+                页/共{{conf.numberOfPages}}页 | 总数{{conf.totalItems}}条
+            </li>
+        </ul>
+    </div>
+</div>-->
+
+    <nav> 
+        <ul class="pagination" style="margin: 0px" ng-show="conf.totalItems > 0">
+            <li ng-show="conf.currentPageNum != 1" ng-click="prevPage()" >
+                <a href="" aria-label="Previous"  style="height: 34.3285719394684px !important;">
+                    <span aria-hidden="true">&lt;</span>
+                </a>  
+            </li>
+            <li ng-repeat="item in pageList track by $index"
+                ng-class="{active: item == conf.currentPageNum, separate: item == '...'}"
+                ng-click="changecurrentPageNum(item)">
+                <a href="">{{ item }}</a>
+            </li>
+            <li  ng-show="conf.currentPageNum != conf.numberOfPages" ng-click="nextPage()">
+                <a href="" aria-label="Next" style="height: 34.3285719394684px">
+                    <span aria-hidden="true">&gt;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>

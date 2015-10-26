@@ -1,0 +1,299 @@
+<link rel="stylesheet" href="styles/home.css"/>
+<div class="content" ng-controller="HomeController">
+    <div market-data></div>
+    <div class="topic">
+        <waiting wait-text="正在加载..." is-center="true" ng-show="!isLoaded"></waiting>
+        <div ng-show="isLoaded">
+            <div>
+                <div class="category">
+                	<span ng-bind="rdhtColumnName" style="vertical-align: top"></span>
+                    <div class="pull-right split"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="article" ng-repeat="rdhtAticle in rdhtAticles" ng-if="$first">
+                <div class="cover white_split">
+                	<img ng-src="{{rdhtAticle.picturePath|defaultImg}}"
+						 ng-click="getArticleDetail(rdhtAticle.postId)"
+                         class="articleImg" onerror="setDefaultImg(this)"/>
+                </div>
+                <div class="single">
+                    <div><a ng-click="getArticleDetail(rdhtAticle.postId)" class="title"
+                            ng-bind="rdhtAticle.articleTitle"></a></div>
+                    <div class="posts">
+                        <div class="content" ng-bind="rdhtAticle.articleSummary"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="bottom">
+                        <div class="pull-left time_split">
+                        	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                        	<a ng-bind="rdhtAticle.author" ng-click="openUser(rdhtAticle.userId)"></a></div>
+                        <div class="pull-left" ng-bind="rdhtAticle.publishTimeLoc"></div>
+                        <div class="pull-right">
+                            <div class="pull-left qty_split">评论</div>
+                            <div class="pull-left comment_split"><a ng-bind="rdhtAticle.commentCount"></a></div>
+                            <div class="pull-left qty_split">阅读</div>
+                            <div class="pull-left"><a ng-bind="rdhtAticle.readCount"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="split_all"></div>
+            <div class="article">
+                <div class="multiple_cell white_split" ng-repeat="rdhtAticle in rdhtAticles" ng-if="$middle">
+                    <div class="cover-multiple"><a><img ng-src="{{rdhtAticle.picturePath|defaultImg}}"
+                                               ng-click="getArticleDetail(rdhtAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                    </div>
+                    <div class="multiple">
+                        <div class="title"><a ng-click="getArticleDetail(rdhtAticle.postId)" class="title"
+                                              ng-bind="rdhtAticle.articleTitle"></a></div>
+                        <div class="posts">
+                            <div class="content" ng-bind="rdhtAticle.articleSummary"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="bottom">
+                            <div class="pull-left">
+                            	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                            	<a ng-bind="rdhtAticle.author" ng-click="openUser(rdhtAticle.userId)"></a></div>
+                            <div class="pull-right">
+                                <div class="pull-left qty_split">评论</div>
+                                <div class="pull-left comment_split"><a ng-bind="rdhtAticle.commentCount"></a></div>
+                                <div class="pull-left qty_split">阅读</div>
+                                <div class="pull-left"><a ng-bind="rdhtAticle.readCount"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="multiple_cell_last" ng-repeat="rdhtAticle in rdhtAticles" ng-if="$last && $index>0">
+                    <div class="cover-multiple"><a><img ng-src="{{rdhtAticle.picturePath|defaultImg}}"
+                                               ng-click="getArticleDetail(rdhtAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                    </div>
+                    <div class="multiple">
+                        <div class="title"><a ng-click="getArticleDetail(rdhtAticle.postId)" class="title"
+                                              ng-bind="rdhtAticle.articleTitle"></a></div>
+                        <div class="posts">
+                            <div class="content" ng-bind="rdhtAticle.articleSummary"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="bottom">
+                            <div class="pull-left">
+                            	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                            	<a ng-bind="rdhtAticle.author" ng-click="openUser(rdhtAticle.userId)"></a></div>
+                            <div class="pull-right">
+                                <div class="pull-left qty_split">评论</div>
+                                <div class="pull-left comment_split"><a ng-bind="rdhtAticle.commentCount"></a></div>
+                                <div class="pull-left qty_split">阅读</div>
+                                <div class="pull-left"><a ng-bind="rdhtAticle.readCount"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="more" ng-click="getMoreArticles(rdhtColumnCode, rdhtColumnName)">更多<span
+                    ng-bind="rdhtColumnName"></span> >>>
+            </div>
+
+            <!-- 港股 -->
+            <div class="topic">
+                <div>
+                    <div class="category"><span ng-bind="ggColumnName" style="vertical-align: top"></span>
+
+                        <div class="pull-right split"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="article" ng-repeat="ggAticle in ggAticles" ng-if="$first">
+                	<div class="cover white_split">
+	                	<img ng-src="{{ggAticle.picturePath|defaultImg}}"
+							 ng-click="getArticleDetail(ggAticle.postId)"
+	                         class="articleImg" onerror="setDefaultImg(this)"/>
+	                </div>
+	                <div class="single">
+	                    <div><a ng-click="getArticleDetail(ggAticle.postId)" class="title"
+                                              ng-bind="ggAticle.articleTitle"></a></div>
+	                    <div class="posts">
+	                        <div class="content" ng-bind="ggAticle.articleSummary"></div>
+	                    </div>
+	                    <div class="clearfix"></div>
+	                    <div class="bottom">
+	                        <div class="pull-left time_split">
+	                        	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+	                        	<a ng-bind="ggAticle.author" ng-click="openUser(ggAticle.userId)"></a></div>
+	                        <div class="pull-left" ng-bind="ggAticle.publishTimeLoc"></div>
+	                        <div class="pull-right">
+	                            <div class="pull-left qty_split">评论</div>
+	                            <div class="pull-left comment_split"><a ng-bind="ggAticle.commentCount"></a></div>
+	                            <div class="pull-left qty_split">阅读</div>
+	                            <div class="pull-left"><a ng-bind="ggAticle.readCount"></a></div>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="split_all"></div>
+                <div class="article">
+                    <div class="multiple_cell white_split" ng-repeat="ggAticle in ggAticles " ng-if="$middle">
+                        <div class="cover-multiple"><a><img ng-src="{{ggAticle.picturePath|defaultImg}}"
+                                                   ng-click="getArticleDetail(ggAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                        </div>
+                        <div class="multiple">
+                            <div class="title"><a ng-click="getArticleDetail(ggAticle.postId)" class="title"
+                                                  ng-bind="ggAticle.articleTitle"></a></div>
+                            <div class="posts">
+                                <div class="content" ng-bind="ggAticle.articleSummary"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bottom">
+                                <div class="pull-left">
+                                	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                                	<a ng-bind="ggAticle.author"
+                                                           ng-click="openUser(ggAticle.userId)"></a></div>
+                                <div class="pull-right">
+                                    <div class="pull-left qty_split">评论</div>
+                                    <div class="pull-left comment_split"><a ng-bind="ggAticle.commentCount"></a></div>
+                                    <div class="pull-left qty_split">阅读</div>
+                                    <div class="pull-left"><a ng-bind="ggAticle.readCount"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multiple_cell_last" ng-repeat="ggAticle in ggAticles" ng-if="$last && $index>0">
+                        <div class="cover-multiple"><a><img ng-src="{{ggAticle.picturePath|defaultImg}}"
+                                                   ng-click="getArticleDetail(ggAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                        </div>
+                        <div class="multiple">
+                            <div class="title"><a ng-click="getArticleDetail(ggAticle.postId)" class="title"
+                                                  ng-bind="ggAticle.articleTitle"></a></div>
+                            <div class="posts">
+                                <div class="content" ng-bind="ggAticle.articleSummary"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bottom">
+                                <div class="pull-left">
+                                	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                                	<a ng-bind="ggAticle.author"
+                                                          ng-click="openUser(ggAticle.userId)"></a></div>
+                                <div class="pull-right">
+                                    <div class="pull-left qty_split">评论</div>
+                                    <div class="pull-left comment_split"><a ng-bind="ggAticle.commentCount"></a></div>
+                                    <div class="pull-left qty_split">阅读</div>
+                                    <div class="pull-left"><a ng-bind="ggAticle.readCount"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="more" ng-click="getMoreArticles(ggColumnCode, ggColumnName)">更多<span
+                    ng-bind="ggColumnName"></span>
+                >>>
+            </div>
+
+
+            <!-- 美股 -->
+            <div class="topic">
+                <div>
+                    <div class="category"><span ng-bind="mgColumnName" style="vertical-align: top"></span>
+
+                        <div class="pull-right split"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="article" ng-repeat="mgAticle in mgAticles" ng-if="$first">
+                    <div class="cover white_split">
+                        <img ng-src="{{mgAticle.picturePath|defaultImg}}"
+                             ng-click="getArticleDetail(mgAticle.postId)"
+                             class="articleImg" onerror="setDefaultImg(this)"/>
+                    </div>
+                    <div class="single">
+                        <div><a ng-click="getArticleDetail(mgAticle.postId)" class="title"
+                                ng-bind="mgAticle.articleTitle"></a></div>
+                        <div class="posts">
+                            <div class="content" ng-bind="mgAticle.articleSummary"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="bottom">
+                            <div class="pull-left time_split">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                                <a ng-bind="mgAticle.author" ng-click="openUser(mgAticle.userId)"></a></div>
+                            <div class="pull-left" ng-bind="mgAticle.publishTimeLoc"></div>
+                            <div class="pull-right">
+                                <div class="pull-left qty_split">评论</div>
+                                <div class="pull-left comment_split"><a ng-bind="mgAticle.commentCount"></a></div>
+                                <div class="pull-left qty_split">阅读</div>
+                                <div class="pull-left"><a ng-bind="mgAticle.readCount"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="split_all"></div>
+                <div class="article">
+                    <div class="multiple_cell white_split" ng-repeat="mgAticle in mgAticles " ng-if="$middle">
+                        <div class="cover-multiple"><a><img ng-src="{{mgAticle.picturePath|defaultImg}}"
+                                                            ng-click="getArticleDetail(mgAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                        </div>
+                        <div class="multiple">
+                            <div class="title"><a ng-click="getArticleDetail(mgAticle.postId)" class="title"
+                                                  ng-bind="mgAticle.articleTitle"></a></div>
+                            <div class="posts">
+                                <div class="content" ng-bind="mgAticle.articleSummary"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bottom">
+                                <div class="pull-left">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                                    <a ng-bind="mgAticle.author"
+                                       ng-click="openUser(mgAticle.userId)"></a></div>
+                                <div class="pull-right">
+                                    <div class="pull-left qty_split">评论</div>
+                                    <div class="pull-left comment_split"><a ng-bind="mgAticle.commentCount"></a></div>
+                                    <div class="pull-left qty_split">阅读</div>
+                                    <div class="pull-left"><a ng-bind="mgAticle.readCount"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multiple_cell_last" ng-repeat="mgAticle in mgAticles" ng-if="$last && $index>0">
+                        <div class="cover-multiple"><a><img ng-src="{{mgAticle.picturePath|defaultImg}}"
+                                                            ng-click="getArticleDetail(mgAticle.postId)"  onerror="setDefaultImg(this)" class="articleImg"/></a>
+                        </div>
+                        <div class="multiple">
+                            <div class="title"><a ng-click="getArticleDetail(mgAticle.postId)" class="title"
+                                                  ng-bind="mgAticle.articleTitle"></a></div>
+                            <div class="posts">
+                                <div class="content" ng-bind="mgAticle.articleSummary"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bottom">
+                                <div class="pull-left">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top;color: #889485"></span>
+                                    <a ng-bind="mgAticle.author"
+                                       ng-click="openUser(mgAticle.userId)"></a></div>
+                                <div class="pull-right">
+                                    <div class="pull-left qty_split">评论</div>
+                                    <div class="pull-left comment_split"><a ng-bind="mgAticle.commentCount"></a></div>
+                                    <div class="pull-left qty_split">阅读</div>
+                                    <div class="pull-left"><a ng-bind="mgAticle.readCount"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="more" ng-click="getMoreArticles(mgColumnCode, mgColumnName)">更多<span
+                    ng-bind="mgColumnName"></span>
+                >>>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-bar">
+    <div app-banner></div>
+    <hot-read day-active="true"></hot-read>
+</div>

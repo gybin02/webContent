@@ -1,0 +1,67 @@
+.pagination-main {
+    margin-top: 18px;
+}
+
+.pagination-main .pagination {
+    padding-left: 0px;
+    align: center;
+    height: 25px;
+    line-height: 25px;
+}
+
+.pagination-main .pagination > .active > span {
+    color: #FFFFFF;
+    background: #22aee6;
+}
+
+.pagination-main .pagination > .active > span:hover {
+    color: #FFFFFF;
+    background: #22aee6;
+}
+
+.pagination-main .pagination span {
+    color: #949494;
+    border: none;
+    padding: 2px 8px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.pagination-main .pagination span:hover {
+    color: #22aee6;
+    background: #FFFFFF;
+}
+
+.pagination-main .pagination .separate span {
+    cursor: default;
+    border-top: none;
+    border-bottom: none;
+}
+
+.pagination-main .pagination .separate span:hover {
+    background: none;
+}
+
+.pagination-main .page-total {
+    margin-left: 15px;
+}
+
+.pagination-main .page-total input {
+    height: 25px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: 33px;
+}
+
+/* 当浏览器的可视区域大于540px */
+
+@media screen and (max-width: 540px) {
+
+    .pagination-main .pagination li{
+       display: none;
+    }
+
+    .pagination-main .pagination .page-total{
+        display: inline-block;
+    }
+}

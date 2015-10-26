@@ -1,0 +1,14 @@
+<div class="modal show" ng-show="show">
+    <div class="modal-overlay"></div>
+    <div class="modal-panel" ng-style="modalPanelStyle">
+    	<div class="modal-head" ng-show="showHeader">
+	        <div class="header">
+	            <span>{{header}}</span>
+	        </div>
+	    </div>
+        <a href class="close pull-right" ng-click="closeModal()">
+            <img src="images/close.png"/>
+        </a>
+        <div ng-transclude></div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+.main-content .sex {
+    width: auto;
+    height: auto;
+}
+
+.main-content span {
+    text-align: left;
+}
+
+.main-content .userInfoForm {
+    margin-top: 40px;
+}
+
+.main-content textarea {
+    margin-left: 20px;
+    height: 150px;
+    width: 672px;
+}
+
+.main-content .updateSubmit {
+    margin-top: 0px;
+    height: 40px;
+    width: 738px;
+}
+
+.main-content .addrValSel0 {
+    margin-left: 15px;
+    width: 210px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.main-content .addrValSel2 {
+    margin-left: 20px;
+    width: 210px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.main-content .addrValSel1 {
+    margin-left: 20px;
+    width: 320px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.main-content .titleTxt {
+    width: 45px;
+}
+
+.main-content .skip, .skip:visited, .skip:hover, .skip:active {
+    color: #a7c819;
+    text-decoration: underline;
+    vertical-align: top;
+}
+
+.sexValInput {
+    margin-left: 20px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.addrValSel2 {
+    margin-left: 10px
+}
+
+.main-content .active {
+    color: #fff;
+    background: #22aee6;
+}
+
+.main-content .addImg {
+    margin-left: 10px;
+    margin-bottom: 28px;
+}
+
+.main-content .err {
+    height: 40px;
+    line-height: 40px;
+    width: 480px;
+    text-align: left;
+    color: red;
+    margin-left: 5px;
+}
+
+.main-content .upload-td {
+    text-align: left;
+    width: 120px;
+}
+
+.main-content .btn-upload {
+    width: 120px;
+    margin-bottom: 28px;
+}
+
+.ng-jcrop-image-wrapper {
+    display: inline-block;
+}
+
+.ng-jcrop-thumbnail-wrapper {
+    display: inline-block;
+}

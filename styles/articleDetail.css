@@ -1,0 +1,183 @@
+.content {
+	color: #333333;
+	font-size: 15px;
+	line-height: 28px;
+	overflow: hidden;
+}
+.head {
+	margin-left: 75px;
+	background: url(../images/title_line.png) left center repeat-y;
+}
+.head .headNick {
+	margin-left: 10px;
+	line-height: 15px;
+}
+.topic .detailCategory {
+	height: auto;
+	font-size: 18px;
+	width: 100%;
+}
+.topic .detailCategory img.avatar {
+	float: left;
+}
+.topic ul {
+	margin-left: 10px;
+}
+.topic .articleRelate img {
+	display: inline;
+	margin-left: 10px;
+}
+.topic .articleRelate span {
+	color: #178bb8;
+	margin-left: 5px;
+}
+.topic .articleImg {
+	float: left;
+	margin-left: 10px;
+	height: 70px;
+	margin-top: 8px;
+	width: 5px;
+}
+.topic .publishTime {
+	margin-left: 55px;
+	font-size: 15px;
+}
+.topic .title {
+	font-size: 16.6px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.topic .author_split {
+	color: #178bb8;
+	margin-right: 10px;
+	font-size: 15px;
+}
+.topic .articleContent,
+.topic .articleContent img {
+	/*width: 100%;*/
+	
+	max-width: 100%;
+	height: auto;
+}
+.topic .articleContent img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.topic .articleContent {
+	margin-top: 10px;
+	padding-left: 75px;
+	font-size: 15px;
+}
+/*内容页面统一设置*/
+.topic .articleContent.article-body *,.topic .articleContent.article-body * {
+	font-family:  "Microsoft YaHei", "微软雅黑",Helvetica, Tahoma, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif !important;
+}
+.topic .articleContent a:hover {
+	text-decoration: underline;
+}
+.topic .detail_relate_stock {
+	color: #999999;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+.topic .shareDiv {
+	float: right;
+}
+.topic .split_all {
+	height: 1px;
+	width: 100%;
+	background: #ededed;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+.topic .commentTime {
+	margin-left: 10px;
+	color: #999999;
+}
+.topic .replyEditor .user_editor {
+	padding-left: 75px;
+	font-size: 15px;
+	margin-top: 10px;
+}
+.topic .replyEditor-list .user_editor {
+	font-size: 15px;
+	margin-top: 10px;
+	margin-left: 0px;
+	width: 100%;
+}
+.pull-left {
+	float: left !important;
+}
+.topic .commentList {
+	width: 100%;
+}
+.topic .commentListDiv {
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+	padding-bottom: 20px;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: #ededed;
+}
+.topic .commentList .commentUl {
+	margin-left: 50px;
+}
+.topic .commentList .commentUl > div > a {
+	vertical-align: top;
+}
+.topic .commentListDiv .avatarDiv {
+	float: left;
+	width: 8%;
+}
+.content-html {
+	padding-left: 12px;
+}
+.topic > .detailCategory > .article-content > .head > a > span {
+	vertical-align: text-top;
+}
+/*响应式页面下帖子详情宽度为768px时*/
+
+@media screen and (max-width: 768px) {
+	#header .fix_header {
+		height: 44px !important;
+		line-height: 42px !important;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	#header .container > * {
+		display: none;
+	}
+	#header .container .logo {
+		display: block;
+	}
+	#banner {
+		width: 100%;
+		display: none;
+	}
+	.content-html {
+		padding-left: 0 !important;
+	}
+	#banner .container,
+	#wrapper .container,
+	#footer .container,
+	.topic .articleContent,
+	.topic .user_editor,
+	.topic .article-share {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+	#wrapper {
+		margin-top: 44px;
+	}
+}
+@media screen and (max-width: 540px) {
+	#wrapper {
+		margin-top: 0;
+	}
+	#wrapper .container .main > .content {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}

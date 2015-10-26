@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="styles/home.css"/>
+
+<div class="container" style="margin-top: 120px;margin-bottom: 100px">
+    <div class="content" ng-controller="GlhExpController">
+        <div market-data></div>
+        <div class="topic">
+            <div>
+                <div class="category">格隆汇港A股100指数走势
+                    <div class="pull-right split" style="width: 560px"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <waiting wait-text="正在加载..." is-center="true" ng-show="!isLoaded"></waiting>
+            <div ng-show="isLoaded" style="text-align: center;margin: 30px auto">
+                <img ng-src="{{kMapUrl}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="right-bar">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+</div>

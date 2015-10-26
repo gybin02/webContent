@@ -1,0 +1,79 @@
+<form class="navbar-form navbar-left" style="width: 220px;padding-right: 0px;padding-left: 0px;margin-top: 0px">
+	<div class="form-group has-feedback" style="width: 220px;">
+		<input type="text" id="dropdown-search" autocomplete="off" style="width: 220px"
+	       ng-init="showflag=0"
+	       ng-model="key"
+	       ng-keyup="searcher($event,key)"
+	       ng-focus="searcher($event,key)"
+	       ng-blur="blurTimeout()"
+	       ng-model-options="{ ebounce:150 }"
+	       class="form-control"
+	       placeholder="搜索 文章/股票/用户"/>
+		<span id="btnGlobalSearch" class="glyphicon glyphicon-search form-control-feedback" style="pointer-events:visible" ng-click="searcher($event,key)"></span>
+		<ul class="dropdown-menu" ng-class="{showSearchBox:(searchPost.size>0 || searchStock.size>0 || searchUser.size>0)&&showflag==0 }">
+
+            <!--股票搜索结果框-->
+            <li ng-if="searchStock.size>0" ng-show="stockFirst==true" style="width: 100%;height: auto">
+                <div class="search-stock list-group">
+                    <a ng-href="/#/stockDetail/{{object.type+object.stockCode}}" class="list-group-item" ng-repeat="object in searchStock.stockList">
+                        <p class="list-group-item-text">
+                            <span ng-bind-html="object.stockName"></span>( <span ng-bind-html="object.stockCode"></span> )
+                        </p>
+                    </a>
+                </div>
+            </li>
+            <li class="divider child-tip betaSearchLi" ng-if="searchStock.size>0" ng-show="stockFirst==true">
+                <a class="tip-font" ng-click="searchPage('/searchStock')">更多相关股票 >>></a>
+            </li>
+
+            <!--文章搜索结果框-->
+            <li ng-if="searchPost.size>0" style="height: auto;width: 100%">
+	            <div class="search-posts list-group">
+				  <a ng-href="/p/{{object.id}}.html" class="list-group-item" ng-repeat="object in searchPost.postList">
+				    <p class="list-group-item-text" ng-bind-html="object.title"></p>
+				  </a>
+				</div>
+	        </li>
+	        <li class="divider child-tip betaSearchLi" ng-if="searchPost.size>0">
+	            <a class="tip-font" ng-click="searchPage('/search')">更多相关帖子 >>> </a>
+	        </li>
+	
+	        <!--股票搜索结果框-->
+			<li ng-if="searchStock.size>0" ng-show="stockFirst==false" style="height: auto;width: 100%">
+			    <div class="search-stock list-group">
+			        <a ng-href="/#/stockDetail/{{object.type+object.stockCode}}" class="list-group-item" ng-repeat="object in searchStock.stockList">
+			        	<p class="list-group-item-text">
+			        		<span ng-bind-html="object.stockName"></span>({{object.type+object.stockCode}})
+			        	</p>
+			        </a>
+			    </div>
+			</li>
+			<li class="divider child-tip betaSearchLi" ng-if="searchStock.size>0" ng-show="stockFirst==false">
+			    <a class="tip-font" ng-click="searchPage('/searchStock')">更多相关股票 >>></a>
+			</li>
+			<!--用户搜索结果框-->
+	        <li ng-if="searchUser.size>0" style="height: auto;width: 100%">
+	            <div class="search-user list-group">
+				  <a ng-href="/#/userInfo/{{object.userId}}" class="list-group-item" ng-repeat="object in searchUser.userList">
+				  	<img class="img-circle pull-left" ng-src="{{object.avatar}}">
+				    <p class="list-group-item-text" ng-bind-html="object.username"></p>				    
+				  </a>
+				</div>
+	        </li>
+	        <li class="divider child-tip betaSearchLi" ng-if="searchUser.size>0">
+	            <a class="tip-font" ng-click="searchPage('/searchUser')">更多相关用户 >>></a>
+	        </li>
+
+
+
+            <!--更多信息提示框-->
+			<li class="text-center" ng-if="searchPost.size>0 || searchStock.size>0 || searchUser.size>0" style="height: 34px">
+				 <div class="list-group">
+				 	<a  ng-click="searchPage('/searchMore')" class="list-group-item">
+				 		<p class="list-group-item-text">更多其他相关内容 >>></p>
+				 	</a>
+				 </div>
+	        </li>
+	    </ul>
+	</div>	
+</form>

@@ -1,0 +1,374 @@
+
+<!DOCTYPE html >
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<html ng-app="GLHApp">
+
+    <head>
+        <meta charset="utf-8">
+        <title ng-bind="$root.title">格隆汇--港股那点事</title>
+        <meta name="keywords" content="格隆汇,港股那点事,股票,行情,美股,港股,A股,ETF,基金,可转债,理财,债券,信托,投资社区,价值投资,投资">
+        <meta name="description" content="格隆汇是一个服务中国人海外投资的社交平台，以互联网众筹研究的方式，为所有中国人进行海外证券投资提供资讯、研究、交易、社交等全方位的服务。">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+        <link rel="shortcut icon" type="image/x-icon" href="http://res.gelonghui.com/images/icon114.png" media="screen"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="styles/login.css">
+		<link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="scripts/vendor/bootstrap-3.3.4/css/bootstrap.css"/>
+        <link rel="stylesheet" href="styles/font-awesome-4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="scripts/vendor/textAngular-1.3.8/css/textAngular.css"/>
+        <link rel="stylesheet" href="styles/secondEdition/layout.css">
+        <!--<link rel="stylesheet" href="styles/layout.css">-->
+        <link rel="stylesheet" href="styles/app.css">
+        <link rel="stylesheet" href="styles/secondEdition/mediaBeta.css">
+        <link rel="stylesheet" href="styles/secondEdition/search-box.css">
+        <link rel="stylesheet" href="styles/search-box.css">
+        <link rel="stylesheet" href="styles/search.css">
+        <link rel="stylesheet" href="styles/hoverTip.css">
+        <link rel="stylesheet" href="scripts/vendor/Jcrop/css/Jcrop.css"/>
+        <link rel="stylesheet" href="scripts/vendor/angularDialogService/css/dialogs.css"/>
+        <link rel="stylesheet" href="styles/home.css"/>
+        <link rel="stylesheet" href="styles/btn-ext.css"/>
+        <link rel="stylesheet" href="styles/secondEdition/glhLogin.css"/>
+
+        <script src="scripts/vendor/jquery-2.1.3.min.js"></script>
+        <script src="scripts/vendor/bootstrap-3.3.4/js/bootstrap.js"></script>
+        
+        <script src="scripts/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="scripts/vendor/angular/angular.min.js"></script>
+        <script src="scripts/vendor/angular/angular-sanitize.min.js"></script>
+        <script src="scripts/vendor/angular/angular-route.min.js"></script>
+        <script src="scripts/vendor/angular/angular-resource.min.js"></script>
+        <script src="scripts/vendor/angular/angular-animate.min.js"></script>
+        <script src="scripts/vendor/angular/angular-cookies.min.js"></script>
+
+        <script src="scripts/vendor/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+        <script src="scripts/vendor/textAngular-1.3.8/js/rangy-core.js"></script>
+        <script src="scripts/vendor/textAngular-1.3.8/js/rangy-selectionsaverestore.js"></script>
+        <script src="scripts/vendor/textAngular-1.3.8/js/rangy-position.js"></script>
+        <script src="scripts/vendor/textAngular-1.3.8/js/textAngularSetup.js"></script>
+        <script src="scripts/vendor/textAngular-1.3.8/js/textAngular-sanitize.js"></script>
+        <script src="scripts/vendor/textAngular-1.3.8/js/textAngular.js"></script>
+
+        <script src="scripts/vendor/angularFileUpload/1.1.5/js/angular-file-upload.min.js"></script>
+        <script src="scripts/vendor/angularDialogService/js/dialogs.js"></script>
+
+        <script src="scripts/app.js"></script>
+        <script src="scripts/routing.js"></script>
+
+        <script src="scripts/filters/commFilter.js"></script>
+        <script type="text/javascript" src="scripts/directives/appBanner.js"></script>
+        <script type="text/javascript" src="scripts/directives/marketData.js"></script>
+        <script type="text/javascript" src="scripts/directives/userDashboard.js"></script>
+        <script type="text/javascript" src="scripts/directives/userCollections.js"></script>
+        <script type="text/javascript" src="scripts/directives/userEditor.js"></script>
+        <script type="text/javascript" src="scripts/directives/messageEditor.js"></script>
+        <script type="text/javascript" src="scripts/directives/atUser.js"></script>
+        <script type="text/javascript" src="scripts/directives/secBrokers.js"></script>
+        <script type="text/javascript" src="scripts/directives/stocksList.js"></script>
+        <script type="text/javascript" src="scripts/directives/modal.js"></script>
+        <script type="text/javascript" src="scripts/directives/textEditor.js"></script>
+        <script type="text/javascript" src="scripts/directives/searchBoxFloat.js"></script>
+        <script type="text/javascript" src="scripts/directives/searchBox.js"></script>
+        <script type="text/javascript" src="scripts/directives/searchSubBox.js"></script>
+        <script type="text/javascript" src="scripts/directives/uploadPdf.js"></script>
+        <script type="text/javascript" src="scripts/directives/sharePopover.js"></script>
+        <script type="text/javascript" src="scripts/directives/userPopover.js"></script>
+        <script type="text/javascript" src="scripts/directives/userTrends.js"></script>
+        <script type="text/javascript" src="scripts/directives/hotRead.js"></script>
+        <script type="text/javascript" src="scripts/directives/tmPagination.js"></script>
+        <script type="text/javascript" src="scripts/directives/contentHtml.js"></script>
+        <script type="text/javascript" src="scripts/directives/stopEvent.js"></script>
+        <script type="text/javascript" src="scripts/directives/indexRelease.js"></script>
+
+        <script type="text/javascript" src="scripts/directives/chartAsset.js"></script>
+        <script type="text/javascript" src="scripts/directives/chartDebt.js"></script>
+        <script type="text/javascript" src="scripts/directives/chartEquity.js"></script>
+        <script type="text/javascript" src="scripts/directives/chartIncome.js"></script>
+
+        <script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationGl.js"></script>
+        <script type="text/javascript" src="scripts/directives/secondEdition/textEditorBeta.js"></script>
+        <script type="text/javascript" src="scripts/directives/marketDataBeta.js"></script>
+        <!--<script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationMl.js"></script>
+        <script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationSl.js"></script>-->
+
+        <script src="scripts/controllers/secondEdition/mainController.js"></script>
+        <script src="scripts/controllers/secondEdition/hoverController.js"></script>
+        <script src="scripts/controllers/secondEdition/hotStockController.js"></script>
+        <script src="scripts/controllers/secondEdition/loginBetaController.js"></script>
+        <script src="scripts/controllers/registerController.js"></script>
+        <script src="scripts/controllers/updateUserController.js"></script>
+        <script src="scripts/controllers/updatePwdController.js"></script>
+        <script src="scripts/controllers/updatePwdEmailController.js"></script>
+        <script src="scripts/controllers/userEditorController.js"></script>
+        <script src="scripts/controllers/topicController.js"></script>
+       
+        <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/userController.js"></script>
+        <script src="scripts/controllers/searchPostController.js"></script>
+        <script src="scripts/controllers/searchStockController.js"></script>
+        <script src="scripts/controllers/searchUserController.js"></script>
+        <script src="scripts/controllers/searchMoreController.js"></script>
+        <script src="scripts/controllers/searchGicsIIController.js"></script>
+        <script src="scripts/controllers/searchGicsCompanyController.js"></script>
+        <script src="scripts/controllers/userContentController.js"></script>
+        <script src="scripts/controllers/userMessageController.js"></script>
+        <script src="scripts/controllers/userCommentMeController.js"></script>
+        <script src="scripts/controllers/userReferMeController.js"></script>
+        <script src="scripts/controllers/userFavoriteController.js"></script>
+        <script src="scripts/controllers/userAttentionController.js"></script>
+        <script src="scripts/controllers/userFansController.js"></script>
+        <script src="scripts/controllers/userInfoController.js"></script>
+        <script src="scripts/controllers/navController.js"></script>
+        <script src="scripts/controllers/activeEmailController.js"></script>
+        <script src="scripts/controllers/articleDetailController.js"></script>
+        <script src="scripts/controllers/stockDetailController.js"></script>
+        <script src="scripts/controllers/glhExpController.js"></script>
+        <script src="scripts/controllers/secondEdition/recommendUserController.js"></script>
+
+        <script src="scripts/services/ApiService.js"></script>
+        <script src="scripts/services/mainService.js"></script>
+        <script src="scripts/services/homeService.js"></script>
+        <script src="scripts/services/PhoneAreaService.js"></script>
+        <script src="scripts/services/userService.js"></script>
+        <script src="scripts/services/CommService.js"></script>
+        <script src="scripts/services/DialogService.js"></script>
+        <script src="scripts/directives/waiting.js"></script>
+        <script src="scripts/services/stockService.js"></script>
+        <script src="scripts/vendor/Jcrop/js/jquery.Jcrop.min.js"></script>
+        <script src="scripts/vendor/ng-jcrop.js"></script>
+
+        <script src="scripts/common/navi-hover.js"></script>
+        <script src="scripts/common/glhLogin.js"></script>
+        
+		
+		<link rel="stylesheet" type="text/css" href="scripts/vendor/swiper/swiper3.css"/>
+		
+
+
+    </head>
+
+    <body class="scrollBody">
+    
+		<div ng-controller="MainController" >
+		
+           <!--手机端登录提示下载APP-->
+            <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #434343;"ng-if="mobileFlag">
+                <div id="textTip" >
+                    <img ng-src="images/logo.png" style="height:25px;">
+                </div>
+                <div id="buttonTip">
+                    <button type="button" class="btn btn-primary"
+                            ng-click="downloadAppLink()">点击下载APP</button>
+                    <button type="button" class="close" aria-label="Close" ng-click="hideHover()"
+                            style="padding-right: 15px;">
+                        <span aria-hidden="true" style="color: #ffffff;font-size: 30px;">&times;</span>
+                    </button>
+                </div>
+            </nav>
+            
+				<div class="naviBlue navbar-fixed-top"  >
+                <!--非大屏显示-->
+                <div class="naviBlue-auto visible-sl-inline-block visible-ml-inline-block">
+                    <a href="/#/"><img src="images/logo.png" class="newLogo-auto"/></a>
+                    <div id="noLogin" ng-show="!isLogin" style="margin-right: 60px">
+                        <a ng-click="login()">登录</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a ng-click="register()">注册</a>
+                    </div>
+                    <div id="loginStatus-auto" ng-show="isLogin">
+                        <ul class="nav navbar-nav">
+                            <li><img src="images/secondEdition/Nav_Line.gif"></li>
+                            <li>
+                                <a href="/#/userHome" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/secondEdition/NAVicon_Homepage.png">
+                                </a>
+
+                            </li>
+                            <li>
+                                <img src="images/secondEdition/Nav_Line.gif">
+                            </li>
+                            <li  class="dropdown">
+                                <a href="" class="gl-post" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/secondEdition/NAVicon_Write.png">
+                                </a>
+                                <ul class="dropdown-menu editor-button gl-post-ul" >
+                                    <li><a ng-click="showShortMsg()">哔哔一下</a></li>
+                                    <li><a ng-click="showTextEditor()">发表文章</a></li>
+                                    <li><a ng-click="showUploadPdf()">上传PDF</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="images/secondEdition/Nav_Line.gif">
+                            </li>
+                            <li>
+                                <a href="" class="gl-notice" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/secondEdition/NAVicon_MSG.png">
+                                </a>
+                                <ul class="dropdown-menu editor-button gl-notice-ul" >
+                                    <li><a ng-click="userTabChanged('userMessage')">私信</a></li>
+                                    <li><a ng-click="userTabChanged('commentMe')">评论我的</a></li>
+                                    <li><a ng-click="userTabChanged('userAttention')">我的关注</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="images/secondEdition/Nav_Line.gif">
+                            </li>
+                            <li style="width: 80px;height: 80px;padding-top:22px;text-align: center" class="dropdown gl-user">
+                                <a href="" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img class="article-img-circle" ng-src="{{loginedUser.user.avatar}}">
+                                    <img src="images/secondEdition/icon_HeadSubscript.png">
+                                </a>
+                                <ul class="dropdown-menu user-button gl-user-ul">
+                                    <li><a href="/#/userHome">我的主页</a></li>
+                                    <li><a ng-click="updateInfo()">个人设置</a></li>
+                                    <li><a href="javascript:glhLogin.logout();">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--大屏-->
+                <div class="naviBlue-gl visible-gl-inline-block" >
+                    <div style="float: left">
+                        <a href="/#/"><img src="images/logo.png" class="newLogo"/></a>
+                    </div>
+                    <div id="noLogin" ng-show="!isLogin">
+                        <a ng-click="login()">登录</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a ng-click="register()">注册</a>
+                    </div>
+                    <div id="loginStatus" ng-show="isLogin">
+                        <ul class="nav navbar-nav">
+                            <li><img src="images/secondEdition/Nav_Line.gif"></li>
+                            <li class="activeIcon" >
+                                <a href="/#/userHome" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" xpanded="false">
+                                    <img src="images/secondEdition/NAVicon_Homepage.png">
+                                </a>
+                            </li>
+                            <li  class="dropdown">
+                                <a href="" class="gl-post" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/secondEdition/Nav_Line.gif">
+                                    <img src="images/secondEdition/NAVicon_Write.png">
+
+                                </a>
+                                <ul class="gl-post-ul dropdown-menu editor-button"  >
+                                    <li><a ng-click="showShortMsg()">哔哔一下</a></li>
+                                    <li><a ng-click="showTextEditor()">发表文章</a></li>
+                                    <li><a ng-click="showUploadPdf()">上传PDF</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="images/secondEdition/Nav_Line.gif">
+                            </li>
+                            <li>
+                                <a href="" class="gl-notice" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/secondEdition/NAVicon_MSG.png">
+                                </a>
+
+                                <ul class="dropdown-menu editor-button gl-notice-ul" style="display: none"  >
+                                    <li><a ng-click="userTabChanged('userMessage')">我的私信</a></li>
+                                    <li><a ng-click="userTabChanged('commentMe')">评论我的</a></li>
+                                    <li><a ng-click="userTabChanged('userAttention')">我的关注</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <img src="images/secondEdition/Nav_Line.gif">
+                            </li>
+                            <li style="width: 80px;height: 80px;padding-top:22px;text-align: center" class="dropdown gl-user">
+
+                                    <a href="" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img class="article-img-circle" ng-src="{{loginedUser.user.avatar}}">
+                                    <img src="images/secondEdition/icon_HeadSubscript.png">
+                                </a>
+                                <ul class="dropdown-menu user-button gl-user-ul" style="display: none" >
+                                    <li><a href="/#/userHome">我的主页</a></li>
+                                    <li><a ng-click="updateInfo()">个人设置</a></li>
+                                    <li><a ng-click="exit()">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--login modal-->
+            <div ng-include="'templates/secondEdition/loginBeta.html'"></div>
+
+
+            <div ng-view  autoscroll></div>
+
+
+		</div>
+
+
+        <!--页面尾巴-->
+        <div>
+            <div id="new-footer">
+                <div class="footer-gl  visible-gl-inline-block" >
+                    <img src="images/secondEdition/footer_logo.gif" class="footerLogo"/>
+                    <ul class="footer-text">
+                        <li>/</li>
+                        <li><a href="/#/contactUs">联系方式</a></li>
+                        <li><a href="/#/introduction">关于格隆汇</a></li>
+                        <li><a href="/#/relief">免责声明</a></li>
+                        <li>/</li>
+                    </ul>
+                    <ul class="footer-text-tail">
+                        <li><a href="http://www.miitbeian.gov.cn"> © 格隆汇科技发展（深圳）有限公司</a></li>
+                        <li>粤ICP备14037596号</li>
+                    </ul>
+                </div>
+                <div class="footer-ml  visible-ml-inline-block" >
+                    <img src="images/secondEdition/footer_logo.gif" class="footerLogo"/>
+                    <ul class="footer-text">
+                        <li>/</li>
+                        <li><a href="/#/contactUs">联系方式</a></li>
+                        <li><a href="/#/introduction">关于格隆汇</a></li>
+                        <li><a href="/#/relief">免责声明</a></li>
+                        <li>/</li>
+                    </ul>
+                    <ul class="footer-text-tail">
+                        <li><a href="http://www.miitbeian.gov.cn"> © 格隆汇科技发展（深圳）有限公司</a></li>
+                        <li>粤ICP备14037596号</li>
+                    </ul>
+                </div>
+                <div class="footer-sl  visible-sl-inline-block" >
+                    <img src="images/secondEdition/footer_logo.gif " class="footerLogo hidden-sl"/>
+                    <ul class="footer-text-sl">
+                        <li>/</li>
+                        <li><a href="/#/contactUs">联系方式</a></li>
+                        <li><a href="/#/introduction">关于格隆汇</a></li>
+                        <li><a href="/#/relief">免责声明</a></li>
+                        <li>/</li>
+                    </ul>
+                    <br>
+		                            <span class="footer-text-tail-sl">
+		                                <li><a href="http://www.miitbeian.gov.cn"> © 格隆汇科技发展（深圳）有限公司 粤ICP备14037596号</a></li>
+                                    </span>
+                </div>
+            </div>
+        </div>
+        
+		
+     <script src="scripts/vendor/swiper/swiper3.js"></script>	    
+    </body>
+
+</html>

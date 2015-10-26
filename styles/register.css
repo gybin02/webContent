@@ -1,0 +1,194 @@
+.main-content {
+
+}
+
+.main-content .title {
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.main-content .content {
+    margin-top: 50px;
+}
+
+.main-content .form-content {
+    margin-top: 40px;
+}
+
+.main-content .form-content .companyIntro{
+	line-height: 25px;
+}
+
+.main-content .form-content .lineSeptal{
+	margin-top: 20px;
+}
+
+.main-content input {
+    margin-top: 0px;
+    height: 40px;
+    width: 500px;
+    padding-left: 20px;
+}
+
+.main-content .areaNum {
+    margin-top: 0px;
+    height: 40px;
+    width: 150px;
+    padding: 10px 0px 10px 20px;
+    margin-bottom: 28px;
+}
+
+.main-content .phoneInput {
+    margin-top: 0px;
+    height: 40px;
+    width: 345px;
+    margin-left: 5px;
+}
+
+.main-content input[type="text"], input[type="password"],input[type="radio"], select, textarea,label{
+    margin-bottom: 28px;
+}
+
+
+.main-content span{
+    height: 40px;
+    line-height: 40px;
+    width: 480px;
+    text-align: left;
+    color: red;
+    margin-left: 5px;
+}
+
+.main-content p{
+    height: 40px;
+    line-height: 40px;
+    width: 480px;
+    text-align: left;
+    color: red;
+    margin-left: 5px;
+    margin-bottom: 28px;
+}
+
+.main-content .send-code {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    height: 36px;
+    padding: 0px 28px;
+    width: 130px;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+}
+
+.main-content .center-el {
+    text-align: center;
+}
+
+.main-content .logo-ok {
+    margin: 120px 0px 30px 0px;
+}
+
+.main-content .active-info {
+    font-size: 18px;
+    margin-bottom: 74px;
+}
+
+.main-content .btn-split-height {
+    margin-top: 26px;
+}
+
+.error_return {
+    text-decoration: underline;
+    vertical-align: bottom;
+    margin-left: 8px;
+}
+
+.agreeCheckBox{
+	height: 19px;
+	width: 19px; 
+	margin-bottom: 28px; 
+	vertical-align: text-top; 
+	line-height: 5px;
+}
+
+/*全局响应式布局*/
+/* 当浏览器的可视区域大于1200px */
+@media screen and (min-width: 1200px) {
+    .main-content input {
+	    width: 500px;
+	}
+	
+	.main-content .areaNum {
+	    width: 150px;
+	}
+	
+	.main-content .phoneInput {
+	    width: 345px;
+	}
+	
+	.main-content .send-code {
+	    width: 130px;
+	}
+
+}
+
+/* 当浏览器的可视区域小于1200px */
+@media screen and (max-width: 1200px) {
+    .main-content input {
+        width: 500px;
+    }
+    
+    .main-content .areaNum {
+	    width: 150px;
+	}
+    
+	.main-content .phoneInput {
+	    width: 345px;
+	}
+	
+	.main-content .send-code {
+	    width: 130px;
+	}
+}
+
+
+/* 当浏览器的可视区域小于960px */
+@media screen and (max-width: 960px) {
+    .main-content input {
+        width: 410px;
+    }
+    
+    .main-content .areaNum {
+	    width: 120px;
+	}
+    
+	.main-content .phoneInput {
+	    width: 285px;
+	}
+	
+	.main-content .send-code {
+	    width: 130px;
+	}
+}
+
+/* 当浏览器的可视区域大于540px */
+
+@media screen and (max-width: 540px) {
+    .main-content input {
+        width: 220px;
+    }
+    
+    .main-content .areaNum {
+	    width: 80px;
+	}
+    
+	.main-content .phoneInput {
+	    width: 135px;
+	}
+	
+	.main-content .send-code {
+		margin-left: 5px;
+	    width: 110px;
+	}
+}
+

@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="styles/home.css"/>
+<link rel="stylesheet" href="styles/search.css">
+<link rel="stylesheet" href="styles/tmPagination.css">
+
+<div class="container" style="margin-top: 120px;margin-bottom: 80px">
+    <div ng-controller="SearchUserController">
+    <div search-sub-box></div>
+    <div class="search-dash-board pull-left">
+		<ul>
+		    <li>
+		        <a href="#/search/{{key}}"><span>帖子</span></a>
+		    </li>
+		    <li>
+		        <a href="#/searchStock/{{key}}"><span>股票</span></a>
+		    </li>
+		    <li class="active">
+		        <a href="#/searchUser/{{key}}"><span>用户</span></a>
+		    </li>
+		    <li>
+		        <a href="#/searchMore/{{key}}"><span>其他</span></a>
+		    </li>
+		</ul>
+	</div>
+	<div class="search-box">
+         <p>搜索到相关 <font color='#178bb8'>{{key}}</font> 的用户</p>
+         <hr/>
+         <waiting wait-text="正在加载数据,请稍后……" ng-show="searchUserList==null"></waiting>
+         <!--遍历搜索信息-->
+         <ul class="media-list">
+         	<li class="media search-user" ng-repeat="object in searchUserList">
+				<div class="media-left">
+				  <a href="#">
+				    <img class="img-circle" ng-src="{{object.avatar}}">
+				  </a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<span class="search-username" ng-bind-html="object.username" ng-click="jump('/userInfo',object.userId)"></span>
+						<img ng-src="images/vip.png" ng-if="object.userType==1">
+					</h4>
+					<span ng-show="object.sex==null">未完善性别信息</span>
+					<span ng-show="object.sex!=null">
+						<img ng-src="images/female.png" ng-if="object.sex=='女'">
+						<img ng-src="images/man.png" ng-if="object.sex=='男'">
+						{{object.sex}}
+					</span>
+					<span ng-show="object.state!=null && object.state!='null'">{{object.state}}</span>
+					<span ng-show="object.city!=null && object.city!='null'">{{object.city}}</span>
+					<!-- <span>{{object.userId}}</span>  -->
+ 					<span class="fans-bar pull-right" ng-show="followStatus[object.userId]">
+					    <a class="cancel-bar" ng-click="unfollow(object.userId)">× 取消关注</a>
+					</span>
+					<span class="fans-bar pull-right" ng-show="!followStatus[object.userId]">
+					    <a ng-click="addAttention(object.userId)">+ 加关注</a>
+					</span>
+					<span class="search-tag-info" ng-show="object.userBrief!=null && object.userBrief!='null'">{{object.userBrief}}</span>
+				</div>
+			</li>
+         </ul>
+		<div id="pagination-box">
+	        <tm-pagination conf="paginationConf"></tm-pagination>
+	    </div>
+	</div>
+</div>
+</div>

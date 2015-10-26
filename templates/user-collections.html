@@ -1,0 +1,98 @@
+<div class="collections pull-left" >
+    <div>
+        <ul class="nav nav-pills coll_panel" >
+            <li role="presentation" ng-class="{active:collections.isSelect(1)}" >
+                <a ng-click="collections.setSelect(1)">我的自选</a>
+            </li>
+            <li role="presentation" ng-class="{active:collections.isSelect(2)}" style="margin-left:0px;">
+                <a ng-click="collections.setSelect(2)">我的组合</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div ng-if="collections.isSelect(1)" class="my_collction">
+        <div>
+            <ul  class="stock_tab" >
+                <li  ng-class="{line :collections.isStockSelect(1)}">
+                    <a class="line_a" ng-click="collections.setStockSelect(1)">全部</a>
+                </li>
+                <li ng-class="{line:collections.isStockSelect(2)}">
+                    <a ng-click="collections.setStockSelect(2)">港股</a>
+                </li>
+                <li ng-class="{line:collections.isStockSelect(3)}">
+                    <a ng-click="collections.setStockSelect(3)">美股</a>
+                </li>
+                <li ng-class="{line:collections.isStockSelect(4)}">
+                    <a ng-click="collections.setStockSelect(4)">沪深</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <hr width="630px" style="color: red;clear: both;margin-left: -0px;margin: 0px">
+
+        <div>
+            <ul class="stock_trends">
+                <li  >
+                    <a class="line_a" >全部</a>
+                </li>
+                <li style="width: 85px !important;">
+                    <a >当前价</a>
+                </li>
+                <li style="width: 125px !important;">
+                    <a  >涨跌幅</a>
+                </li>
+                <li >
+                    <a>成交量</a>
+                </li>
+                <li  >
+                    <a >市值</a>
+                </li>
+                <li  class="refresh">
+                    <a ><img ng-src="images/Refresh.png"></a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div ng-repeat="n in [1, 2, 3, 4,5] track by $index" id="code_data">
+            <ul>
+                <li  ng-class="{light_green_color:$index%2==0}">
+                    <a  >中国交建</a>
+                </li>
+                <li ng-class="{light_green_color:$index%2==0}" style="width: 85px !important;">
+                    <a  >12.40</a>
+                </li>
+                <li  ng-class="{light_green_color:$index%2==0}" style="width: 125px !important;">
+                    <a ng-show="$index%2==0" class="increase">
+                        +0.38(+2.58%)
+                    </a>
+                    <a ng-show="$index%2!=0" class="decrease">
+                        +0.38(+2.58%)
+                    </a>
+                </li>
+                <li ng-class="{light_green_color:$index%2==0}">
+                    <a >3825.58万</a>
+                </li>
+                <li  ng-class="{light_green_color:$index%2==0}">
+                    <a >128.50亿</a>
+                </li>
+                <li   ng-class="{light_green_color:$index%2==0}" class="refresh">
+                    <img ng-src="images/more.png">
+                </li>
+            </ul>
+        </div>
+
+        <div class="plus">
+            <span ng-click="collections.press()"><img ng-src="images/plus.png"></span>
+            <span >展开</span>
+
+        </div>
+
+    </div>
+
+
+
+</div>

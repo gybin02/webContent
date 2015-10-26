@@ -1,0 +1,438 @@
+html {
+	font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-weight: normal;
+	-webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+html a {
+	cursor: pointer;
+	text-decoration: none;
+	color: #fff;
+}
+.hide {
+	display: none;
+}
+.clearfix:before,
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1; /* IE < 8 */
+}
+
+/*头部*/
+.wrap header {
+	width: 100%;
+	height: 80px;
+	background-color: #22aee6;
+	position: fixed;
+	z-index: 1000;
+}
+.hd-wrap {
+	width: 90%;
+	max-width: 1500px;
+	height: 80px;
+	line-height: 80px;
+	margin: 0 auto;
+	color: #fff;
+	position: relative;
+}
+#glh-logo {
+	display: inline-block;
+	height: 80px;
+	vertical-align: middle;
+}
+#glh-logo img {
+	vertical-align: middle;
+}
+#not-login {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+#not-login a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#logged-in {
+	display: none;
+}
+#logged-in ul {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+}
+#logged-in > ul > li {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	vertical-align: middle;
+	position: relative;
+}
+#logged-in ul li.my-avatar:after {
+	content: "";
+	border: 6px solid;
+	border-color: #0088c3 transparent transparent transparent;
+	position: absolute;
+	top: 40px;
+	right: 0; 
+}
+#logged-in ul li.my-avatar img {
+	border-radius: 50%;
+	width: 38px;
+	height: 38px;
+	vertical-align: middle;
+	margin-left: 25px;
+}
+#logged-in > ul > li > a {
+	vertical-align: top;
+	padding: 3px 0;
+	border-left: 1px dotted #0088c3;
+}
+#logged-in ul li img {
+	width: 100%;
+}
+#logged-in .func-lis {
+	width: 158px;
+	background-color: #0088c4 ;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 79px;
+	left: 0;
+	text-align: center;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	display: none;
+}
+#logged-in .func-lis li {
+	height: 34px;
+	width: 130px;
+	line-height: 34px;
+	list-style: none;
+	margin: 10px auto;
+	transition: all .4s;
+}
+#logged-in .func-lis a {
+	color: #fff;
+}
+#logged-in .func-lis li:hover {
+	background-color: #046793;
+}
+
+/*end 头部*/
+
+/*login 弹窗*/
+.article-login {
+	position: fixed;
+	z-index: 1200;
+	background-color: #fff;
+	width: 100%;
+	min-width: 300;
+	max-width: 490px;
+	border-radius: 4px;
+	margin-left: 50%;
+	top: 150px;
+	transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    display: none;
+}
+.article-login > p {
+	margin: 0;
+	padding: 15px 10px 15px 20px;
+	border-bottom: 1px solid #d8d8d8;
+	margin-bottom: 35px;
+}
+.article-login > p img {
+	float: right;
+	cursor: pointer;
+}
+#login-form .form-row {
+	width: 70%;
+	margin: 10px auto 0;
+	border: 1px solid #d8d8d8;
+	border-radius: 4px;
+	height: 32px;
+	line-height: 32px;
+}
+#account, #password {
+	width: 87%;
+	background-color: #fff;
+	border: 0;
+	outline: 0;
+	float: right;
+	height: 30px;
+	border-radius: 4px;
+}
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+	border-radius: 0 4px 4px 0;
+}
+#login-form img {
+	vertical-align: sub;
+	margin-left: 10px;
+}
+#login-form .pwd-wrap {
+	width: 60%;
+	margin: 15px auto;
+}
+#login-form .pwd-wrap a {
+	float: right;
+	text-decoration: none;
+	color: #333;
+}
+#login-form input[type="checkbox"] {
+	vertical-align: -2px;
+	margin-right: 5px;
+}
+#login-form #submit, #login-form .err,
+.article-login .register,#login-form #glhLogin-submit {
+	width: 60%;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	padding: 6px 0;
+}
+#login-form label {
+	color: #999;
+	font-weight: normal;
+}
+#login-form .err {
+	color: #ff6057;
+	visibility: hidden;
+}
+#login-form .submit,#login-form #glhLogin-submit {
+	background-color: #22aee6;
+	color: #fff;
+	border-radius: 4px;
+	border: 0;
+	cursor: pointer;
+}
+.article-login .register {
+	margin-bottom: 20px;
+	border-bottom: 0;
+}
+.article-login .register a {
+	color: #22aee6;
+}
+
+
+.mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: .5;
+	filter: Alpha(opacity=50);
+	z-index: 1100;
+	display: none;
+}
+/*end login 弹窗*/
+
+.article-bg {
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+	padding-top: 1px;
+}
+.article-wrap {
+	width: 70%;
+	max-width: 1500px;
+	color: #333;
+	margin: 0 auto;
+}
+.article-wrap .author-info,
+.article-wrap .content-wrap,
+.article-wrap .comment-wrap {
+	border-radius: 4px;
+	margin-top: 15px;
+	background-color: #fff;
+	padding: 25px 50px;
+}
+.article-wrap .author-info {
+	margin-top: 120px;
+	position: relative;
+}
+
+/*作者详细信息*/
+.author-info a {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+	border: 2px solid #f2f2f2;
+	vertical-align: middle;
+}
+.author-info a img {
+	width: 100%;
+}
+.author-info .info-wrap {
+	display: inline-block;
+	vertical-align: -25px;
+	margin-left: 10px;
+}
+.author-info .info-wrap p {
+	color: #999;
+}
+.author-info .func-wrap {
+	position: absolute;
+	right: 40px;
+	top: 30px;
+	text-align: center;
+}
+.author-info .func-wrap span {
+	color: #999;
+}
+.author-info .func-wrap i {
+	display: inline-block;
+	color: #fff;
+	margin-top: 20px;
+	padding: 4px 15px;
+	border-radius: 4px;
+	text-align: center;
+	font-style: normal;
+	cursor: pointer;
+}
+.func-wrap #attention {
+	background-color: #ff6057;
+}
+.func-wrap #sendmsg {
+	background-color: #999;
+}
+
+/*主体内容*/
+.content-wrap {
+	position: relative;
+}
+.content-wrap .return-top {
+	position: fixed;
+	bottom: 100px;
+	left: 50%;
+	margin-left: 34%;
+	z-index: 100;
+	display: none;
+}
+.return-top li {
+	width: 36px;
+	height: 36px;
+	transition: all .4s;
+	list-style: none;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+.return-top .top {
+	background: url(/images/secondEdition/btn_Top_1.png) no-repeat top left;
+}
+.return-top .top:hover {
+	background: url(/images/secondEdition/btn_Top_2.png) no-repeat top left;
+}
+.return-top .QR-code {
+	position: relative;
+	background: url(/images/secondEdition/btn_code_1.png) no-repeat top left;
+}
+.return-top .QR-code:hover {
+	background: url(/images/secondEdition/btn_code_2.png) no-repeat top left;
+}
+.return-top .QR-code span {
+	position: absolute;
+	top: -184px;
+	left: -202px;
+	display: none;
+	border-radius: 4px;
+}
+
+.content-wrap #collect-tag {
+	display: block;
+	background: url(../../images/secondEdition/article_icon.png) no-repeat -36px -1px;
+	width: 17px;
+	height: 28px;
+	position: absolute;
+	top: 0;
+	right: 55px;
+}
+.content-wrap .article-info h1 {
+	font-size: 20px;
+}
+.content-wrap .article-info span {
+	color: #999;
+}
+.article-info ul {
+	margin-top: 15px;
+	padding: 0;
+	color: #999;
+}
+.article-info li {
+	display: inline;
+	margin-right: 15px;
+}
+.article-info li img {
+	vertical-align: middle;
+}
+.content-wrap .main-content {
+	margin-top: 25px;
+	padding: 25px 0;
+	border-top: 1px dashed #ddd;
+}
+.content-wrap .main-content img {
+	display: block;
+	max-width: 90%;
+	margin: 0 auto;
+}
+.content-wrap .interactive-btns {
+	text-align: center;
+}
+.content-wrap .interactive-btns li {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px 30px;
+	cursor: pointer;
+}
+.content-wrap .interactive-btns li:first-child {
+	margin-right: 25px;
+}
+.interactive-btns li span {
+	display: inline-block;
+	background: url(../../images/secondEdition/article_icon.png) no-repeat top left;
+	width: 14px;
+	height: 14px;
+	margin-right: 7px;
+	vertical-align: middle;
+}
+.interactive-btns .favorite span {
+	background-position: -3px -2px;
+}
+.interactive-btns .collect span {
+	background-position: -19px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<div class="user_editor" ng-class="{true:'', false: 'hide'}[show]" data-scope-id="{{$id}}">
+
+	<div class="userEditor-main">
+		<div contenteditable="true"
+			 placeholder="请输入{{postType}}内容"
+			 class="form-control contenteditable wordwrap"></div>
+		<div class="post-alert" ng-class="post.showPostAlert">
+			<img ng-src="images/{{post.postStatus}}.png"/>{{ post.postMsg }}
+		</div>
+		<ul class="editor_ul pull-left">
+			<li name="at" ng-class="{true:'', false: 'hide'}[showAction.indexOf('@')>-1]">
+				<img name="at" ng-src="images/mouse.png" ng-click="addSymbolOnMouseClick('@')">
+                <span class="at" style="color:#889485;" ng-click="addSymbolOnMouseClick('@')">用户</span>
+			</li>
+			<li name="dollar" ng-class="{true:'', false: 'hide'}[showAction.indexOf('$')>-1]">
+				<img name="dollar" ng-src="images/$.png" ng-click="addSymbolOnMouseClick('$')">
+                <span class="dollar" style="color:#889485;" ng-click="addSymbolOnMouseClick('$')">股票</span>
+			</li>
+			<li  ng-class="{true:'', false: 'hide'}[showAction.indexOf('picture')>-1]">
+				<span href class="fileinput-button" ng-class="{disabled: disabled}">
+					<img ng-src="images/image.png" onclick="document.getElementById('uploader-image').click();" />
+                    <span style="color:#889485;" onclick="document.getElementById('uploader-image').click();">图片</span>
+				</span>
+				<input type="file" id="uploader-image" nv-file-select uploader="imgUploader" name="files[]" ng-disabled="disabled" ng-show="false" />
+			</li>
+			<li ng-class="{true:'', false: 'hide'}[showAction.indexOf('pdf')>-1]">
+				<img ng-src="images/pdf.png" ng-click="showUploadPdf()">
+                <span style="color:#889485;" ng-click="showUploadPdf()">pdf</span>
+			</li>
+			<li ng-class="{true:'', false: 'hide'}[showAction.indexOf('longText')>-1]">
+				<img ng-src="images/long_text.png" ng-click="showTextEditor()">
+                <span style="color:#889485;" ng-click="showTextEditor()"> 长文</span>
+			</li>
+			<li ng-show="showWaiting">
+				<waiting  wait-text="正在上载图片,请稍后……"></waiting>
+			</li>
+		</ul>
+		<button type="button"  ng-class="{disabled:isSubmit==true}" class="btn btn-info send-diy pull-right" ng-click="submitComment($id);">{{postType}}</button>
+	</div>
+
+	<upload-pdf></upload-pdf>
+	<text-editor></text-editor>	
+</div>

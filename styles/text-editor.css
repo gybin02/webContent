@@ -1,0 +1,26 @@
+.mask.text-editor,.mask.upload-pdf {
+	position:fixed;
+	background:none repeat scroll 0 0 #fff;
+	margin:0;
+	left:0;
+	top:0;
+	opacity:1;
+	display:none;
+}
+.mask.text-editor form,.mask.upload-pdf form{
+	width:500px !important;
+	margin-top:50px !important;
+	/*
+	position:fixed;
+	left:35%;
+	top:10%;
+	*/
+}
+.form-control{
+	border-radius:0;
+}
+
+.modal-content ul li, .modal-content ul li a:hover {
+    background-color: #23aee7;
+    color: #147ea8;
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>GURU</display-name>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	    
+	    
+    <servlet>
+        <servlet-name>GURUApplication</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.gelonghui.stock.rest.GURUApplication</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GURUApplication</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+         <servlet-name>guruServlet</servlet-name>
+         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+         <init-param>
+                <param-name>contextConfigLocation</param-name>
+                <param-value>/WEB-INF/springmvcContext.xml</param-value>
+         </init-param>
+         <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	        <servlet-name>guruServlet</servlet-name>
+	        <url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+    
+    
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+
+ 
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+	
+	 <!--验证码-->
+    <servlet> 
+  		<servlet-name>Kaptcha</servlet-name> 
+  		<servlet-class> 
+   			com.google.code.kaptcha.servlet.KaptchaServlet 
+	  	</servlet-class> 
+	  	<init-param> 
+	   		<description> 
+	    		Border around kaptcha. Legal values are yes or no. 
+	   		</description> 
+	   		<param-name>kaptcha.border</param-name> 
+	   		<param-value>no</param-value> 
+	  	</init-param> 
+	  	<init-param> 
+	   		<param-name>kaptcha.textproducer.font.size</param-name> 
+	   		<param-value>45</param-value> 
+	  	</init-param> 
+	  	<init-param> 
+	   		<param-name>kaptcha.textproducer.char.string</param-name> 
+	   		<param-value>abcdefnmnwx235678ABCDEFGHKQRSTX</param-value> 
+	 	</init-param> 
+	  	<init-param> 
+	   		<description> 
+	    		Ending background color. Legal values are r,g,b. 
+	   		</description> 
+	   		<param-name>kaptcha.background.clear.from</param-name> 
+	   		<param-value>255,255,255</param-value> 
+	  	</init-param> 
+	  	<init-param> 
+	   		<description> 
+	    		Ending background color. Legal values are r,g,b. 
+	   		</description> 
+		   	<param-name>kaptcha.background.clear.to</param-name> 
+		   	<param-value>255,255,255</param-value> 
+	  	</init-param> 
+		<init-param> 
+		   <description> 
+		    Ending background color. Legal values are r,g,b. 
+		   </description> 
+		   <param-name>kaptcha.image.width</param-name> 
+		   <param-value>160</param-value> 
+		  </init-param> 
+		  <!-- 设置字体个数 --> 
+		<init-param> 
+			<param-name>kaptcha.textproducer.char.length</param-name> 
+			<param-value>4</param-value> 
+		</init-param> 
+	</servlet> 
+	<servlet-mapping> 
+		<servlet-name>Kaptcha</servlet-name> 
+		<url-pattern>/kaptcha.jpg</url-pattern> 
+	</servlet-mapping>
+	 
+</web-app>

@@ -1,0 +1,33 @@
+.msg-modal .user_editor {
+  width: 100%;
+  padding: 25px;
+}
+
+.msg-modal .user_editor .userEditor-main {
+  position: relative;
+}
+
+.msg-modal .user_editor .messageText {
+  min-height: 90px;
+  height: auto;
+}
+
+.msg-modal .send-btn {
+  background-color: #22aee6;
+  height: 30px;
+  width: 125px;
+  padding: 0px;
+  margin-top: 10px;
+}
+
+.disble-btn {
+  pointer-events: none;
+  border-color: #78c9ea;
+  background-color: #78c9ea;
+}
+
+.message-error {
+  color: red;
+  float: left;
+  padding-top: 5px;
+}

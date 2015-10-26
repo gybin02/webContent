@@ -1,0 +1,143 @@
+.bg-wrap {
+	width: 100%;
+	background-color: #f2f2f2;
+	padding-top: 1px;
+}
+.recommend-wrap {
+	margin: 100px auto 0;
+	width: 80%;
+	max-width: 1500px;
+	padding-bottom: 100px;
+}
+.recommend-section {
+	margin-top: 20px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.recommend-section h2 {
+	height: 45px;
+	line-height: 45px;
+	padding-left: 2.3%;
+	font-size: 14px;
+	background-color: #fff;
+	margin-bottom: 2px;
+}
+.recommend-section .block-row {
+	background-color: #fff;
+	padding-bottom: 35px;
+	height: 100%;
+	text-align: center;
+}
+.block-row .user-wrap {
+	width: 145px;
+	display: inline-block;
+	text-align: center;
+	margin: 25px 40px 0;
+	position: relative;
+}
+.block-row .user-wrap a {
+	display: block;
+	width: 75px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-bottom: 7px;
+}
+.block-row .user-wrap a img {
+	width: 100%;
+}
+ .block-row .user-wrap .certfct {
+ 	top:55px; 
+	left:92px;
+	position:absolute;
+	width:25px;
+	height: 19px;
+	background:url('../../images/secondEdition/Authentication.png') no-repeat;
+ }
+.block-row .user-wrap .VIP {
+	background-position: 0 0;
+}
+.block-row .user-wrap .institution {
+	background-position: 0 -38px;
+}
+.block-row .user-wrap .company {
+	background-position: 0 -19px;
+}
+.block-row .user-wrap .IR {
+	background-position: 0 -57px;
+}
+.block-row .user-wrap p {
+	color: #333;
+	font-size: 14px;
+	margin-bottom: 7px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.block-row .user-wrap span, 
+.block-row .user-wrap i {
+	color: #999;
+	font-size: 12px;
+	margin-bottom: 9px;
+	font-style: normal;
+}
+.block-row .user-wrap span {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.block-row .user-wrap i {
+	width: 65px;
+	border-radius: 4px;
+	color: #fff;
+	padding: 5px 7px;
+	margin: 5px 3px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+#attention {
+	background-color: #ff6057;
+}
+#sendmsg {
+	background-color: #666;
+}
+
+
+.footer-text-tail li {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+@media screen and (max-width: 540px) {
+	 /*用户推荐页面*/
+   .block-row .user-wrap {
+   	width: 100px;
+   	margin: 25px 12px 0;
+   }
+   .block-row .user-wrap .VIP {
+	top:55px; 
+	left:70px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

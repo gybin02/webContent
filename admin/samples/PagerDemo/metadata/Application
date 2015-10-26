@@ -1,0 +1,23 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "User"
+        ],
+        "name": "PagerDemo",
+        "stores": [
+            "UserStore"
+        ],
+        "views": [
+            "MyContainer",
+            "MyWindow"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

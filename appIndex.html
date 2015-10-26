@@ -1,0 +1,528 @@
+<!DOCTYPE html >
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<html ng-app="GLHApp">
+
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="$root.title">格隆汇--港股那点事</title>
+    <meta name="keywords" content="格隆汇,港股那点事,股票,行情,美股,港股,A股,ETF,基金,可转债,理财,债券,信托,投资社区,价值投资,投资">
+    <meta name="description" content="格隆汇是一个服务中国人海外投资的社交平台，以互联网众筹研究的方式，为所有中国人进行海外证券投资提供资讯、研究、交易、社交等全方位的服务。">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+    <link rel="shortcut icon" type="image/x-icon" href="http://res.gelonghui.com/images/icon114.png" media="screen"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="scripts/vendor/bootstrap-3.3.4/css/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="scripts/vendor/textAngular-1.3.8/css/textAngular.css"/>
+    <link rel="stylesheet" href="styles/secondEdition/layout.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="styles/media.css">
+    <link rel="stylesheet" href="styles/secondEdition/search-box.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <link rel="stylesheet" href="styles/secondEdition/appAdapter.css">
+    <link rel="stylesheet" href="styles/hoverTip.css">
+    <link rel="stylesheet" href="scripts/vendor/Jcrop/css/Jcrop.css"/>
+    <link rel="stylesheet" href="scripts/vendor/angularDialogService/css/dialogs.css"/>
+
+    <script src="scripts/vendor/jquery-2.1.3.min.js"></script>
+    <script src="scripts/vendor/bootstrap-3.3.4/js/bootstrap.js"></script>
+
+    <script src="scripts/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="scripts/vendor/angular/angular.min.js"></script>
+    <script src="scripts/vendor/angular/angular-sanitize.min.js"></script>
+    <script src="scripts/vendor/angular/angular-route.min.js"></script>
+    <script src="scripts/vendor/angular/angular-resource.min.js"></script>
+    <script src="scripts/vendor/angular/angular-animate.min.js"></script>
+    <script src="scripts/vendor/angular/angular-cookies.min.js"></script>
+
+    <script src="scripts/vendor/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+    <script src="scripts/vendor/textAngular-1.3.8/js/rangy-core.js"></script>
+    <script src="scripts/vendor/textAngular-1.3.8/js/rangy-selectionsaverestore.js"></script>
+    <script src="scripts/vendor/textAngular-1.3.8/js/rangy-position.js"></script>
+    <script src="scripts/vendor/textAngular-1.3.8/js/textAngularSetup.js"></script>
+    <script src="scripts/vendor/textAngular-1.3.8/js/textAngular-sanitize.js"></script>
+    <script src="scripts/vendor/textAngular-1.3.8/js/textAngular.js"></script>
+
+    <script src="scripts/vendor/angularFileUpload/1.1.5/js/angular-file-upload.min.js"></script>
+    <script src="scripts/vendor/angularDialogService/js/dialogs.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/routing.js"></script>
+
+    <script src="scripts/filters/commFilter.js"></script>
+    <script type="text/javascript" src="scripts/directives/appBanner.js"></script>
+    <script type="text/javascript" src="scripts/directives/marketData.js"></script>
+    <script type="text/javascript" src="scripts/directives/userDashboard.js"></script>
+    <script type="text/javascript" src="scripts/directives/userCollections.js"></script>
+    <script type="text/javascript" src="scripts/directives/userEditor.js"></script>
+    <script type="text/javascript" src="scripts/directives/messageEditor.js"></script>
+    <script type="text/javascript" src="scripts/directives/atUser.js"></script>
+    <script type="text/javascript" src="scripts/directives/secBrokers.js"></script>
+    <script type="text/javascript" src="scripts/directives/stocksList.js"></script>
+    <script type="text/javascript" src="scripts/directives/modal.js"></script>
+    <script type="text/javascript" src="scripts/directives/textEditor.js"></script>
+    <script type="text/javascript" src="scripts/directives/searchBoxFloat.js"></script>
+    <script type="text/javascript" src="scripts/directives/searchBox.js"></script>
+    <script type="text/javascript" src="scripts/directives/searchSubBox.js"></script>
+    <script type="text/javascript" src="scripts/directives/uploadPdf.js"></script>
+    <script type="text/javascript" src="scripts/directives/sharePopover.js"></script>
+    <script type="text/javascript" src="scripts/directives/userPopover.js"></script>
+    <script type="text/javascript" src="scripts/directives/userTrends.js"></script>
+    <script type="text/javascript" src="scripts/directives/hotRead.js"></script>
+    <script type="text/javascript" src="scripts/directives/tmPagination.js"></script>
+    <script type="text/javascript" src="scripts/directives/contentHtml.js"></script>
+    <script type="text/javascript" src="scripts/directives/stopEvent.js"></script>
+    <script type="text/javascript" src="scripts/directives/indexRelease.js"></script>
+
+    <script type="text/javascript" src="scripts/directives/chartAsset.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartCash.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartDebt.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartEquity.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartIncome.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartPb.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartPe.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartProfit.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartRatio.js"></script>
+    <script type="text/javascript" src="scripts/directives/chartRoa.js"></script>
+
+    <script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationGl.js"></script>
+    <script type="text/javascript" src="scripts/directives/secondEdition/textEditorBeta.js"></script>
+    <script type="text/javascript" src="scripts/directives/secondEdition/marketDataBetaMobile.js"></script>
+    <script type="text/javascript" src="scripts/directives/marketDataBeta.js"></script>
+    <!--<script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationMl.js"></script>
+    <script type="text/javascript" src="scripts/directives/secondEdition/tmPaginationSl.js"></script>-->
+
+    <script src="scripts/controllers/secondEdition/mainController.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/registerController.js"></script>
+    <script src="scripts/controllers/updateUserController.js"></script>
+    <script src="scripts/controllers/updatePwdController.js"></script>
+    <script src="scripts/controllers/updatePwdEmailController.js"></script>
+    <script src="scripts/controllers/userEditorController.js"></script>
+    <script src="scripts/controllers/topicController.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+    <script src="scripts/controllers/homeController.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+    <script src="scripts/controllers/searchPostController.js"></script>
+    <script src="scripts/controllers/searchStockController.js"></script>
+    <script src="scripts/controllers/searchUserController.js"></script>
+    <script src="scripts/controllers/searchMoreController.js"></script>
+    <script src="scripts/controllers/searchGicsIIController.js"></script>
+    <script src="scripts/controllers/searchGicsCompanyController.js"></script>
+    <script src="scripts/controllers/userContentController.js"></script>
+    <script src="scripts/controllers/userMessageController.js"></script>
+    <script src="scripts/controllers/userCommentMeController.js"></script>
+    <script src="scripts/controllers/userReferMeController.js"></script>
+    <script src="scripts/controllers/userFavoriteController.js"></script>
+    <script src="scripts/controllers/userAttentionController.js"></script>
+    <script src="scripts/controllers/userFansController.js"></script>
+    <script src="scripts/controllers/userInfoController.js"></script>
+    <script src="scripts/controllers/navController.js"></script>
+    <script src="scripts/controllers/activeEmailController.js"></script>
+    <script src="scripts/controllers/articleDetailController.js"></script>
+    <script src="scripts/controllers/stockDetailController.js"></script>
+    <script src="scripts/controllers/glhExpController.js"></script>
+    <!--<script src="scripts/controllers/allController.min.js"></script>-->
+
+    <script src="scripts/services/ApiService.js"></script>
+    <script src="scripts/services/mainService.js"></script>
+    <script src="scripts/services/homeService.js"></script>
+    <script src="scripts/services/PhoneAreaService.js"></script>
+    <script src="scripts/services/userService.js"></script>
+    <script src="scripts/services/CommService.js"></script>
+    <script src="scripts/services/DialogService.js"></script>
+    <script src="scripts/directives/waiting.js"></script>
+    <script src="scripts/services/stockService.js"></script>
+    <script src="scripts/vendor/Jcrop/js/jquery.Jcrop.min.js"></script>
+    <script src="scripts/vendor/ng-jcrop.js"></script>
+
+
+</head>
+
+<body>
+
+
+<div ng-controller="MainController">
+    <!-- <div id="leftDiv" style="width:100px;border: 1px blue solid;float: left;height:80px;" ></div>-->
+    <text-editor></text-editor>
+    <text-editor-beta></text-editor-beta>
+    <upload-pdf></upload-pdf>
+    <!--1920 1496 1620-->
+    <div class="container-fluid" style="background-color: #f2f2f2;padding: 0px">
+
+        <!--我是页头-->
+        <div class="row naviBlue navbar-fixed-top"  >
+
+            <!--全屏导航-->
+            <div class="naviBlue-auto col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <img src="images/logo.png" class="newLogo-auto"/>
+                <div id="noLogin" ng-show="!isLogin">
+                    <a ng-click="login()">登录</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a ng-click="register()">注册</a>
+                </div>
+                <div id="loginStatus-auto" ng-show="isLogin">
+                    <ul class="nav navbar-nav">
+                        <li><img src="images/secondEdition/Nav_Line.gif"></li>
+                        <li>
+                            <a href="/#/userHome" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                <img src="images/secondEdition/NAVicon_Homepage.png">
+                            </a>
+
+                        </li>
+                        <li>
+                            <img src="images/secondEdition/Nav_Line.gif">
+                        </li>
+                        <li  class="dropdown">
+                            <a href="#" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                <img src="images/secondEdition/NAVicon_Write.png">
+                            </a>
+                            <ul class="dropdown-menu editor-button">
+                                <li><a ng-click="showShortMsg()">哔哔一下</a></li>
+                                <li><a ng-click="showTextEditor()">发表文章</a></li>
+                                <li><a ng-click="showUploadPdf()">上传PDF</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <img src="images/secondEdition/Nav_Line.gif">
+                        </li>
+                        <li>
+                            <a href="#" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                <img src="images/secondEdition/NAVicon_MSG.png">
+                            </a>
+                            <ul class="dropdown-menu editor-button">
+                                <li><a ng-click="userTabChanged('userMessage')">私信</a></li>
+                                <li><a ng-click="userTabChanged('commentMe')">评论我的</a></li>
+                                <li><a ng-click="userTabChanged('userAttention')">关注</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <img src="images/secondEdition/Nav_Line.gif">
+                        </li>
+                        <li style="width: 80px;height: 80px;padding-top:22px;text-align: center" class="dropdown">
+                            <a href="#" class="" data-toggle="dropdown" style="padding: 0px;width: auto"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                <img class="article-img-circle" ng-src="{{loginedUser.user.avatar}}">
+                                <img src="images/secondEdition/icon_HeadSubscript.png">
+                            </a>
+                            <ul class="dropdown-menu user-button">
+                                <li><a href="/#/userHome">我的主页</a></li>
+                                <li><a ng-click="updateInfo()">个人设置</a></li>
+                                <li><a ng-click="exit()">退出登录</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>   <!--页头结束-->
+
+        <!--login modal-->
+        <div ng-include="'templates/login.html'"></div>
+
+
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: #FFFFFF;padding: 0px">
+            <div class="row naviWhite col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" style="margin-top: 64px">
+
+                <div class="naviWhite-mobile" >
+                    <nav class="navbar-default" style="border: none">
+                        <div  style="padding-left: 0px;padding-right: 0px;width: inherit;margin-left: -28px;">
+                            <button type="button" ng-click="appSpread()"  class="navbar-toggle" style="float: left;display: block;margin-left: 0px;">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="naviRight-mobile">
+                                <div style="float: right;margin-right: -28px;padding-top: -8px;margin-top:-10px">
+                                    <div search-box></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="naviUl" style="position:relative;z-index:100;display: none; " ng-class="{appDisplay:appSpreadFlag==true}">
+                            <ul>
+                                <!--  <li ng-class="{columnSelect:columnCode=='all'}"><a ng-click="chooseAppColumn('all')" >全部</a></li> -->
+                                <li ng-repeat="columnItem in navColumns" ng-class="{columnSelect:columnItem.columnName==columnCode}">
+                                    <a ng-click="chooseAppColumn(columnItem.columnName)">{{columnItem.columnName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+        <!--我是栏目导航-->
+
+
+
+        <!--我是主内容页-->
+        <div class="row">
+
+            <!--我是内容页-->
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" style="padding: 0px;">
+
+                    <div class="pageHeader-gl  visible-gl-inline-block" >
+                        <tm-pagination-gl conf="topicPaginationConf"></tm-pagination-gl>
+                    </div>
+                    <div  class="visible-ml-inline-block" style="height: 28px;width: 100%;background-color: #f2f2f2"></div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding" style="margin-bottom: 16px;height: 216px">
+                        <img  ng-src="images/secondEdition/welcome.jpg" style="width: 100%;height: 216px;">
+                    </div>
+
+                    <div ng-repeat="article in topicList track by $index">
+                        <div id="text-container-mobile" ng-if="$even " class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                            <div id="text-block-mobile" style="padding-right: 16px">
+                                <div id="text-block-banner-mobile">
+                                    <a href="/#/articleDetail/{{article.postId}}" target="_blank">
+                                        <img style="width: 100%;height: 100px;"  ng-src="{{article.imgSrc}}"/>
+                                    </a>
+                                </div>
+                                <div id="text-block-title" >
+                                    <a href="/#/articleDetail/{{article.postId}}" target="_blank">{{article.title}}</a>
+                                </div>
+                                <div id="text-block-content" >
+                                    <p>
+                                        {{topicList[$index].content}}
+                                    </p>
+                                </div>
+                                <div id="text-block-user-mobile">
+                                    <a  href="/#/userInfo/{{article.userId}}" target="_blank"><img class="article-img-circle" ng-src="{{article.authorAvatar}}"/></a>
+                                    <a class="blackFont" target="_blank" href="/#/userInfo/{{article.userId}}">{{article.author}}</a>
+                                    <div ng-if="article.authorType==1" style=" width:25px;height: 19px;
+		                                      background:url('images/secondEdition/Authentication.png') left 0px no-repeat"></div>
+                                </div>
+                                <div id="text-block-label-mobile">
+                                    <ul>
+                                        <li><img src="images/secondEdition/icon_view.png"/>{{article.readCount}}</li>
+                                        <li><img src="images/secondEdition/icon_Comment.png"/>{{article.discussCount}}</li>
+                                        <li><img src="images/secondEdition/icon_Like.png"/>{{article.praiseCount}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="text-block-mobile" >
+                                <div id="text-block-banner-mobile">
+                                    <a href="/#/articleDetail/{{article.postId}}" target="_blank"><img style="width: 100%;height: 100px;"  ng-src="{{topicList[$index+1].imgSrc}}"/></a>
+                                </div>
+                                <div id="text-block-title">
+                                    <a href="/#/articleDetail/{{article.postId}}" target="_blank">{{topicList[$index+1].title}}</a>
+                                </div>
+                                <div id="text-block-content">
+                                    <p>
+                                        {{topicList[$index+1].content}}
+                                    </p>
+
+                                </div>
+                                <div id="text-block-user-mobile">
+                                    <a href="/#/userInfo/topicList[$index+1].userId" target="_blank"><img class="article-img-circle" ng-src="{{topicList[$index+1].authorAvatar}}"/></a>
+                                    <a href="/#/userInfo/{{topicList[$index+1].userId}}" target="_blank">{{topicList[$index+1].author}}</a>
+                                    <div ng-if="topicList[$index+1].authorType==1" style=" width:25px;height: 19px;
+                                      background:url('images/secondEdition/Authentication.png') left 0px no-repeat"></div>
+                                </div>
+                                <div id="text-block-label-mobile">
+                                    <ul>
+                                        <li><img src="images/secondEdition/icon_view.png"/>{{topicList[$index+1].readCount}}</li>
+                                        <li><img src="images/secondEdition/icon_Comment.png"/>{{topicList[$index+1].discussCount}}</li>
+                                        <li><img src="images/secondEdition/icon_Like.png"/>{{topicList[$index+1].praiseCount}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="pageHeader-sl" >
+                        <tm-pagination-gl conf="topicPaginationConf"></tm-pagination-gl>
+                    </div>
+
+
+
+
+                    <!--热门段子-->
+                    <div id="hot-msg-mobile">
+                        <div id="hot-msg-top">
+                            <div id="hot-msg-title">热门段子</div>
+                            <div id="hot-msg-right">
+                                <!--<input class="btn btn-default" style="background-color: #c8cccd;height: 22px;padding: 0px"
+                                       type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;更多&nbsp;&nbsp;&nbsp;&nbsp;">-->
+
+                                <a ng-click="hotPage(1)" ng-if="!ifBlue(1)"><img ng-src="images/secondEdition/P_1.png" ></a>
+                                <a                       ng-if="ifBlue(1)"> <img ng-src="images/secondEdition/P_2.png" ></a>
+
+                                <a ng-click="hotPage(2)" ng-if="!ifBlue(2)"><img ng-src="images/secondEdition/P_1.png" ></a>
+                                <a                       ng-if="ifBlue(2)"> <img ng-src="images/secondEdition/P_2.png" ></a>
+
+                                <a ng-click="hotPage(3)" ng-if="!ifBlue(3)"><img ng-src="images/secondEdition/P_1.png" ></a>
+                                <a                       ng-if="ifBlue(3)"> <img ng-src="images/secondEdition/P_2.png" ></a>
+
+                                <a ng-click="hotPage(4)" ng-if="!ifBlue(4)"><img ng-src="images/secondEdition/P_1.png" ></a>
+                                <a                       ng-if="ifBlue(4)"> <img ng-src="images/secondEdition/P_2.png" ></a>
+
+                                <a ng-click="hotPage(5)" ng-if="!ifBlue(5)"><img ng-src="images/secondEdition/P_1.png" ></a>
+                                <a                       ng-if="ifBlue(5)"> <img ng-src="images/secondEdition/P_2.png" ></a>
+
+
+
+
+                            </div>
+                        </div>
+                        <div id="hot-msg-container">
+
+                            <div id="hot-msg-container-box" ng-repeat="item in weekList">
+                                <div id="hot-msg-container-avatar-mobile">
+                                    <a  href="/#/userInfo/{{item.userId}}" target="_blank"><img class="article-img-circle" ng-src="{{item.avatar}}"/></a>
+                                </div>
+                                <div id="hot-msg-container-content-mobile">
+                                    <div id="hot-msg-container-content-label-mobile">
+                                        <div id="hot-msg-container-content-user"><a  href="/#/userInfo/{{item.userId}}" target="_blank">{{item.nickname}}</a></div>
+                                        <div id="hot-msg-container-content-timer">{{item.publishTimeLoc}}</div>
+                                    </div>
+                                    <div id="hot-msg-container-content-text-mobile" href="{{item.postId}}">
+                                        <a href="/#/articleDetail/{{item.postId}}" target="_blank" style="color: #333333;">{{item.title}}</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <!--推荐用户-->
+                    <div id="hot-user-mobile">
+                        <div id="hot-msg-top">
+                            <div id="hot-msg-title">推荐用户</div>
+                            <div id="hot-msg-right">
+                                <!--<input class="btn btn-default" style="background-color: #c8cccd;height: 22px;padding: 0px"
+                                       type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;更多&nbsp;&nbsp;&nbsp;&nbsp;">-->
+                            </div>
+                        </div>
+                        <div id="hot-msg-container" >
+                            <div id="hot-msg-container-user"  ng-repeat="recomUser in recommendUserList"> <!--userId-->
+                                <a href="/#/userInfo/{{recomUser.userId}}" target="_blank">
+                                    <img class="index-img-circle" ng-src="{{recomUser.avatar}}"/><br>
+                                </a>
+                                <span>{{recomUser.nickname}}</span><br>
+                                <!--
+                                    <div ng-if="recomUser.userType==1" style=" width:25px;height: 19px;background:url('images/secondEdition/Authentication.png') left 0px no-repeat"></div>
+                                -->
+                                发表:{{recomUser.userArticles}}  粉丝:{{recomUser.userFollow}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--中屏展示-->
+                    <div class="hot-market-md-mobile">
+                        <!--大盘指数-->
+
+
+                        <div market-data-beta-mobile></div>
+
+
+
+
+                        <div id="market-hr" ></div>
+
+
+
+
+                        <div id="hot-stock-mobile">
+                            <div id="hot-stock-top-mobile">
+                                <span>热门股票</span>
+		                                <span class="hot-stock-top-right">
+		                                    <!--<input class="btn btn-default" style="background-color: #c8cccd;height: 22px;padding: 0px"
+                                                   type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;更多&nbsp;&nbsp;&nbsp;&nbsp;">-->
+		                                </span>
+                            </div>
+                            <div id="hot-stock-container-mobile">
+                                <div id="hot-stock-container-inbox-mobile" ng-repeat="hotStock in hsList">
+                                    <ul>
+                                        <li>
+                                            <span class="stock_hot_span_title">{{hotStock.stockName}}</span>
+                                            <span ng-class="{stock_hot_span_value_red:hotStock.change>0}" class="stock_hot_span_value_green">{{hotStock.price}}</span>
+                                            <span ng-class="{stock_hot_span_value_red:hotStock.change>0}" class="stock_hot_span_value_green">{{hotStock.change}}</span>
+                                            <span ng-class="{stock_hot_span_value_red:hotStock.change>0}" class="stock_hot_span_value_green">{{hotStock.netChange}}%</span>
+                                            <span id="stock_hot_span_click" class="stock_hot_span_click">[加入自选]</span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="padding: 0px">
+                            <div id="annoucement" style="font-size: 15px;">温馨提示：格隆汇里任何用户或者嘉宾的发言，都有其特定立场，投资决策需要建立在独立思考之上。</div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+               <!-- </main>-->
+
+                <!--底部声明-->
+
+
+                <!--页面尾巴-->
+
+
+            </div> <!--内容页结束-->
+
+
+
+        </div>
+
+        <div class="row " style="margin-top: 75px;">
+
+            <div id="new-footer" class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                <div class="footer-mobile" >
+                    <ul class="footer-text-sl-mobile">
+                        <li><a>/</a></li>
+                        <li><a href="/#/contactUs">联系方式</a></li>
+                        <li><a href="/#/introduction">关于格隆汇</a></li>
+                        <li><a href="/#/relief">免责声明</a></li>
+                        <li><a>/</a></li>
+                    </ul>
+                    <br>
+                    <span class="footer-text-tail-mobile">
+                        <li><a href="http://www.miitbeian.gov.cn"> © 格隆汇科技发展（深圳）有限公司 粤ICP备14037596号</a></li>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

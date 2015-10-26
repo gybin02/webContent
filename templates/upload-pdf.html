@@ -1,0 +1,61 @@
+<div>
+	<div class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div>
+					<ul class="nav nav-tabs">
+						<li></li>
+						<li></li>
+					</ul>
+					<a href class="close pull-right" ng-click="hideMaskUploadPdf()">
+						<img src="images/close.png" />
+					</a>
+				</div>
+				<form class="form-horizontal" style="padding: 20px 50px;">
+					<div class="form-group" ng-hide="error.status" style="margin-bottom:0">
+						<div class="alert alert-danger">{{error.message}}</div>
+					</div>
+					<div class="form-group" ng-hide="uploaderPdf.queue.length > 0">
+						<span ng-class="{disabled: disabled}" class="btn-up-pdf">
+							<span class=" btn  btn-gray  btn-upload">选择研究报告</span>
+							<input type="file" nv-file-select uploader="uploaderPdf" name="files[]" ng-disabled="disabled"/>				
+						</span> 
+						<span class="up-info"> 格式为.pdf 文件最大不超过10M</span>
+					</div>
+					<div class="form-group" ng-repeat="item in uploaderPdf.queue" ng-show="item.isUploading">
+						<waiting wait-text="正在上传 {{item.file.name}}">
+							<a href=""><i class="fa fa-ban red" ng-mousedown="item.remove()"></i></a>
+						</waiting>						
+					</div>
+					<div class="form-group" ng-show="uploaderPdf.queue.length > 0">
+						<div ng-repeat="item in uploaderPdf.queue" ng-show="item.isSuccess">
+							<i class="fa fa-file-pdf-o"></i>
+							<span> {{ item.file.name }}</span>
+							<a href="" class="pull-right"><i class="fa fa-trash-o red" ng-mousedown="item.remove()"></i></a>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="title"
+							placeholder="研究报告标题，不超过30个字">
+					</div>
+					<div class="form-group">
+						<div id="pdf-contenteditable-describ" class="form-control contenteditable wordwrap" ng-model="describ" contenteditable="true" placeholder="请填写研究报告的摘要信息或者对该报告的评论"></div>
+					</div>
+					<div class="form-group">
+						<img ng-src="images/mouse.png" ng-click="addSymbol('@')"/>
+						<img ng-src="images/$.png" ng-click="addSymbol('$')"/>
+					</div>
+					<div class="form-group">
+						<div class="">
+							<button type="submit" class="btn btn-primary col-sm-7" ng-click="submitPdfContent()">确定上传</button>
+							<button type="button" class="btn btn-default col-sm-offset-1 col-sm-4" ng-click="hideMaskUploadPdf()">取消</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<div class="modal-backdrop fade"></div>
+</div>

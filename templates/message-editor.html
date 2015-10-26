@@ -1,0 +1,13 @@
+<div>
+    <modal class="msg-modal" width="678px" header="'发送给' + tousername + '私信'" show="show">
+        <div class="user_editor pull-left">
+            <div class="userEditor-main">
+                <div contenteditable="true" placeholder="请输入私信内容……" class="wordwrap form-control messageText"></div>
+                <div class="post-alert" ng-class="post.showPostAlert"><img ng-src="images/{{post.postStatus}}.png"/>{{ post.postMsg }}</div>
+                <textarea class="hide" rows="3"></textarea>
+                <div class="message-error">{{errorMsg}}</div>
+                <button type="button" class="btn btn-info pull-right send-btn" ng-class="{'disble-btn': disableBtn}" ng-click="sendMessage();">发送</button>
+            </div>
+        </div>
+    </modal>
+</div>

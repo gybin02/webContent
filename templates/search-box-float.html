@@ -1,0 +1,10 @@
+<div>
+	<ul class="dropdown-menu" style="width: 200px !important; overflow: hidden;">
+		<li>
+			<div class="text-center">{{searchTitle}}</div>
+		</li>
+		<li ng-repeat="item in items">
+			<a href="javascript:;" ng-click="selectItem(item)" ng-bind-html="item.name"></a>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,65 @@
+<div class="dash_board pull-left">
+    <div id="user_avatar">
+        <a>
+            <img ng-src="{{userAvatar}}" ng-click="openUser()"/>
+            <p ng-click="openUser()">{{userNick}}</p>
+        </a>
+    </div>
+    <ul>
+        <li ng-class="{click_border:currentTab=='userHome'}" ng-click="changTab('userHome')">
+            <img ng-src="images/home.png" ng-if="currentTab=='userHome'">
+            <img ng-src="images/home-grey.png" ng-if="currentTab!='userHome'">
+            <span>首页</span>
+        </li>
+        <li ng-class="{click_border:currentTab=='userContent'}" ng-click="changTab('userContent')">
+            <img ng-src="images/chart-bubble.png" ng-if="currentTab!='userContent'">
+            <img ng-src="images/chart-bubble-blue.png" ng-if="currentTab=='userContent'">
+            <span>讨论</span>
+        </li>
+        <li ng-class="{click_border:currentTab=='userMessage'}" ng-click="changTab('userMessage')">
+            <img ng-src="images/envelope.png" ng-if="currentTab!='userMessage'">
+            <img ng-src="images/letter-blue.png" ng-if="currentTab=='userMessage'">
+            <span>私信</span>
+			<span class="badge" ng-show="result.newRecMsg>0">{{ result.newRecMsg }}</span>
+        </li>
+        <li ng-class="{click_border:currentTab=='userFavorite'}" ng-click="changTab('userFavorite')">
+            <img ng-src="images/start.png" ng-if="currentTab!='userFavorite'">
+            <img ng-src="images/start-blue.png" ng-if="currentTab=='userFavorite'">
+            <span>收藏</span>
+        </li>
+
+        <li style="padding-top: 15px;">
+            <hr class="split"/>
+            <div style="clear: both"/>
+        </li>
+
+        <li ng-class="{click_border:currentTab=='commentMe'}" ng-click="changTab('commentMe')">
+            <img ng-src="images/speech-bubble.png" ng-if="currentTab!='commentMe'">
+            <img ng-src="images/speech-bubble-blue.png" ng-if="currentTab=='commentMe'">
+            <span>评论我的</span>
+			<span class="badge" ng-show="result.newRecComment>0">{{ result.newRecComment }}</span>
+        </li>
+        <li ng-class="{click_border:currentTab=='referMe'}" ng-click="changTab('referMe')">
+            <img ng-src="images/@.png" ng-if="currentTab!='referMe'">
+            <img ng-src="images/@-blue.png" ng-if="currentTab=='referMe'">
+            <span>提到我的</span>
+			<span class="badge" ng-show="result.newRecCallme>0">{{ result.newRecCallme }}</span>
+        </li>
+
+        <li style="padding-top: 15px;">
+            <hr class="split"/>
+        </li>
+
+        <li ng-class="{click_border:currentTab=='userAttention'}" ng-click="changTab('userAttention')">
+            <img ng-src="images/watch.png" ng-if="currentTab!='userAttention'">
+            <img ng-src="images/watch-blue.png" ng-if="currentTab=='userAttention'">
+            <span>关注</span>
+        </li>
+        <li ng-class="{click_border:currentTab=='userFans'}" ng-click="changTab('userFans')">
+            <img ng-src="images/Heart-full.png" ng-if="currentTab!='userFans'">
+            <img ng-src="images/heart-blue.png" ng-if="currentTab=='userFans'">
+            <span>粉丝</span>
+            <span class="badge" ng-show="result.newFollowers>0">{{ result.newFollowers }}</span>
+        </li>
+    </ul>
+</div>

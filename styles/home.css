@@ -1,0 +1,241 @@
+.topic .category {
+    background: url("../images/title_line.png") no-repeat left top;
+    padding-left: 14px;
+    font-size: 18px;
+}
+
+.topic .split {
+    height: 1px;
+    background: #ededed;
+    margin-top: 20px;
+}
+
+.topic .split_all {
+    height: 1px;
+    width: 100%;
+    background: #ededed;
+    margin-top: 28px;
+}
+
+.article {
+    margin-top: 28px;
+    display: table;
+}
+
+.article .cover,
+.article .cover-right,
+.article .single,
+.article .single-right,
+.article .multiple_cell,
+.article .multiple_cell_last{
+	vertical-align:top;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+.article a:hover {
+    cursor: pointer;
+}
+
+.article .single .title, .article .single-right .title {
+    color: #178bb8;
+    font-size: 16.6px;
+    margin-top: -4px;
+}
+
+.article .single .posts, .article .single-right .posts {
+    height: 132px;
+}
+
+.article .single .content, .article .single-right .content {
+    color: #333333;
+    font-size: 15px;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+.article .multiple .title {
+    color: #178bb8;
+    font-size: 16.6px;
+    margin-top: 10px;
+    height:52px;
+}
+
+.article .multiple .posts {
+    height: 88px;
+}
+
+.article .multiple .content {
+    color: #333333;
+    font-size: 15px;
+    height: 78px;
+    line-height: 26px;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.article .relate_stock {
+    color: #999999;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.article .bottom a {
+    color: #889485;
+    vertical-align: bottom;
+}
+
+.article .bottom a:hover {
+    text-decoration: none;
+}
+
+.article .author_split {
+    margin-right: 10px;
+}
+
+.article .qty_split {
+    margin-right: 6px;
+}
+
+.article .time_split {
+    margin-right: 16px;
+}
+
+.article .comment_split {
+    margin-right: 30px;
+}
+
+.more {
+    margin: 20px;
+    background: #f7f6f4;
+    color: #22aae0;
+    text-align: center;
+    padding: 10px 0px;
+    cursor: pointer;
+}
+
+.more:hover {
+    background: #cccccc;
+}
+
+.more span {
+    vertical-align: bottom;
+}
+
+.article .mtSingle .title {
+    color: #178bb8;
+    font-size: 16.6px;
+    margin-top: -4px;
+    word-break: break-all;
+}
+
+.article .mtSingle .posts {
+    height: auto;
+}
+
+.article .mtSingle .content {
+    color: #333333;
+    font-size: 15px;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+/* 当浏览器的可视区域大于540px */
+@media screen and (min-width: 540px){
+    .article {
+        width: 100%;
+    }
+
+    .article .cover,
+    .article .cover-right {
+        width: 33%;
+        display: table-cell;
+    }
+
+    .article .cover-multiple,
+    .article .articleImg {
+        width: 100%;
+    }
+    
+    .article .articleImg {
+        height:181px;
+    }
+
+    .article .single,
+    .article .single-right {
+        width: 66%;
+        display: table-cell;
+    }
+
+    .article .multiple_cell,
+    .article .multiple_cell_last {
+        display: table-cell;
+        width: 33%;
+    }
+
+    .topic .split {
+        width: 92%;
+    }
+}
+
+/* 当浏览器的可视区域小于540px */
+
+@media screen and (max-width: 540px) {
+    .article {
+        width: 100%;
+    }
+
+    .article .cover,
+    .article .cover-right,
+    .article .cover-multiple {
+        padding: 20px 0px;
+    }
+
+    .article .single {
+        width: 100%;
+        display: table-row;
+        padding: 20px 0px;
+    }
+
+    .article .single-right {
+        width: 100%;
+        display: table-row;
+    }
+
+    .article .single .content {
+        width: 100%
+    }
+
+    .article .multiple_cell {
+        display: table-row;
+        width: 100%;
+    }
+
+    .article .multiple_cell_last {
+        display: table-row;
+        width: 100%;
+    }
+
+    .article .white_split {
+        margin-right: 2%;
+    }
+
+    .article .articleImg {
+        width: 100%;
+    }
+
+    .topic .split {
+        width: 82%;
+    }
+
+    .last-time {
+        display: none;
+    }
+}
+
+

@@ -1,0 +1,40 @@
+.at-modal .user_editor {
+    width: 100%;
+    padding: 25px;
+}
+
+.at-modal .user_editor .userEditor-main {
+  position: relative;
+}
+
+.at-modal .user_editor ul.editor_ul {
+    padding-top: 10px;
+}
+
+.at-modal .user_editor ul.editor_ul li {
+    float: left;
+    margin-right: 28px;
+    width: auto;
+    height: auto;
+    line-height: inherit;
+    background-color: white;
+}
+
+.at-modal .user_editor .bottomPost .dropdown-menu {
+	left: 25px;
+	top: 200px;
+	z-index: 0;
+}
+
+.at-modal .user_editor .bottomPost .dropdown-menu ul li {
+	background-color: white;
+	width: 100px;
+}
+
+.at-modal .send-diy {
+  background-color: #22aee6 !important;
+  height: 30px;
+  width: 125px;
+  padding: 0px;
+  margin-top: 10px;
+}

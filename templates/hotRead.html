@@ -1,0 +1,39 @@
+<div id="hotRead">
+    <div class="hot">
+        <div>
+            <ul>
+                <li ng-click="switchHot(true)" ng-class="{true: 'active', false: ''}[dayActive]">24小时热读</li>
+                <li ng-click="switchHot(false)" ng-class="{true: '', false: 'active'}[dayActive]">一周热读</li>
+            </ul>
+        </div>
+        <div ng-show="dayActive" id="dayHot">
+            <div ng-repeat="item in dayList">
+                <div class="clearfix"></div>
+                <div class="content_row">
+                    <div class="pull-left img_view"><a ng-click="openUser(item.userId)"><img ng-src="{{item.avatar}}"/></a>
+                    </div>
+                    <div class="pull-right">
+                        <div class="content_view">
+                            <span class="summary" ng-click="openPost(item.postId)" ng-bind="item.title|ellipsis:26"></span>
+                            <span class="nickname" ng-bind="item.nickname" ng-click="openUser(item.userId)"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-show="!dayActive" id="weekHot">
+            <div ng-repeat="item in weekList">
+                <div class="content_row">
+                    <div class="pull-left img_view"><a ng-click="openUser(item.userId)"><img ng-src="{{item.avatar}}"/></a>
+                    </div>
+                    <div class="pull-right">
+                        <div class="content_view">
+                            <span class="summary" ng-click="openPost(item.postId)" ng-bind="item.title|ellipsis:26"></span>
+                            <span class="nickname" ng-bind="item.nickname" ng-click="openUser(item.userId)"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

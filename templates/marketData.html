@@ -1,0 +1,27 @@
+<div>
+    <div class="stock_price">
+        <div ng-repeat="item in dataItems" class="pull-left category" ng-class="{'{{item.fontClass}}':true}" ng-if="!$last" ng-click="marketDetail(item.code)">
+            <h5>{{item.title}}</h5>
+            <div class="record">
+                <span class="pull-left"><h2>{{item.total}}</h2></span>
+                <span class="pull-right">
+                    <h6>{{item.totalFloatingPoint}}</h6>
+                    <h6>{{item.currentFloatingPoint}}</h6>
+                </span>
+            </div>
+            <div class="split" ng-class="{'{{item.splitClass}}':true}"></div>
+        </div>
+        <div ng-repeat="item in dataItems" class="pull-left category_last" ng-class="{'{{item.fontClass}}':true}" ng-if="$last" ng-click="marketDetail(item.code)">
+            <h5>{{item.title}}</h5>
+            <div class="record">
+                <span class="pull-left"><h2>{{item.total}}</h2></span>
+                <span class="pull-right">
+                    <h6>{{item.totalFloatingPoint}}</h6>
+                    <h6>{{item.currentFloatingPoint}}</h6>
+                </span>
+            </div>
+            <div class="split" ng-class="{'{{item.splitClass}}':true}"></div>
+        </div>
+    </div>
+    <div class="text-right" style="color: #b4b4b4">@港股数据由电资讯国际有限公司提供(延迟15分钟)</div>
+</div>

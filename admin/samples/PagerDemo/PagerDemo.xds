@@ -1,0 +1,61 @@
+{
+    "name": "PagerDemo",
+    "settings": {
+        "cmd": {
+            "license": "",
+            "cmdVersion": "",
+            "frameworkVersion": ""
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "http://localhost/PagerDemo/",
+        "exportPath": "D:/GURU/workspace/guru/WebContent/admin/samples/pager",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "projectHasEnabledWebServer": true,
+        "lockUrlPrefix": true,
+        "installStatus": "Not Installed",
+        "displayfield-ExtBox1-1232-inputEl": "a new version of the framework is available",
+        "displayfield-ExtBox1-1287-inputEl": "a new version of the framework is available"
+    },
+    "xdsVersion": "3.2.0",
+    "xdsBuild": 75,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext50",
+    "viewOrderMap": {
+        "view": [
+            "3f1a089a-3b8d-4579-9667-098ed088e8f5",
+            "40c96804-faf4-4a59-a4b8-d1bca844283c",
+            "b3087ce0-00b5-4778-a9c6-117a6f985c18",
+            "9818ffe0-8ff7-4cfe-8083-af94ad7af61f",
+            "3954a03f-319c-4a3a-a638-eb90dc77c702",
+            "b6707bf4-1d8c-4b4c-a2f4-005a2dcdf76a"
+        ],
+        "store": [
+            "d7e31399-436a-46c9-a62e-902c786579ff"
+        ],
+        "controller": [],
+        "model": [
+            "456c69dc-1cfb-48ed-a682-5c2eade1bea3"
+        ],
+        "resource": [
+            "b8d47584-7b7d-49a7-9bc0-aa047b40574f",
+            "408fad48-0362-4330-a343-ecf7574e3007"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

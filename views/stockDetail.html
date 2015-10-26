@@ -1,0 +1,282 @@
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/home.css"/>
+<link rel="stylesheet" href="styles/tmPagination.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/stockDetail.css">
+<link rel="stylesheet" href="styles/sec-brokers.css">
+<link rel="stylesheet" href="styles/f10.css">
+<script src="scripts/vendor/highCharts/highcharts.js"></script>
+<script src="scripts/vendor/highCharts/highcharts-more.js"></script>
+
+<div class="container" style="margin-top: 100px;margin-bottom: 80px">
+    <div ng-controller="StockDetailController" class="content">
+        <div ng-show="isBaseInfoLoaded">
+            <div class="stock-base">
+                <div class="stock-name" ><span ng-bind="stockInfo.name"></span><span ng-if="stockInfo.stockCodeExtShow">({{stockInfo.stockCodeExtShow}})</span></div>
+                <div class="stock_price">
+                    <span class="stock-price-value" ng-class="stockInfo.fontColor" ng-bind="stockInfo.price"></span>
+                    <span class="stock-range" ng-class="stockInfo.fontColor" ng-bind="stockInfo.changeRate"></span>
+                    <input type="button" value="交易" class="btn-blue btn-stock" ng-disabled="stockInfo.type != 'us' && stockInfo.type != 'hk'" ng-click="trade(stockInfo.code)">
+                    <input id="btnAddUserStock" type="button" value="加入自选" class="btn-green btn-stock" ng-if="!isUserStock"
+                           ng-click="addUserStock()">
+                    <input id="btnDelUserStock" type="button" value="取消自选" class="btn-gray btn-stock" ng-if="isUserStock"
+                           ng-click="delUserStock()">
+                    <search-box-float></search-box-float>
+                </div>
+            </div>
+            <table class="tradeInfo">
+                <tr ng-repeat="item in stockInfo.tradeInfo">
+                    <td ng-repeat="detail in item">
+                        <span ng-bind="detail.name" class="name"></span>:<span ng-bind="detail.value" class="value"></span>
+                    </td>
+                </tr>
+            </table>
+            <div class="statement text-right">
+                <span>@港股数据由电资讯国际有限公司提供（报价延迟15分钟）</span>
+            </div>
+            <div>
+                <div ng-repeat="codeValue in defaultStockCode">
+                    <user-editor show-action="['@','$','picture','pdf','longText']" post-type="发表" default-content="{{codeValue}}"></user-editor>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div style="margin-top: 40px">
+                <div class="menuTab">
+                    <ul>
+                        <li ng-class="{'current-tab': currentTab == 'cream'}" ng-click="showTab('cream')">精华</li>
+                        <li ng-class="{'current-tab': currentTab == 'post'}" ng-click="showTab('post')">讨论</li>
+                         <!--<li ng-class="{'current-tab': currentTab == 'f10'}" ng-click="showTab('f10')">F10信息</li>-->
+                        <li ng-class="{'current-tab': currentTab == 'notice'}" ng-click="showTab('notice')">公告</li>
+                    </ul>
+                </div>
+                <div class="list" ng-switch on="currentTab">
+                    <div ng-switch-when="cream">
+                        <div ng-show="!isCreamLoaded">
+                            <waiting wait-text="精华加载中,请稍候..." is-center="true"></waiting>
+                        </div>
+                        <div ng-if="creamList.length==0&&isCreamLoaded" class="no-data-list">暂时没有该股票相关的精华内容</div>
+                        <div class="content-list" ng-repeat="item in creamList">
+                            <div class="list-row-avatar">
+                                <div class="img-el">
+                                    <img alt="" ng-src="{{item.avatar}}" class="avator">
+                                </div>
+                                <div class="content-main">
+                                    <div class="content-nick">
+                                        <span><a user-popover user-Nick="{{item.nickname}}">{{item.nickname}}</a></span>
+                                        <img src="../images/vip.png" ng-show="item.userType"/></div>
+                                    <div ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">
+                                        <b><span>{{item.title}}</span></b>
+                                    </div>
+                                    <div class="content-summary">
+                                        <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
+                                    </div>
+                                    <div ng-if="item.file">
+                                        <a ng-href="{{item.file}}" target="_blank">查看PDF原文</a>
+                                    </div>
+                                    <div>
+                                        <div class="publish-time">
+                                        <span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
+                                              style="cursor: pointer"></span>
+                                        </div>
+                                        <div class="content-bar">
+                                            <div class="bar-right">
+                                                <a ng-click="postDetail(item.postId)">查看详情</a>
+                                                 <a ng-click="reply($event,item.postId,item.userId)">评论</a>
+                                                <a ng-click="likePost($event,item.postId)">赞</a>
+                                                <a ng-click="favPost($event,item.postId)">收藏</a></div>
+                                        </div>
+                                    </div>
+                                    <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
+                                </div>
+                            </div>
+                        </div>
+                        <tm-pagination conf="paginationCreamConf"></tm-pagination>
+                    </div>
+
+                    <div ng-switch-when="post">
+                        <div ng-show="!isPostLoaded">
+                            <waiting wait-text="帖子加载中,请稍候..." is-center="true"></waiting>
+                        </div>
+                        <div ng-if="postList.length==0&&isPostLoaded" class="no-data-list">暂时没有该股票相关的讨论</div>
+                        <div class="content-list" ng-repeat="item in postList">
+                            <div class="list-row-avatar">
+                                <div class="img-el">
+                                    <img alt="" ng-src="{{item.avatar}}" class="commentAvatar">
+                                </div>
+                                <div class="content-main">
+                                    <div class="content-nick">
+                                        <span><a user-popover user-Nick="{{item.nickname}}">{{item.nickname}}</a></span>
+                                        <img src="../images/vip.png" ng-show="item.userType"/></div>
+                                    <div ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">
+                                        <b><span>{{item.title}}</span></b>
+                                    </div>
+                                    <div class="content-summary">
+                                        <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
+                                    </div>
+                                    <div ng-if="item.fileName">
+                                        <a ng-href="{{item.file}}" target="_blank">{{item.fileName}}</a>
+                                    </div>
+                                    <div>
+                                        <div class="publish-time">
+                                        <span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
+                                              style="cursor: pointer"></span>
+                                        </div>
+                                        <div class="content-bar">
+                                            <div class="bar-right">
+                                                <a ng-click="postDetail(item.postId)">查看详情</a>
+                                                 <a ng-click="reply($event,item.postId,item.userId)">评论</a>
+                                                <a ng-click="likePost($event,item.postId)">赞</a>
+                                                <a ng-click="favPost($event,item.postId)">收藏</a></div>
+                                        </div>
+                                    </div>
+                                    <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
+                                </div>
+                            </div>
+                        </div>
+                        <tm-pagination conf="paginationPostConf"></tm-pagination>
+                    </div>
+
+                    <div ng-switch-when="notice">
+                        <div ng-show="!isNoticeLoaded">
+                            <waiting wait-text="公告加载中,请稍候..." is-center="true"></waiting>
+                        </div>
+                        <div ng-if="NoticeList.length==0&&isNoticeLoaded" class="no-data-list">暂时没有该股票相关的公告</div>
+                        <div class="content-list" ng-repeat="item in NoticeList">
+                            <div class="list-row">
+                                <div class="content-main">
+                                    <div>
+                                        <b><span>{{item.title}}</span></b>
+                                    </div>
+                                    <div class="content-summary" ng-if="item.fileType=='htm'||item.fileType=='html'">
+                                        <span class="original-label">原文地址：</span><a ng-href="{{item.fileUrl}}"
+                                                                                    target="_blank"
+                                                                                    ng-bind="item.fileUrl"></a>
+                                    </div>
+                                    <div ng-if="item.fileType=='pdf'">
+                                        <span class="original-label">PDF文件下载：</span><a ng-href="{{item.fileUrl}}"
+                                                                                       target="_blank">{{item.fileUrl}}</a>
+                                    </div>
+                                    <div style="cursor: pointer">
+                                        <div class="publish-time"><span ng-bind="item.publishTime | datetimeFormat"></span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <tm-pagination conf="paginationNoticeConf"></tm-pagination>
+                    </div>
+
+                    <div ng-switch-when="f10">
+                        <div style="width: 100%;height: auto;margin-top: 20px;" class="table-responsive" >
+
+                            <table class="table table-bordered">
+
+
+                                <tr class="active">
+                                    <td>名称</td>
+                                    <td>{{companyInfo.companyName}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>行业</td>
+                                    <td>{{companyInfo.gics}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>集团主席</td>
+                                    <td>{{companyInfo.chairman}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>注册地点</td>
+                                    <td>{{companyInfo.registerArea}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>主营业务</td>
+                                    <td>{{companyInfo.coreBusiness}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>核制师</td>
+                                    <td>{{companyInfo.auditor}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>官网</td>
+                                    <td>{{companyInfo.url}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>联系电话</td>
+                                    <td>{{companyInfo.phone}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>IPO时间</td>
+                                    <td>{{companyInfo.ipotime}}</td>
+                                </tr>
+
+                                <tr class="active">
+                                    <td>邮箱地址</td>
+                                    <td>{{companyInfo.email}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <!--股权结构 -->
+                        <div id="pie-equity" ><div chart-equity/></div>
+
+                        <!-- 资产表和资产负债表 -->
+                        <div style="clear:both;"/>
+                        <div id="pie-box">
+                            <div id="pie-asset" style="width:50%;float: left;"><div chart-asset/></div>
+                            <div id="pie-debt" style="width:50%; float:right"><div chart-debt /></div>
+                        </div>
+
+                        <!-- 总收入及其增长率-->
+                        <div style="clear:both;"/>
+
+                        <div chart-income />
+                     
+                        <div id="pillar-income" ></div>
+
+                        <!-- 净利润及其增长率-->
+                        <div id="pillar-profit" ></div>
+
+                        <!-- 毛利率，净利率-->
+                        <div id="pillar-ratio" ></div>
+
+                        <!-- roa,roe-->
+                        <div id="line-roa" ></div>
+
+                        <!-- 每股收益以及pe-->
+     					<div id="pillar-pe" > </div>
+
+                        <!--每股净资产以及pb-->
+     					<div id="pillar-pb" ></div>
+
+                        <!-- 每股现金流-->
+     					<div id="pillar-cash" ></div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div>
+            <at-user show="showAtDialog" nickname="atUserNickname"></at-user>
+        </div>
+         -->
+        <sec-brokers show="showSecBrokers" stock-code="stockCode"></sec-brokers>
+    </div>
+    <div class="right-bar">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+</div>

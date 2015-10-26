@@ -1,0 +1,303 @@
+/*全局响应式布局*/
+/* 当浏览器的可视区域大于1200px */
+@media (min-width: 1518px) /*and (max-width: 2559px)*/{
+
+    /*新版首页正文容器的大小*/
+    .media_container{
+        width: 1518px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .media_hot_market{
+        width: 488px !important;
+        margin-right: 16px !important;
+    }
+
+    .container  > .content {
+        width: 790px;
+        float: left;
+    }
+    
+    .topic .article-content {
+		width: 790px;
+	}
+
+     .container  > .right-bar {
+        width: 315px;
+        float: right;
+    }
+    
+      .container .stock_price{
+    	display:table;
+    	width:100%;
+    }
+    
+     .container .stock_price > *,
+     .container .stock_price > :last-child{
+    	width:20%;
+    }
+
+    .stock_price h2{
+        font-size: 22px;
+    }
+
+}
+
+@media (min-width: 1010px) and (max-width: 1517px){
+
+
+    /*新版首页正文容器的大小*/
+    .media_container{
+        width: 1010px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .media_hot_market{
+        width: 992px !important;
+        margin-right: 16px !important;
+    }
+}
+
+@media (max-width: 1007px){
+
+
+    /*新版首页正文容器的大小*/
+    .media_container{
+        width: 506px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .media_hot_market{
+        width: 488px !important;
+        margin-right: 16px !important;
+    }
+
+}
+
+
+
+/* 当浏览器的可视区域小于1200px */
+@media screen and (max-width: 1200px) {    
+    #banner .container .menu > ul > li{
+    	margin-right: 50px;
+    }
+    
+    .container .left-box > .center-box{
+    	width:80%;
+    	min-width:585px;
+    }
+    
+     .container  > .content {
+        float: left;
+    }
+
+    .container  > .right-bar {
+    	display:none;
+    }
+    
+     .container .left-box{
+    	width:100%;
+    }
+    
+    .container .stock_price{
+    	display:table;
+    	width:100%;
+    }
+    
+     .container .stock_price > *,
+     .container .stock_price > :last-child{
+    	width:20%;
+    }
+
+     .container .stock_price h2{
+        font-size: 14px;
+    }
+
+
+    .stock_price .category {
+        width: 21%;
+    }
+
+    .stock_price .category_last {
+        width: 20%;
+    }
+
+
+}
+
+/* 当浏览器的可视区域小于960px */
+@media screen and (max-width: 700px) {
+    .container .stock_price > *{
+    	width:33%;
+    }	
+}
+
+/* 当浏览器的可视区域<=1366px */
+@media screen and (max-width: 1366px) {
+
+    #banner .container .menu > ul > li{
+        margin-right:38px !important;
+    }
+
+    .container  > .content {
+        width: 70%;
+    }
+    
+    /*.topic .article-content {
+		width: 650px;
+	}*/
+
+    .container  > .right-bar {
+        display: block;
+    }
+
+    .stock_price{
+        width: 100%;
+    }
+
+    .stock_price .category {
+        width: 20%;
+    }
+
+    .stock_price .category_last {
+        width: 20%;
+    }
+
+    .stock_price h2{
+        font-size: 22px;
+    }
+}
+
+
+/* 当浏览器的可视区域小于960px */
+@media screen and (max-width: 960px) {
+	
+	#banner .container .menu > ul > li{
+		margin-right:38px !important;
+	}
+
+     .container  > .content {
+        width: 100%;
+    }
+    
+
+     .container  > .right-bar {
+        display: none;
+    }
+
+    .stock_price .category {
+        width: 33%;
+    }
+
+    .stock_price .category_last {
+        width: 33%;
+    }
+
+    .stock_price h2{
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 768px){
+	#header > .fix_header >  .container > .logo{
+    	margin-right:-10px;
+    }
+	
+    #header > .fix_header > .container > .logo > a img{
+    	width:55%;
+    }
+    
+    #banner {
+    	display:none;
+    }
+    
+    .container  > .content {
+    	width: 100%;
+    }
+    
+    #wrapper{
+    	margin:65px auto;
+    }
+	
+	.fix_header > .container > .navbar-form > .form-group > .form-control-feedback {
+		line-height: 34px;
+	}
+}
+
+/* 当浏览器的可视区域小于540px */
+
+@media screen and (max-width: 540px) {
+    #header .container {
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 44px;
+    }
+    
+    .navbar-nav > .open > .dropdown-menu{
+    	margin-top:-5px !important;
+    }
+    
+    #header > .fix_header >  .container > .logo{
+    	margin-right:-45px;
+    }
+    
+    #header > .fix_header,
+    #banner > .fix_banner{
+    	position:relative;
+    	height: 44px;    	
+  		line-height: 44px;
+    }
+    #header .navbar-form{
+        display: none;
+    }
+    #banner {
+        width: 100%;
+    }
+
+    #banner .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #footer .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    #wrapper{
+    	margin-top:0;
+    }
+
+    .container  > .content {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .container  > .right-bar {
+        display: none;
+    }
+
+    .container .stock_price > * {
+        width: 50%;
+    }
+
+    .container .stock_price > .category_last {
+        width: 100%;
+    }
+
+    .stock_price h2{
+        font-size: 22px;
+    }
+
+
+}

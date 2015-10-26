@@ -1,0 +1,67 @@
+
+#pie-box{
+    width: 100% !important;
+    height: auto;
+    padding: 10px ;
+}
+
+#pie-asset{
+    width: 50%  !important;
+    height: auto;
+    float: left !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#pie-debt{
+    width: 50% !important;
+    height: auto;
+    float: right !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#clear-div{
+    clear: both;
+}
+ 
+#pie-equity{
+    width: 100%;
+    height: auto;
+   
+}
+
+#pillar-income{
+    width: 100%;
+    height: auto;
+   
+}
+
+#pillar-profit{
+    width: 100%;
+    height: auto;
+   
+}
+
+#pillar-ratio{
+    width: 100%;
+    height: auto;
+   
+}
+
+#pillar-cash{
+    width: 100%;
+    height: auto;
+   
+}
+
+#line-roa{
+    width: 100%;
+    height: auto;
+   
+}
+
+
+
+
+

@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="styles/home.css"/>
+<link rel="stylesheet" href="styles/tmPagination.css">
+<div class="content" ng-controller="TopicController">
+    <div class="topic" style="margin-top: 0px">
+        <waiting wait-text="正在加载..." is-center="true" ng-show="!isLoaded"></waiting>
+        <div ng-show="isLoaded">
+            <div>
+                <div class="category">{{columnName}}
+                    <div class="pull-right split"></div>
+                </div>
+            </div>
+            <div ng-if="columnCode != 'MT'">
+                <div ng-repeat="item in topicList">
+                    <div class="article">
+                        <div class="cover white_split"><a ng-click="getArticleDetail(item.postId)"><img
+                                ng-src="{{item.imgSrc|defaultImg}}"  onerror="setDefaultImg(this)" class="articleImg"/></a></div>
+                        <div class="single">
+                            <div><a ng-click="getArticleDetail(item.postId)" class="title">{{item.title}}</a></div>
+                            <div class="posts">
+                                <div class="content">{{item.content}}</div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bottom">
+                                <div class="pull-left time_split">
+                                	<span class="glyphicon glyphicon-user" aria-hidden="true" style="vertical-align:top; color: #889485"></span>
+	                            	<a ng-bind="item.author" ng-click="openUser(item.userId)"></a>
+                                </div>
+                                <div class="pull-left last-time">{{item.latestTime}}</div>
+                                <div class="pull-right">
+                                    <div class="pull-left qty_split">评论</div>
+                                    <div class="pull-left comment_split" style="color: #c7c7c7">{{item.discussCount}}
+                                    </div>
+                                    <div class="pull-left qty_split">阅读</div>
+                                    <div class="pull-left" style="color: #c7c7c7">{{item.readCount}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="split_all"></div>
+                </div>
+                <tm-pagination conf="topicPaginationConf"></tm-pagination>
+            </div>
+            <div ng-if="columnCode == 'MT'">
+                <div class="clearfix"></div>
+                <div ng-repeat="item in mediaTopicList">
+                    <div class="article">
+                        <div class="mtSingle">
+                            <div><a ng-href="{{item.articleUrl}}" target="_blank" class="title">{{item.title}}</a></div>
+                            <div class="bottom" style="margin-top: 5px;color: #c7c7c7; line-height: 18px;">
+                                <span ng-bind="item.mediaName"></span>
+                                <span style="margin-left: 40px;" ng-bind="item.latestTime"></span>
+                            </div>
+                            <div class="posts" style="margin-top: 5px;">
+                                <div class="content">{{item.content|ellipsis:200}}</div>
+                            </div>
+                            <div style="color: #c7c7c7;margin-top: 5px;">
+                                <span style="vertical-align: bottom;">原文&nbsp;:&nbsp;</span>
+                                <a ng-href="{{item.articleUrl}}" target="_blank"
+                                   style="vertical-align: top;color: #22aee6">{{item.articleUrl|ellipsis:60}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="split_all"></div>
+                </div>
+                <tm-pagination conf="mediaTopicPaginationConf"></tm-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-bar">
+    <div app-banner></div>
+    <hot-read day-active="true"></hot-read>
+</div>

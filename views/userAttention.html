@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="styles/tmPagination.css">
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/text-editor.css"/>
+
+<div class="container" style="margin-top: 100px;margin-bottom: 80px">
+    <div ng-controller="UserAttentionController">
+        <div class="left-box">
+            <div market-data></div>
+            <user-dashboard current-tab="userAttention"></user-dashboard>
+            <div class="pull-left center-box">
+                <div class="menuTab">
+                    <ul>
+                        <li ng-class="['current-tab']">我关注的({{attentionNums}})</li>
+                    </ul>
+                </div>
+                <waiting wait-text="正在加载数据,请稍后……" ng-show="!isDataLoaded"></waiting>
+                <div ng-if="attentions.length==0&&isDataLoaded" class="no-data-list"
+                     ng-bind="errMsg"></div>
+                <div class="fans-list">
+                    <div class="fans-row" ng-repeat="item in attentions">
+                        <div class="fans-avatar">
+                            <img alt="" ng-src="{{item.avatar}}"
+                                 ng-click="openUser(item.userId)" style="cursor: pointer">
+                        </div>
+                        <ul class="fans-content">
+                            <li class="fans-nick">
+                                <span>
+                                    <a class="nickImg" user-popover user-Nick="{{item.nickname}}">{{item.nickname
+                                        || item.userId}} </a>
+                                </span>
+                                <img src="../images/vip.png" class="vipImg" ng-show="item.userType"/>
+                                <span class="fans-bar">
+                                    <a class="cancel-bar" ng-click="unfollow(item)">× 取消关注</a>
+                                </span>
+                            </li>
+                            <li>
+                                <span><img alt="" src="images/man.png" ng-if="item.sex=='M'"></span>
+                                <span ng-if="item.sex=='M'">男</span>
+                                <span><img alt="" src="images/female.png" ng-if="item.sex=='F'"></span>
+                                <span ng-if="item.sex=='F'">女</span>
+                                <span style="margin-left: 10px;">{{item.state}}{{item.city}}</span>
+                                <!-- span style="margin-left: 30px;">股票 18</span>
+                                <span style="margin-left: 10px;">关注 {{item.followNum}}</span>
+                                <span style="margin-left: 10px;">讨论 {{item.postNum}}</span>
+                                <span style="margin-left: 10px;">粉丝 {{item.fanNum}}</span-->
+                            </li>
+                            <li>
+                                <span ng-bind="item.userBrief|ellipsis:100"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <tm-pagination conf="attentionPaginationConf"></tm-pagination>
+            </div>
+        </div>
+        <div>
+            <at-user show="showAtDialog" nickname="atUserNickname"></at-user>
+        </div>
+    </div>
+    <search-box-float></search-box-float>
+    <div class="right-bar">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+</div>

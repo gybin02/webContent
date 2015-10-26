@@ -1,0 +1,153 @@
+.stock-trends,.stock-tabs{
+	display:inline-block;
+	width:100%;
+}
+.stock-trends > * {
+	display:inline-block;
+}
+
+.stock-trends .login-timeout {
+    width: 100%;
+}
+
+.stock-trends .login-timeout h2 {
+    text-align: center;
+    vertical-align: bottom;
+    margin: 100px auto;
+}
+
+.stock-trends .login-timeout h2>a {
+    color: #178bb8;
+}
+
+.coll_panel {
+    border: 1px solid #22aee6 !important;
+    border-radius: 5px !important;
+    margin-bottom:15px;
+}
+
+.stock-trends li a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.stock-tabs hr{
+	margin-top:0;
+	margin-bottom:0;
+}
+
+.stock-tab{
+	width:60%;
+	margin-bottom:0;
+}
+
+.stock-tab > li{
+	width:25%;
+	padding-bottom:15px;
+}
+
+ul.stock-tab li a {
+    text-decoration: none;
+    color: #333333;
+}
+
+ul.stock-tab li{
+	vertical-align:top;
+}
+
+ul.stock-item li,.stock-search {
+    padding-left:0;
+    padding-right:0;
+    height: 44px;
+    line-height: 44px;
+    white-space: nowrap;
+  	text-overflow: ellipsis;
+}
+
+ul.stock-item > li .stockDetail{
+	position:relative;
+}
+
+ul.stock-item > li .stockDetail .name,
+ul.stock-item > li .stockDetail .code{
+	height:22px;
+	line-height:21px;
+}
+
+ul.stock-item > li .stockDetail .code{
+	font-weight:300;
+	color:#999999;
+}
+
+ul.stock-item{
+	margin-bottom:0;
+	display: flex;
+}
+
+div.stock-list-footer{
+	display:table;
+	width:100%;
+	margin-top:15px;
+	line-height:33px;
+	color:#999;
+}
+
+.stock-search{
+	float:right !important;
+}
+ul.stock-item li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+hr.stock-hr {
+    color: red;
+    clear: both;
+    margin: 0px;
+}
+
+.stock-tab > .active {
+    border-bottom: solid;
+    border-bottom-color: #178bb8;
+    color: #22aee6;
+}
+
+.stock-tab > .active a {
+    color: #22aee6 !important;
+}
+
+.increase {
+    color: #e0491b !important;
+}
+
+.decrease {
+    color: #629421 !important;
+}
+
+.handle {
+    text-align: right !important;
+    width: 30px !important;
+}
+
+.stock-search > .dropdown-menu{
+	margin-top:-11px;
+}
+
+.handle .dropdown-menu {
+    -webkit-border-radius: 0;
+    border-left: 5px solid #178bb8;
+    padding: 0px;
+    min-width: 120px;
+    margin-top: -10px;
+}
+
+.handle .dropdown-menu li>a{
+    height: 42px;
+    line-height: 42px;
+    padding: 0px 20px;
+    color: #333;
+}
+
+.form-control-feedback{
+	z-index:auto;
+}

@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="styles/home.css"/>
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/text-editor.css"/>
+
+<link rel="stylesheet" href="styles/sec-brokers.css">
+<link rel="stylesheet" href="styles/stocks-list.css">
+
+<div class="container" style="margin-top: 100px;margin-bottom: 80px">
+
+    <div ng-controller="UserController" >
+        <div class="left-box">
+            <div market-data></div>
+            <user-dashboard current-tab="userHome"></user-dashboard>
+            <div class="pull-left center-box">
+                <stocks-list show-handle-col="true"></stocks-list>
+                <user-editor post-type="发表" show-action="['@','$','picture','pdf','longText']"></user-editor>
+                <user-trends></user-trends>
+                <search-box-float></search-box-float>
+            </div>
+        </div>
+        <at-user show="showAtDialog" nickname="atUserNickname"></at-user>
+    </div>
+    <div class="right-bar">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+
+</div>

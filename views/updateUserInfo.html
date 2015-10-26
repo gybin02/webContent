@@ -1,0 +1,253 @@
+<link rel="stylesheet" href="styles/register.css">
+<link rel="stylesheet" href="styles/updateUser.css">
+
+<div ng-controller="UserUpdateController">
+    <div class="main-content container" style="margin-top: 100px;margin-bottom: 80px">
+
+        <div class="title" >
+            <label class="skipLabel"><span ng-show="!loginShow">欢迎加入格隆汇, 您可以进一步完善您的个人资料 </span></label>
+            <a ng-href="#/user'" class="skip" ng-show="!loginShow">跳过>>></a>
+        </div>
+        <div class="content">
+            <div id="userUpTitle" class="menuTab">
+                <ul>
+                    <li ng-click="setUserUpTab(0)" ng-class="{0: 'current-tab',1: '', 2: ''}[active]">个人资料</li>
+                    <li ng-click="setUserUpTab(1)" ng-class="{0: '', 1: 'current-tab', 2: ''}[active]" ng-show="loginShow">
+                        修改头像
+                    </li>
+                    <li ng-click="setUserUpTab(2)" ng-class="{0: '', 1: '', 2: 'current-tab'}[active]" ng-show="loginShow">
+                        修改密码
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-content">
+
+                <div ng-show="active==0">
+                    <form name="userInfoForm" id="registTxt0" class="userInfoForm">
+                        <table>
+                            <tr ng-show="setNick">
+                                <td class="titleTxt">
+                                    <label for="">昵称</label>
+                                </td>
+                                <td colspan="6">
+                                    <input type="text" style="margin-left: 20px;width: 672px;" ng-model="nickName">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="titleTxt">
+                                    <label for="">性别</label>
+                                </td>
+                                <td colspan="2">
+                                    <div class="sexValInput pull-left">
+                                        <input type="radio" name="sex" ng-model="sexModel"
+                                               class="sex"
+                                               value="M"> 男
+                                    </div>
+                                    <div class="sexValInput pull-left">
+                                        <input type="radio" name="sex" ng-model="sexModel"
+                                               class="sex"
+                                               value="F"> 女
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-show="!isbaseLoaded"><td colspan="3"><waiting is-center="true" wait-text="基本信息加载中,请稍候..."></waiting></td></tr>
+                            <tr ng-show="isbaseLoaded">
+                                <td class="titleTxt">
+                                    <label for="">地域</label>
+                                </td>
+                                <td colspan="2">
+                                    <select class="addrValSel2" ng-options="country.name for country in countrys"
+                                            ng-model="countryModel" ng-change="changeCountry()">
+                                        <option value="">国家</option>
+                                    </select>
+                                    <select ng-hide="true" ng-options="country.name for country in tmpCountrys"
+                                            ng-model="tmpCountryModel"></select>
+                                </td>
+                                <td colspan="2">
+                                    <select class="addrValSel0" ng-options="state.name for state in states"
+                                            ng-model="stateModel" ng-change="changeState()">
+                                        <option value="">地区</option>
+                                    </select>
+                                    <select ng-hide="true" ng-options="state.name for state in tmpstates"
+                                            ng-model="tmpstateModel"></select>
+                                </td>
+                                <td colspan="2">
+                                    <select class="addrValSel0" ng-options="city.name for city in citys"
+                                            ng-model="cityModel"
+                                            ng-change="changeCity()">
+                                        <option value="">城市</option>
+                                    </select>
+                                    <select ng-hide="true" ng-options="city.name for city in tmpcitys"
+                                            ng-model="tmpCountryModel"></select>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="addGIC in addgics" ng-show="isbaseLoaded">
+
+                                <td class="titleTxt">
+                                    <label for="addGIC{{$index+1}}">能力圈</label>
+                                </td>
+                                <td colspan="3">
+                                    <select class="addrValSel1" ng-options="gisc.clsName for gisc in giscs"
+                                            ng-change="changeGisc($index)" ng-model="giscModel" id="addGIC{{$index+1}}" ng-init="giscModel = addGIC.gisc">
+                                        <option value="">行业</option>
+                                    </select>
+                                </td>
+                                <td colspan="3">
+                                    <select class="addrValSel1" ng-options="year.count for year in years"
+                                            ng-change="changeYears($index)" ng-model="yearsModel" id="addYear{{$index+1}}" ng-init="yearsModel = addGIC.year">
+                                        <option value="">年限</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="addImg">
+                                        <a href="javascript:void(0)" ng-click="addProfessions($index)">
+                                            <img src="../images/plus.png" tooltip="增加能力圈"/>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="addImg" ng-show="canDel">
+                                        <a href="javascript:void(0)" ng-click="delProfessions($index)">
+                                            <img src="../images/less.png" tooltip="删除能力圈"/>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="addImg" ng-show="!canDel">
+                                        <img src="../images/less.png"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="titleTxt">
+                                    <label for="">简介</label>
+                                </td>
+                                <td colspan="6">
+                                    <textarea rows="" cols="" ng-model="briefModel" ng-keyup="checkLen(this)"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <span class="err" ng-show="errSpan" ng-model="errModel"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <input type="button" value="保存" class="btn-green updateSubmit"
+                                           ng-click="updateSubmit()">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div ng-show="active==1">
+
+                    <form name="uploadAvatarForm" novalidate>
+                        <table>
+                            <tr>
+                                <td width="68px"><label>上传头像:</label>
+                                </td>
+                                <td class="upload-td" width="120px">
+                                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="uploadAvatar" id="uploadAvatar" ng-show="false" nv-file-select=""
+                                           uploader="uploader"/>
+                                    <input type="button" value="选择头像" class="btn-blue btn-upload"
+                                           onclick="document.getElementById('uploadAvatar').click();"/>
+                                </td>
+                                <td><div class="addImg"><waiting is-center="false" wait-text="头像上传中" ng-show="showProgressbar"></waiting></div></td>
+                            </tr>
+                            <!--<tr ng-show="showProgressbar">-->
+                                <!--<td colspan="2">-->
+                                    <!--<div>-->
+                                        <!--<div class="progress">-->
+                                            <!--<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"-->
+                                                 <!--style="width: 0%;">-->
+                                                <!--{{ uploader.progress + '%' }}-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <tr>
+                                <td colspan="3">
+                                    <div class="addImg">支持JPG、PNG格式图片，不超过3M。拖拽或缩放图中的虚线方格可调整头像，注意右侧小头像预览效果。</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="addImg">
+                                        <div>
+                                            <div ng-jcrop="obj.src" selection="obj.selection" thumbnail="obj.thumbnail"></div>
+                                        </div>
+                                        <!--<div>-->
+                                            <!--<table>-->
+                                                <!--<tbody>-->
+                                                <!--<tr>-->
+                                                    <!--<td><strong>x</strong>: <span ng-bind="obj.selection[0]"></span></td>-->
+                                                    <!--<td><strong>y</strong>: <span ng-bind="obj.selection[1]"></span></td>-->
+                                                    <!--<td><strong>x2</strong>: <span ng-bind="obj.selection[2]"></span></td>-->
+                                                    <!--<td><strong>y2</strong>: <span ng-bind="obj.selection[3]"></span></td>-->
+                                                    <!--<td><strong>w</strong>: <span ng-bind="obj.selection[4]"></span></td>-->
+                                                    <!--<td><strong>h</strong>: <span ng-bind="obj.selection[5]"></span></td>-->
+                                                <!--</tr>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="button" value="保存" class="btn-green" ng-click="uploadAvatar()">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+                </div>
+                <div ng-show="active==2">
+                    <form name="updatePWDForm" novalidate>
+                        <table id="pwdTab1">
+                            <tr>
+                                <td>
+                                    <input type="password" id="oldPWp" name="oldPWp" ng-model="oldPWp" placeholder="请输入原始密码"
+                                           required>
+                                </td>
+                                <td>
+                                    <p ng-show="updatePWDForm.oldPWp.$invalid  && updatePWDForm.submitted">*密码必须填写</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" id="firstPWD" name="firstPWD" ng-model="firstPWD" placeholder="请输入新密码" ng-minlength=6
+                                           required>
+                                </td>
+                                <td>
+                                    <p ng-show="updatePWDForm.firstPWD.$invalid  && updatePWDForm.submitted">*新密码必须填写,且长度不能小于6位</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" id="confirmPWD" name="confirmPWD" ng-model="confirmPWD"
+                                           placeholder="请确认新密码" required>
+                                </td>
+                                <td>
+                                    <p ng-show="updatePWDForm.confirmPWD.$invalid  && updatePWDForm.submitted">*确认密码必须填写</p>
+                                </td>
+                                <td>
+                                    <p id="confirmError" ng-show="confirmError">*两次输入的密码必须一致</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" value="保存" ng-click="updatePWD(updatePWDForm.$valid)"
+                                           class="btn-green">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

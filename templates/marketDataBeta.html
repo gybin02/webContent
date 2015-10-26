@@ -1,0 +1,24 @@
+<div id="market-quote">
+    <div id="market-quote-banner">
+        <img src="images/secondEdition/title.jpg" style="height: 91px">
+    </div>
+    <div id="market-quote-top">
+
+        <div ng-repeat="item in dataItems track by $index">
+            <div id="market-quote-inbox" ng-class="{market_quote_inbox_noborder:$last}" >
+                <div class="mqi-name" ng-if="item.title=='格隆汇港A100'">
+                    <a ng-click="marketDetail('glh00001')" style="color: #999999">{{item.title}}</a>
+                </div>
+                <div class="mqi-name" ng-if="item.title!='格隆汇港A100'">
+                    {{item.title}}
+                </div>
+                <div ng-class="{mqi_value_green:item.totalFloatingPoint<0}" class="mqi-value">{{item.total}}</div>
+                <div ng-class="{mqi_change_green:item.totalFloatingPoint<0}" class="mqi-change">{{item.totalFloatingPoint}}</div>
+                <div ng-class="{mqi_netChange_green:item.totalFloatingPoint<0}" class="mqi-netChange">{{item.currentFloatingPoint}}</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

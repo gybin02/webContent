@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="styles/tmPagination.css">
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/text-editor.css"/>
+<div class="container" style="margin-top: 100px;margin-bottom: 80px">
+    <div ng-controller="UserContentController">
+        <div class="left-box">
+            <div market-data></div>
+            <user-dashboard current-tab="userContent"></user-dashboard>
+            <div class="pull-left center-box">
+                <div class="line-tab">
+                    <ul>
+                        <li ng-click="setContentTab(0)" ng-class="{0: 'current-tab',1: ''}[active]">我的帖子</li>
+                        <li ng-click="setContentTab(1)" ng-class="{0: '', 1: 'current-tab'}[active]">我的评论</li>
+                    </ul>
+                </div>
+                <div ng-if="active==0">
+                    <waiting wait-text="正在加载数据,请稍后……" is-center="true" ng-show="!isPostLoaded"></waiting>
+                    <div ng-if="postLists.length==0&&isPostLoaded" class="no-data-list" ng-bind="errPost"></div>
+                    <div class="content-list" ng-repeat="item in postLists">
+                        <div class="list-row">
+                            <div class="content-main">
+                                <div ng-click="postDetail(item.postId)" class="clickLi" style="cursor: pointer;margin-bottom: 10px;">
+                                    <b><span>{{item.title}}</span></b>
+                                </div>
+                                <div class="content-summary" ng-click="postDetail(item.postId)" style="cursor: pointer">
+                                    <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
+                                </div>
+                                <div ng-if="item.fileName">
+                                    <a ng-href="{{item.file}}" target="_blank" style="color: #22aee6">{{item.fileName}}</a>
+                                </div>
+                                <div>
+                                    <div class="publish-time"><span ng-bind="item.publishTimeLoc"></span></div>
+                                    <div class="content-bar">
+                                        <div class="bar-right">
+                                             <span style="cursor: pointer" ng-click="deleteMyPost(item)">删除</span>
+                                         </div>
+                                    </div>
+                                    <!-- <div class="content-bar">
+                                        <div class="bar-right">
+                                            <span>赞</span>
+                                            <span>{{item.likcCount}}</span>
+                                            <span style="margin-left: 15px;">评论</span>
+                                            <span>{{item.commentCount}}</span>
+                                            <span style="margin-left: 15px;">收藏</span>
+                                            <span>{{item.favCount}}</span>
+                                        </div>
+                                    </div> -->
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <tm-pagination conf="myPostPaginationConf"></tm-pagination>
+                </div>
+                <div ng-if="active==1">
+                    <waiting wait-text="正在加载数据,请稍后……" is-center="true" ng-show="!isCommentLoaded"></waiting>
+                    <div ng-if="commentLists.length==0&&isCommentLoaded" class="no-data-list" ng-bind="errComment"></div>
+                    <div class="content-list" ng-repeat="item in commentLists">
+                        <div class="list-row">
+                            <div class="content-main" style="float: left;width: 100%;">
+                                <div class="content-summary">
+                                    <span ng-show="item.replyUid" style="vertical-align: bottom;">回复</span>
+                                         <span ng-show="item.replyUid" style="vertical-align: bottom;">
+                                            <a user-popover user-Nick="{{item.replyNickname}}">@{{item.replyNickname||item.replyUid}}</a>:
+                                         </span>
+                                    <span content-html bind-html="{{item.content|ellipsis:100}}"
+                                          style="line-height:24px;"></span>
+                                </div>
+                                <div class="content-original" ng-click="postDetail(item.postId)"
+                                     style="cursor: pointer">
+                                    <div class="original-label">原文:</div>
+                                    <div class="original-summary">
+                                        <span content-html bind-html="{{item.post.content|ellipsis:100}}"></span>
+                                    </div>
+                                    <div class="original-time"><span ng-bind="item.post.publishTimeLoc"></span></div>
+                                </div>
+                                <div>
+                                    <div class="publish-time"><span ng-bind="item.publishTimeLoc"></span></div>
+                                    <div class="content-bar">
+                                        <div class="bar-right">
+                                             <span style="cursor: pointer" ng-click="deleteMyCommen(item)">删除</span>
+                                         </div>
+                                    </div>
+                                    <!-- <div class="content-bar">
+                                        <div class="bar-right"><span ng-click="reply($event,item.post.postId,item.userId,item.commentId)">回复</span>
+                                        </div>
+                                    </div>
+                                    <user-editor show="false" show-action="['@','$']"></user-editor> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <tm-pagination conf="myCommentPaginationConf"></tm-pagination>
+                </div>
+            </div>
+        </div>
+        <div>
+            <at-user show="showAtDialog" nickname="atUserNickname"></at-user>
+        </div>
+    </div>
+    <div class="right-bar">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+</div>

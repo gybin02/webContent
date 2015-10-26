@@ -1,0 +1,542 @@
+/*
+Description: app css
+Author: zhe xia
+Version: 1.0
+*/
+
+/*------------------------------------------------------------------
+font css
+*/
+
+/*------------------------------------------------------------------
+images css
+*/
+
+/*------------------------------------------------------------------
+form css
+*/
+
+/*------------------------------------------------------------------
+list css
+*/
+
+/*------------------------------------------------------------------
+progress css
+*/
+
+/*------------------------------------------------------------------
+button css
+*/
+.btn-green.btn:hover {
+    color: #fff;
+}
+
+.btn-green {
+    background-color: #a7c819;
+    border: none;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.btn-green:hover {
+    background-color: #96b315;
+}
+
+.btn-green:disabled {
+    background-color:  #c7c7c7;
+}
+
+
+.btn-blue {
+    background-color: #178bb8;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-blue:hover {
+    background-color: #147ea8;
+}
+
+.btn-white {
+    background: #FFFFFF;
+    border: solid 1px #c7c7c7;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    cursor: pointer;
+}
+
+.btn-gray {
+    color: #FFFFFF;
+    background: #c7c7c7;
+    border: none;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    cursor: pointer;
+}
+
+.btn-gray:hover {
+    background: #cccccc;
+}
+
+/*横向tab*/
+.menuTab {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #e0e0e0;
+}
+
+.menuTab ul li {
+    padding: 8px 20px;
+    height: 40px;
+    float: left;
+    font-size: 18px;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.menuTab ul li.current-tab {
+    background-color: #22aee6;
+    color: #ffffff;
+}
+
+.line-tab {
+    margin-left: 0px;
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #e0e0e0;
+}
+
+.line-tab ul li {
+    margin-top: 0px;
+    padding: 8px 20px;
+    height: 40px;
+    float: left;
+    font-size: 18px;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.line-tab ul li.current-tab {
+    color: #22aee6;
+    border-bottom: 4px;
+    border-style: solid;
+    border-color: #22aee6;
+}
+
+/*横向tab*/
+
+/*列表数据展示*/
+.content-list {
+}
+
+.no-data-list {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 18px;
+    color: #22aee6;
+}
+
+/*不带头像的行*/
+.content-list .list-row {
+    margin-top: 20px;
+    clear: both;
+}
+
+.content-list .list-row .content-main {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #ededed;
+
+}
+
+[contenteditable="true"]{
+	width:100%;
+	min-height:300px;
+	max-height:100%;
+	overflow-y:auto;
+	clear:both;
+}
+
+/*不带头像的行*/
+
+/*带头像的行*/
+.content-list .list-row-avatar {
+    margin-top: 20px;
+    clear: both;
+}
+
+.content-list .list-row-avatar .img-el {
+    margin-top: 10px;
+    float: left;
+    width: 10%;
+}
+
+.content-list .list-row-avatar .img-el-big {
+    width: 6%;
+}
+
+.content-list .list-row-avatar .img-el img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.content-list .list-row-avatar .content-main {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    width: 90%;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #ededed;
+
+}
+
+.content-list .list-row-avatar .content-main-big {
+    width: 94%;
+}
+
+/*带头像的行*/
+
+.content-list .content-original {
+    border-left: 3px;
+    border-style: solid;
+    border-color: #eeeeee;
+    margin-bottom: 10px;
+    padding-left: 8px;
+}
+.content-list .content-original img{
+	width:100%;
+}
+
+.avatar{
+	border-radius: 50%;
+    height: 50px !important;
+    width: 50px !important;
+}
+
+.avatar-60{
+	height: 30px !important;
+    width: 30px !important;
+    border-radius: 50%;
+}
+
+.avator-120{
+	width:70px !important;
+	height:70px !important;
+	border-radius:50%;
+}
+
+.avator-240{
+	width:120px !important;
+	height:120px !important;
+	border-radius:50%;
+}
+
+.content-list .original-label, .content-list .original-time {
+    color: #999999;
+}
+
+.content-list .original-summary {
+    margin: 4px 0px;
+    color: #22aee6;
+}
+
+.content-list .publish-time {
+    float: left;
+    color: #999999;
+    width: 20%;
+}
+
+.content-list .content-bar {
+    float: right;
+    width: 80%;
+}
+
+.content-list .content-bar .bar-right {
+    float: right;
+    margin-right: 20px;
+}
+
+.content-list .content-bar .bar-right span {
+    color: #999999;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.content-list .content-bar .bar-right .cancel-bar:hover {
+    color: #e0491b;
+}
+
+.content-list .content-bar .bar-right a {
+    margin-left: 10px;
+}
+
+.content-list .content-nick, .content-list .content-summary {
+    margin-bottom: 4px;
+}
+
+.content-list .content-summary img{
+	width:100%;
+}
+
+.content-list .content-nick span {
+    margin-right: 4px;
+}
+
+.content-list .content-replay {
+    clear: both;
+    margin-top: 4px;
+}
+
+.content-list a {
+    color: #178bb8;
+    text-decoration: none;
+}
+
+.content-list a:hover {
+    color: #22aee6;
+    text-decoration: underline;
+}
+
+/*列表数据展示*/
+
+/*粉丝列表*/
+.fans-list {
+    margin-top: 10px;
+}
+
+.fans-list .fans-row {
+    clear: both;
+}
+
+.fans-list .fans-avatar {
+    margin-top: 10px;
+    float: left;
+    width: 10%;
+}
+
+.fans-list .fans-avatar-big {
+    width: 6%;
+}
+
+.fans-list .fans-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.fans-list .fans-content {
+    width: 90%;
+    float: left;
+    padding-bottom: 10px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #ededed;
+}
+
+.fans-list .fans-content-big {
+    width: 94%;
+}
+
+.fans-list .fans-content li {
+    margin-top: 5px;
+}
+
+.fans-list .fans-content span {
+    color: #999999;
+}
+
+.fans-list .fans-nick a > span {
+    color: #178bb8;
+}
+
+.fans-list .fans-nick a > span:hover {
+    color: #22aee6;
+}
+
+.fans-list .fans-nick span {
+    margin-right: 4px;
+}
+
+.fans-list .fans-bar {
+    float: right;
+    margin-top: 5px;
+}
+
+.fans-list .fans-bar .cancel-bar {
+    color: #999999;
+}
+
+.fans-list .fans-bar .cancel-bar:hover {
+    color: #e0491b;
+}
+
+.fans-list a {
+    color: #178bb8;
+    text-decoration: none;
+}
+
+.fans-list a:hover {
+    color: #22aee6;
+    text-decoration: underline;
+}
+
+/*粉丝列表*/
+
+/*用户提示框*/
+.popover {
+    padding: 6px 0px;
+    max-width: 600px;
+    border: none;
+    border-left: 5px solid #178bb8;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+}
+
+.popover-content {
+    padding: 0px;
+}
+
+.nick {
+    font-size: 15px;
+    color: #178bb8;
+}
+
+.nick:hover {
+    color: #22aee6;
+    text-decoration: underline;
+}
+
+.popover .popover-container {
+    min-width: 288px;
+
+}
+
+.popover .popover-tips {
+    padding: 3px 6px;
+    color: #22aee6;
+}
+
+.popover .not-exist {
+    width: 200px;
+    height: 160px;
+    padding: 10px 0px 0px 15px;
+    font-size: 18px;
+    color: #22aee6;
+}
+
+.popover .base-info {
+    padding-left: 15px;
+    padding-right: 10px;
+    height: 66px;
+    line-height: 66px;
+    display: table;
+}
+
+.popover .header {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.popover .left-avatar {
+    display: table-cell;
+}
+
+.popover .right-info {
+    margin-left: 15px;
+    display: table-cell;
+}
+
+.popover .row-data {
+    height: 22px;
+    line-height: 22px;
+}
+
+.popover .total {
+
+}
+
+.popover .total a {
+    margin-left: 4px;
+    color: #178bb8;
+}
+
+.popover .total a:hover {
+    color: #22aee6;
+}
+
+.popover .brief {
+    height: 60px;
+    line-height: 30px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+    background: #f5f4f2;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.popover .action-bar {
+    margin-top: 4px;
+}
+
+.popover .action-bar a {
+    margin-right: 18px;
+    color: #22aee6;
+    text-decoration: underline;
+}
+
+.popover .action-bar a:hover {
+    color: #e0491b;
+}
+
+/*文章内容中的html样式*/
+
+.content-html a,[contenteditable="true"] a,.articleContent a {
+    position: relative;
+    bottom: 1px;
+    color: #178bb8;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.content-html a:hover {
+    color: #22aee6;
+    text-decoration: underline;
+}
+
+/*文章内容中的html样式*/
+
+.badge,
+.badge:empty{
+	display:inline-block;
+	background-color:#e0491b;	
+}

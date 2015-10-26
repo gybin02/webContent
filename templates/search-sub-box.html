@@ -1,0 +1,7 @@
+<div id="search-input" >
+    <div class="input-group" style="z-index: 0 !important;">
+        <input type="text" class="form-control radiuas" style="height: 38px !important;" value="{{key}}"
+               ng-model="key" placeholder="请输入检索内容..." ng-keypress="jump($event,'/search')" autocomplete="off">
+        <span class="glyphicon glyphicon-search form-control-feedback" style="pointer-events:visible"  ng-click="jumpSingle($event,'/search')"></span>
+    </div>
+</div>

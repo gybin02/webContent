@@ -1,0 +1,28 @@
+<div class="user_trends">
+	<p>动态<span class="badge" ng-if="feedsCount>0">{{ feedsCount }}</span></p>
+	<hr/>
+	<div class="more more-loading" ng-show="feedsCount>0" ng-click="loadFeeds(1,8)">您有{{feedsCount}}条未读</div>
+	<div class="media" ng-repeat="n in arrays">
+		<div class="media-left">
+			<a href="#">
+				<img class="media-object avatar" ng-src="{{n.avatar}}" alt="...">
+			</a>
+		</div>
+		<div class="media-body">
+			<a class="media-heading" user-popover user-Nick="{{n.nickname}}" >{{ n.nickname || n.userId }} </a> <img ng-src="images/vip.png" ng-show="n.userType" ng-if="false">
+			<h5><b class="media-heading">{{ n.title }}</b></h5>
+			<div content-html bind-html="{{n.summary}}"></div>
+			<p>
+				<span class="reply"> {{ n.createDate | datetimeFormat }} </span>
+				<span class="pull-right">
+					<a class="reply" ng-href="/p/{{n.postId}}.html">查看详情</a>
+				</span>
+			</p>
+		</div>
+		<hr ng-if="n!=arrays.length"/>		
+	</div>
+	<div class="more more-loading" ng-show="isShowMore && !isShowWaiting" ng-click="loadMoreFeeds(5)">更多动态&gt;&gt;&gt;</div>
+	<div class="more" ng-show="!isShowMore">~~~~暂无更多项 ~~~~</div>
+	<div class="more" ng-show="isShowWaiting"><waiting is-center="true" wait-text="正在加载……"></waiting></div>
+	<hr/>
+</div>

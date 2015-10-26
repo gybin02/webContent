@@ -1,0 +1,98 @@
+.user-info-header {
+	height: 230px;
+}
+
+.user-left {
+	width: 120px;
+	height: 100px;
+	margin-right: 30px;
+	float: left;
+}
+
+.user-left #user-avatar {
+	width: 100%;
+}
+
+.user-left #user-avatar .user-avatar-img {
+	cursor: inherit;
+}
+
+.user-left #user-avatar .user-avatar-img p {
+	margin-bottom: 25px;
+}
+
+.user-left #user-avatar .user-avatar-img img {
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+}
+
+.user-left #user-avatar .send-message {
+	width: 100%;
+	color: #ffffff;
+	font-size: 14px;
+  	padding: 8px 36px 8px 22px;
+  	text-align: center;
+  	vertical-align: middle;
+}
+
+.user-right {
+	width: 970px;
+	height: 100px;
+	float: left;
+}
+
+.user-right .user-message {
+
+}
+
+.user-right .user-message div {
+	margin: 5px;
+	color: #333333;
+	font-size: 14px;
+}
+
+.user-right .user-message div.classname {
+	margin-bottom: 20px;
+}
+
+.user-right .user-message .user-nickname {
+	font-size: 24px;
+	color: #178bb8;
+}
+
+.user-right .user-message .user-nickname .right-ele {
+	float: right;
+}
+
+.user-right .user-message .user-nickname .right-ele a {
+	margin-left: 25px;
+	color: #22aae0;
+	text-decoration: underline;
+}
+
+.user-right .user-message .user-nickname .right-ele a span {
+	vertical-align: bottom; 
+}
+
+.user-right .user-message .seximg {
+	margin-right: 10px;
+}
+
+.user-right .user-message .sex {
+	margin-right: 30px;
+}
+
+.content .list {
+	padding-left: 20px;
+}
+
+.content .list h2 {
+	text-align: center;
+	vertical-align: bottom;
+	margin: 100px auto;
+}
+
+.content .list h2>a {
+	color: #178bb8;
+}

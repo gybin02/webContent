@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="styles/reset.css">
+<link rel="stylesheet" href="styles/secondEdition/recommendedUsers.css">
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/message-editor.css">
+<div class="bg-wrap" ng-controller="recommendUserController">    
+	<div class="recommend-wrap">
+		<!--推荐认证用户-->
+		<div class="recommend-section certification-user">
+			<h2>推荐认证用户</h2>
+			<div class="block-row">
+				<div class="user-wrap" ng-repeat="user in certificationUser">
+					<a href="/#/userInfo/{{user.userId}}" class="user-avatar">
+						<img ng-src="{{user.avatar}}"/> 
+					</a>
+					<div ng-if="user.userType==1" class="VIP certfct"></div>
+					<div ng-if="user.userType==2" class="institution certfct"></div>
+					<div ng-if="user.userType==3" class="company certfct"></div>
+					<div ng-if="user.userType==4" class="IR certfct"></div>
+					<p title="{{user.nickname}}">{{user.nickname}}</p>
+					<span style="display: none;" title="个人认证：{{user.userBrief}}">个人认证：{{user.userBrief}}</span>
+					<span>发表：{{user.userArticles}}&nbsp;&nbsp;粉丝：{{user.userFollow}}</span>
+					
+					<div class="btns">
+						<i id="attention" ng-click="unfollow(user.userId)" ng-if="isLogin && followStatus[user.userId]==true">取消关注</i><!--
+						he--><i id="attention" ng-if="!isLogin || (isLogin && followStatus[user.userId]==false)" ng-click="addAttention(user.userId)">+关注</i><!--
+						he--><i id="sendmsg" ng-click="openMsgDialog()">私信TA</i>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<!--推荐认证企业-->
+		<!--<div class="recommend-section certification-co">
+			<h2>推荐认证企业</h2>
+			<div class="block-row">
+				<div class="user-wrap">
+					<a href="#" class="user-avatar">
+						<img src="http://img4.gelonghui.com/head/head5273_80742.jpg@2-2-318-318a_60q"/>
+					</a>
+					<p>Administrator</p>
+					<span title="企业认证：微软中国">企业认证：微软中国</span>
+					<span>发表：12&nbsp;&nbsp;粉丝：109</span>
+					<i id="attention">+关注</i><i id="sendmsg">私信TA</i>
+				</div>
+			</div>
+		</div>-->
+		
+		<!--推荐活跃用户-->
+		<div style="display: none;" class="recommend-section active-user">
+			<h2>推荐活跃用户</h2>
+			<div class="block-row">
+				<div class="user-wrap" ng-repeat="user in activeUser">
+					<a href="/#/userInfo/{{user.userId}}" class="user-avatar">
+						<img ng-src="{{user.avatar}}"/>
+					</a>
+					<p title="{{user.nickname}}">{{user.nickname}}</p>
+					<span>发表：{{user.userArticles}}&nbsp;&nbsp;粉丝：{{user.userFollow}}</span>
+					<div class="btns">
+						<i id="attention" ng-click="unfollow(user.userId)" ng-if="followStatus[user.userId]==true">取消关注</i><!--
+						he--><i id="attention" ng-click="addAttention(user.userId)" ng-if="followStatus[user.userId]==false">+关注</i><!--
+						he--><i id="sendmsg" ng-click="openMsgDialog()">私信TA</i>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div>
+		    <message-editor show="showMsgDialog" touserid="userInfo.userId" tousername="userInfo.nickname" fromuserid="loginedUser.user.userId"></message-editor>
+		    <at-user show="showAtDialog" nickname="userInfo.nickname"></at-user>
+		</div>
+	</div>
+</div>
+
+

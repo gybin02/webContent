@@ -1,0 +1,159 @@
+.nav-tabs > li > a{
+	border:none;
+}
+
+.login-dialog .main {
+    background: white;
+    border: 0px solid #ffffff;
+    position: fixed;
+    /*position: absolute;*/
+    left: 50%;
+    top: 45%;
+    margin-left: -225px;
+    width: 490px;
+    height: 298px;
+    margin-top: -75px;
+    z-index: 1000;
+}
+
+div[data-target-des="login"] .modal-dialog{
+	width: 490px;
+    height: 298px;
+}
+
+.modal-content ul li{
+	height: 58px;
+	font-size: 22px;
+    width:50%;
+}
+.modal-content ul li{
+    line-height: 58px;
+}
+
+.modal-content a.close{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 16px 25px 20px;
+    font-size: 21px;
+    opacity:1;
+}
+
+
+.modal-content ul li, .modal-content ul li a:hover {
+	background-color: #23AEE7;	
+    color: #147ea8;
+}
+
+.modal-content a.close:hover{
+	opacity:1;
+}
+
+.modal-content ul li{
+	text-align:center;
+}
+
+.modal-content ul li a{
+    padding-top: 13px;
+    padding-bottom: 12px;
+}
+
+.modal-content ul li.active{
+	background-color: #fff;
+}
+
+.modal-content form{
+    padding: 20px;
+}
+.modal-content form[name="loginForm"]{
+    padding: 20px 50px;
+}
+
+.modal-content label[for="forgot"]{
+	float:right;	
+}
+.modal-content label[for="forgot"] a{
+	color:#337ab7;
+}
+
+.securityImg {
+    margin-left: 5px;
+    width: 50px;
+    display: inline-block;
+    background: #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+#loginErr {
+    color: red;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.rememberPW {
+    position: absolute;
+    color: #a9a9a9;
+    text-align: left;
+    vertical-align: bottom;
+    margin-bottom: 3px;
+    text-decoration: none;
+    margin-top: -1px;
+    margin-top: 2px;
+}
+
+.rememberPW input,label{
+   cursor: pointer;
+}
+
+
+.getPW {
+    text-align: right;
+    text-decoration: none color : blue;
+}
+
+.getPW a{
+    text-decoration: underline;
+    color: #6eabca;
+}
+
+/*全局响应式布局*/
+/* 当浏览器的可视区域大于1200px */
+@media screen and (min-width: 1200px) {
+
+    div[data-target-des="login"] .modal-dialog{
+        width: 490px;
+        height: 298px;
+    }
+
+}
+
+/* 当浏览器的可视区域小于1200px */
+@media screen and (max-width: 1200px) {
+
+    div[data-target-des="login"] .modal-dialog{
+        width: 490px;
+        height: 298px;
+    }
+}
+
+
+/* 当浏览器的可视区域小于960px */
+@media screen and (max-width: 960px) {
+    div[data-target-des="login"] .modal-dialog{
+        width: 490px;
+        height: 298px;
+    }
+}
+
+/* 当浏览器的可视区域大于540px */
+
+@media screen and (max-width: 540px) {
+    div[data-target-des="login"] .modal-dialog{
+        width: 290px;
+        height: 298px;
+    }
+}
+
+

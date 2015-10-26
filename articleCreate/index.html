@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>发布文章-格隆汇</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <link media="all" rel="stylesheet" type="text/css" href="/articleCreate/assets/styles/app.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="/articleCreate/assets/styles/simditor.css" />
+    <link rel="stylesheet" type="text/css" href="/articleCreate/assets/styles/simditor-mention.css"/>
+    <link rel="stylesheet" type="text/css" href="/articleCreate/assets/styles/simditor-stock.css"/>
+    <link rel="stylesheet" type="text/css" href="/articleCreate/assets/styles/simditor-emoji.css"/>
+    <link rel="stylesheet" href="/styles/secondEdition/glhLogin.css" />
+	<link rel="stylesheet" href="/styles/login.css">
+		<link rel="stylesheet" href="/scripts/vendor/Jcrop/css/Jcrop.css"/>
+	
+    <script type="text/javascript" src="/articleCreate/assets/scripts/mobilecheck.js"></script>
+    <script type="text/javascript">
+        if(mobilecheck()){
+            $('<link/>', {
+                media: 'all',
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: '/articleCreate/assets/styles/mobile.css'
+            }).appendTo('head')
+        }
+    </script>
+    <style type="text/css">
+    	h1{ font-weight: 100;}
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="container">
+ <div class="page">
+        <div class="page-inner" id="page-doc-new">
+            <div class="doc-wrap">
+                <form class="form form-edit-doc" action=""
+	data-draft-name="index.html"
+	data-target-url="/"
+	method="post" data-remote="true">
+
+	<input type="hidden" name="markdown" id="is-markdown" value="0" />
+	<input type="hidden" name="is_html" id="is_html" value="1" />
+
+	<div class="form-item doc-title-wrap">
+		<div class="form-field">
+			<input name="doc_title" id="doc-title" class="doc-title" placeholder="文章标题" />
+		</div>
+	</div>
+	<div class="form-item wmd-panel-wrap">
+		<div class="form-field">
+			<div class="doc-editor">
+				<textarea id="doc-content" name="doc_content" class="doc-content"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="doc-bottom-bar">
+    <div class="form-item visitor-lock">
+    </div>
+		<div class="form-item save-btns-wrap">
+			<div class="form-field">
+				<button type="button" id="glh-submit" class="btn btn-mini btn-create-doc" data-disable-with="发表中..." data-success-text="发表成功">发表文章</button>
+				<button type="button" class="btn btn-x btn-cancel-quit">返回</button>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/articleCreate/assets/scripts/module.js"></script>
+<script type="text/javascript" src="/articleCreate/assets/scripts/uploader.js"></script>
+<script type="text/javascript" src="/articleCreate/assets/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="/articleCreate/assets/scripts/simditor.js"></script>
+<script src="/articleCreate/assets/scripts/simditor-mention.js" ></script>
+<script src="/scripts/common/glhLogin.js" ></script>
+<script  src="/articleCreate/assets/scripts/simditor-stock.js"></script>
+<script type="text/javascript" src="/articleCreate/assets/scripts/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="styles/articleDetail.css" />
+<link rel="stylesheet" href="styles/tmPagination.css">
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/text-editor.css" />
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script type="text/javascript">
+var jiathis_config = {
+    boldNum:0,
+    showClose:false,
+    data_track_clickback:true,
+    pic:"http://res.gelonghui.com/images/logo_share.png",
+    appkey:{
+        "tsina":"825985079",
+        "tqq":"1101842324",
+        "cqq":"1101842324",
+        "weixin":"wx0238766b59672240"
+    },
+}
+</script>;
+<div class="container">
+    <div class="content" ng-controller="ArticleDetailController" style="margin-top: 80px;margin-bottom: 100px;">
+        <div class="topic">
+            <div class="detailCategory" style="display:table">
+                <div class="article-avatar pull-left">
+                    <img alt="" ng-src="{{post.avatar}}" class="avatar" ng-click="openUser(post.userId)"/>
+                </div>
+                <div class="article-content">
+                    <div class="head">
+                        <span user-popover user-Nick="{{post.nickname}}" class="headNick">{{post.nickname}}</span>
+                        <img src="../images/vip.png" ng-show="post.userType && false" />
+                        <span class="detail_relate_stock publishTime">{{post.publishTimeLoc}}</span>
+                        <div class="title" ng-if="post.title">
+                            <b>{{post.title}}</b>
+                        </div>
+                    </div>
+                    <div class="articleContent article-body">
+                        <div ng-repeat="contentIndex in postContent">
+                            <span content-html bind-html="{{contentIndex}}"></span>
+                        </div>
+                        <div ng-if="post.fileName">
+                            <a ng-href="{{post.file}}" target="_blank" style="color: #22aee6">查看PDF原文</a>
+                            <li style="color: #22aee6" ng-if="weixinBrowser">安卓系统用户,请点击右上角菜单选择-"在浏览器中打开",查看PDF原文</li>
+                        </div>
+                    </div>
+                    <div class="article-share">
+                        <div class="articleRelate text-right">
+                            <span ng-click="deletePost(post.postId)" ng-show="canDeletePost">删除</span>
+                            <img ng-src="{{readCountImg}}"><span>{{post.postCount.read}}</span>
+                            <img ng-src="{{speechImg}}"><span>{{commentCounts}}</span>
+                            <img ng-src="{{likeImg}}" ng-disable="likeDisable"
+                                ng-click="likeDisable || likePost(isLike)" id="btnDetailLike"><span>{{post.likcCount}}</span>
+                            <img ng-src="{{favImg}}" ng-disable="favDisable"
+                                ng-click="favDisable || favPost(isFav)" id="btnDetailFave"><span>{{post.favCount}}</span>
+                            <img ng-src="images/share.png"
+                                ng-click="shareActive = !shareActive;shareLink();"><span
+                                ng-click="shareActive = !shareActive;shareLink();">分享</span>
+                        </div>
+                        <div class="shareDiv" ng-show="shareActive">
+                            <share-popover ng-init=""></share-popover>
+                        </div>
+                    </div>
+                    <div class="replyEditor">
+                        <user-editor show-action="['@','$']" style="margin-top: 10px;"
+                            post-type="回复"
+                            ng-keydown="initReply($event,post.postId,post.userId);"></user-editor>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <div>
+                    <span class="title">全部评论</span> <span class="title">{{commentCounts}}</span>
+                    <div class="split_all"></div>
+                </div>
+                <div class="commentList">
+                    <div ng-repeat="item in commentList">
+                        <div class="commentListDiv">
+                            <div class="avatarDiv">
+                                <img alt="" ng-src="{{item.avatar}}" class="avatar"
+                                    ng-click="openUser(item.userId)" style="cursor: pointer">
+                            </div>
+                            <div class="commentUl">
+                                <div>
+                                    <user-popover user-Nick="{{item.nickname}}">{{item.nickname || item.userId}}</user-popover>
+                                    <img src="../images/vip.png" ng-show="item.userType" ng-if="false"/>
+                                    <span ng-show="item.replyUid != null">回复</span>
+                                    <user-popover user-Nick="{{item.replyNickname}}">{{item.replyNickname || item.replyUid}}</user-popover>
+                                    <img src="../images/vip.png" ng-show="item.replyUid != null" ng-show="item.replyUserType" ng-if="false"/>
+                                </div>
+                                <div>
+                                    <span content-html bind-html="{{item.content}}"></span>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span class="commentTime">{{item.publishTimeLoc}}</span> <a
+                                            class="pull-right commentTime" ng-click="deleteComment(item)"
+                                            ng-show="item.canDelete" id="btnDeleteCom">删除</a> <a
+                                            class="pull-right commentTime" style="margin-right: 10px;"
+                                            ng-click="replyComment(this, $event)">回复</a>
+                                    </div>
+                                    <div class="replyEditor-list">
+                                        <user-editor show="false" show-action="['@','$']" post-type="回复"></user-editor>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <tm-pagination conf="articleDetailPaginationConf"></tm-pagination>
+            </div>
+        </div>
+        <at-user show="showAtDialog" nickname="atUserNickname"></at-user>
+    </div>
+    <search-box-float></search-box-float>
+    <div class="right-bar" style="margin-top: 80px;">
+        <div app-banner></div>
+        <hot-read day-active="true"></hot-read>
+    </div>
+</div>

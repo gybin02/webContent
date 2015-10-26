@@ -1,0 +1,124 @@
+<div class="stock-trends">
+	<div class="login-timeout" ng-show="loginTimeOut">
+	    <h2>用户未登录或登录已超时，请重新
+	        <a href="" ng-click="reLogin()">登录</a>
+	    </h2>
+	</div>
+	<ul class="nav nav-pills coll_panel" ng-class="{ hide: hideTabs }" ng-show="!loginTimeOut">
+        <li role="presentation" ng-class="{active:isSelect(1)}" >
+            <a ng-click="setSelect(1)">我的自选</a>
+        </li>
+        <li role="presentation" ng-class="{active:isSelect(2)}" style="margin-left:0px;" ng-hide="true">
+            <a ng-click="setSelect(2)">我的组合</a>
+        </li>
+    </ul>
+    <div class="stock-tabs" ng-show="myTab==1 && !loginTimeOut">
+        <ul class="stock-tab navbar-header">
+            <li class="text-center col-sm-2" ng-class="{'active': !stocksTab}">
+                <a class="line_a" ng-click="stock.stocksWitch('')">全部</a>
+            </li>
+            <li class="text-center col-sm-2"  ng-class="{'active': stocksTab == '{{type}}'}" ng-repeat="type in stock.types">
+            	<a ng-click="stock.stocksWitch(type)">{{ stock.typeName[type] }}</a>
+            </li>
+        </ul>
+        <div class="stock-search has-feedback" ng-blur="hideSearchList()" ng-show="showSearch">
+            <input type="text" name="keyword" class="form-control" placeholder="添加自选股" ng-model="keyWord" ng-change="stockSearch($event, keyWord)" ng-focus="showSearchList($event)">
+            <ul class="dropdown-menu">
+                <li ng-repeat="stock in stockSearchList">
+                    <a href="javascript:void(0);"
+                        ng-bind-html="stock.stockName + '(' + stock.type + stock.stockCode + ')'"
+                        ng-click="addUserStock(stock.stockCode, stock.type)">
+                    </a>
+                </li>
+            </ul>
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        </div>
+	    <hr class="stock-hr">	     
+	    <div class="clearfix" ng-show="stock.listSize > 0">
+	        <ul class="stock-item" ng-init="_reverse = true;">
+	            <li class="col-sm-2" ng-style="listItemStyle">
+	                <a>名称/代码</a>
+	            </li>
+	            <li class="col-sm-2 text-center" ng-style="listItemStyle">
+	                <a ng-click="reverse=!reverse;_reverse=false;orderByCol = 'price';">当前价</a>
+	                <i class="fa fa-long-arrow-up" ng-show="orderByCol=='price' && reverse || _reverse"></i>
+	                <i class="fa fa-long-arrow-down" ng-show="orderByCol=='price' && !reverse || _reverse"></i>
+	            </li>
+	            <li class="col-sm-3 text-center" ng-style="listItemStyle">
+	                <a ng-click="reverse=!reverse;_reverse=false;orderByCol = 'change';">涨跌幅</a>
+	                <i class="fa fa-long-arrow-up" ng-show="orderByCol=='change' && reverse || _reverse"></i>
+	                <i class="fa fa-long-arrow-down" ng-show="orderByCol=='change' && !reverse || _reverse"></i>
+	            </li>
+	            <li class="col-sm-2 text-center" ng-style="listItemStyle">
+	                <a>成交量</a>
+	            </li>
+	            <li class="col-sm-2 text-center" ng-style="listItemStyle">
+	                <a>市值</a>
+	            </li>
+	            <li class="col-sm-1 text-center handle" ng-style="listItemStyle">
+	                <a><img ng-src="images/Refresh.png" ng-click="stock.async()"></a>
+	            </li>
+	        </ul>
+	        <hr/>
+	        <waiting wait-text="正在加载数据,请稍后……" is-center="true" ng-show="showWaiting"></waiting>
+	        <ul class="stock-item" ng-class="{ light_green_color:$even }" 
+	        	ng-repeat="stock in currentStocks | orderBy:orderByCol:reverse | stockFilter:stocksTab as filteredItems" 
+	        	ng-show="$index<=defaultSize" 
+	        	ng-init="stock.listSize = filteredItems.length;stock.showCollapse();">
+	            <li class="col-sm-2" ng-style="listItemStyle">
+	                <a ng-href="#/stockDetail/{{stock.type+stock.code}}">
+	                	<ul class="stockDetail">
+	                		<li class="name">{{stock.name || '--'}}</li>
+							<li class="code">{{stock.type+stock.code | uppercase}}</li>
+	                	</ul>
+	                </a>
+	            </li>
+	            <li class="text-center col-sm-2" ng-style="listItemStyle">
+	                <a ng-href="#/stockDetail/{{stock.type+stock.code}}" ng-class="{ increase:stock.change > 0,decrease:stock.change < 0 }">{{stock.price?stock.price:'--'}}</a>
+	            </li>
+	            <li class="text-center col-sm-3" ng-style="listItemStyle">
+	                <a ng-class="{ increase: {{stock.change >= 0}},decrease:{{stock.change < 0}}}">
+	                	<span class="wordwrap">{{ stock.change? ( stock.change >= 0 ? '+' + stock.change + '(+' + stock.netChange + '%)' : stock.change + '('+ stock.netChange + '%)'):'--' }}</span>
+	                </a>	                
+	            </li>
+	            <li class="text-center col-sm-2" ng-style="listItemStyle">
+	                <a>{{stock.volume || '--'}}</a>
+	            </li>
+	            <li class="text-center col-sm-2" ng-style="listItemStyle">
+	                <a>{{stock.mkValue || '--'}}</a>
+	            </li>
+	            <li class="text-center handle col-sm-1 dropdown" ng-style="listItemStyle" ng-if="showHandleCol">
+	                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+	                    <img ng-src="images/more.png">
+	                </a>
+	                <ul class="dropdown-menu dropdown-menu-left">
+	                    <li ng-click="delUserStock(stock.code, stock.type)">
+	                        <a href="javascript:void(0);"><span>删除</span></a>
+	                    </li>
+	                    <li ng-click="trade(stock.code)">
+	                        <a href="javascript:void(0);"><span>交易</span></a>
+	                    </li>
+	                </ul>
+	            </li>
+	        </ul>
+        	<div class="stock-list-footer text-right">
+	       		<span class="statement">@港股数据由电资讯国际有限公司提供（报价延迟15分钟）</span>
+	       		<div class="plus pull-right"  ng-class="{ hide: hideCollapse }" ng-show="filteredItems.length > 6">
+				    <span ng-click="stock.plus()"><img ng-src="images/{{stock.listSize > defaultSize?'plus':'less'}}.png"/></span>
+				    <span>{{stock.listSize > defaultSize?"展开":"收起"}}</span>
+				</div>
+	       	</div>
+	    </div>
+	</div>
+	<div class="stock-tabs" ng-show="myTab==2 && !loginTimeOut" style="height:418px;">
+		<div class="alert alert-danger" style="border-left:5px solid red">
+			暂无组合股票
+		</div>
+	</div>
+    <modal width="300px" height="100px" show="addSuccessMsg">
+        <div style="text-align: center;line-height: 100px;">
+            <span>已关注，请到自选股查看</span>
+        </div>
+    </modal>
+    <sec-brokers show="showSecBrokers" stock-code="stockCode"></sec-brokers>
+</div>

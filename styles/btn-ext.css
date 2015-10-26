@@ -1,0 +1,22 @@
+/*框架的按钮扩展样式*/
+.btn-up-pdf {/*上传pdf按钮*/
+	position: relative;
+}
+.btn-up-pdf input {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 200%;
+	top: -10px;
+	left: 0px;
+	cursor: pointer;
+}
+.btn-up-pdf .btn-select {} .up-info {
+	padding-left: 20px;
+	color: #CCCCCC;
+}
+/*覆盖bootstrap原有按钮样式*/
+.btn-primary {
+	background: #22AFE7;
+	border: 1px solid #22AFE7
+}

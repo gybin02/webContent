@@ -1,0 +1,67 @@
+<div class="modal  short" ng-style="showMaskStyle">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="short-form">
+				<ul class="nav nav-tabs">
+					<li>发表一段哔哔</li>
+					<li></li>
+				</ul>
+				<a href class="close pull-right" ng-click="hideTextEditor()">
+					<img src="images/Btn_Close.png" />
+				</a>
+
+				<form>
+					<div class="form-group" ng-hide="error.status" style="margin-bottom:0">
+
+					</div>
+					<div class="user-face-box">
+						<div class="dash_board pull-left">
+							<div>
+								<a>
+									<img class="index-img-circle" ng-src="{{userAvatar}}" ng-click="openUser()" />
+
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="form-group toolbar "> 
+						<div id="bb-content-editor" class="form-control contenteditable wordwrap" ng-model="describ" contenteditable="true" placeholder="想哔哔点"></div>
+					 <span class="word-number">188</span>
+					 <div class="form-group clearfix">
+						<img ng-src="images/mouse.png" name="at" ng-click="addSymbols('@')"/>
+						<img style="margin-left: 10px;" name="dollar" ng-src="images/$.png" ng-click="addSymbols('$')"/>
+					</div>
+					
+					</div>
+					
+					<div class="form-group">
+						
+					
+					<div class="form-group clearfix">
+						<button type="button" id="submit-btn-1" class="btn btn-blue col-sm-7" ng-click="submitCommit()">发表</button>
+
+						<div class="error" align="center">{{error.message}}</div>
+					</div>
+				</form>
+			</div>
+			
+			</div>
+			<div id="" class="success-window" style="display: none;">
+				<div class="success-icon">
+					<img src="/images/icon_PublishSuccess.png" />
+				</div>
+				<div class="btn-group">您可以<a class="detail-link" href="#">查看详情</a>或者在<span class='mien'>5</span>秒后<a ng-click="hideTextEditor()" ng-href="javascript:;">返回首页</a></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+

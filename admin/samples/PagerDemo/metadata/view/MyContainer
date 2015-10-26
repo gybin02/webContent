@@ -1,0 +1,141 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "mycontainer",
+        "designer|userClassName": "MyContainer",
+        "height": 380,
+        "layout": "fit",
+        "width": 560
+    },
+    "name": "MyContainer",
+    "designerId": "3f1a089a-3b8d-4579-9667-098ed088e8f5",
+    "viewControllerInstanceId": "b3087ce0-00b5-4778-a9c6-117a6f985c18",
+    "viewModelInstanceId": "40c96804-faf4-4a59-a4b8-d1bca844283c",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "store": "UserStore",
+                "title": "My Grid Panel"
+            },
+            "name": "MyGridPanel",
+            "designerId": "09c9f005-a7e4-43ca-8125-674b27f26441",
+            "cn": [
+                {
+                    "type": "Ext.grid.filters.Filters",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridFiltersPlugin",
+                    "designerId": "55e8825c-e54f-4782-81c6-28b75cf5fb70"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "name",
+                        "text": "Name"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "772ea89f-6013-42a6-bb9c-3a87cd1ec3f9",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.filters.filter.String",
+                            "reference": {
+                                "name": "filter",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyStringFilter",
+                            "designerId": "239c7df0-dca8-4b6e-bee5-c657593d38b9"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "mail",
+                        "text": "Mail"
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "9ae12199-ec86-49f3-b8ba-d0d37bfd03fd",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.filters.filter.String",
+                            "reference": {
+                                "name": "filter",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyStringFilter1",
+                            "designerId": "4dab75fd-1694-46c4-9e69-33ef5066ef8d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Number",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "age",
+                        "text": "Age"
+                    },
+                    "name": "MyNumberColumn",
+                    "designerId": "0c42b366-949a-4e49-b408-9e91fd588e61",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.filters.filter.Number",
+                            "reference": {
+                                "name": "filter",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyNumberFilter",
+                            "designerId": "25874324-1079-4128-8dc0-7f1cce06f94b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "store": "UserStore",
+                        "width": 360
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "e2a63de3-09a0-48e1-8dbe-a4e75dc3a252"
+                }
+            ]
+        }
+    ]
+}

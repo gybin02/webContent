@@ -1,0 +1,123 @@
+.user_editor {
+    display: inline-block;
+    width: 100%;
+    margin-bottom:15px;
+}
+
+.user_editor ul.editor_ul{
+    /**margin-top: 18px;**/
+    padding-top: 10px;
+}
+
+.user_editor ul.editor_ul li{
+    float: left;
+    margin-right: 28px;
+}
+.userEditor-main {
+	position:relative;
+}
+.userEditor-main .upPost {
+    position: absolute;
+    width: 630px;
+}
+
+/*
+.userEditor-main .bottomPost{
+	position:absolute; 
+	z-index:2; 
+	display: none;
+	width:auto;
+	background: #fff;
+}
+*/
+
+.userEditor-main .bottomPost ul {
+    margin-top: 0px;
+    width: auto;
+}
+
+.nav.nav-tabs {
+    padding-top: 0px;
+    border-bottom-width: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.fileinput-button {
+    overflow: hidden;
+    position: relative;
+}
+.fileinput-button input {
+    cursor: pointer;
+    direction: ltr;
+    font-size: 200px;
+    margin: 0;
+    opacity: 0;
+    filter:alpha(opacity=0);/* ??IE */
+    position: absolute;
+    right: -5px;
+    top: -5px;
+}
+.editor_ul > li > span.fileinput-button > input{
+ 	right: 0;
+    top: 0;
+    width:100%;
+    height:100%;
+}
+
+div[ng-model="contentModel"] .ta-editor.ta-html,div[ng-model="contentModel"] .ta-scroll-window.form-control,div[ng-model="contentModel"] .ta-scroll-window > .ta-bind{
+	min-height:50px;
+}
+div[ng-model="contentModel"] .ta-toolbar{
+	display:none;
+}
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+.contenteditable{
+	min-height: 90px; 
+	height:auto
+}
+div[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555; 
+}
+
+.editor_ul > li > * {
+	cursor: pointer;
+}
+
+.post-alert{
+	background-color: #fff;
+    border: 1px solid #ccc;
+	height: 90px;
+    line-height: 90px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display:none;
+}
+.post-alert.open{
+	display:block;
+}
+.post-alert img{
+	margin-right:10px;
+	width:20px;
+}
+.post-alert.success{
+	opacity: 1;
+    filter:alpha(opacity=100);/* ??IE */
+}
+.post-alert.error{
+	opacity: 0.5;
+    filter:alpha(opacity=50);/* ??IE */
+}

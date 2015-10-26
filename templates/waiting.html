@@ -1,0 +1,9 @@
+<div>
+    <div class="waiting">
+        <div ng-class="{true: 'center_waiting', false: ''}[isCenter]">
+        	<img ng-src="images/loader.gif">
+        	{{waitText}}
+        	<div ng-transclude class="pull-right"></div>
+        </div>
+    </div>
+</div>
