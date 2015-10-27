@@ -2253,11 +2253,13 @@ Ext.define('GURUAdmin.view.MainViewport', {
                     columns: [
                         {
                             xtype: 'gridcolumn',
+                            width: 20,
                             dataIndex: 'id',
                             text: 'ID'
                         },
                         {
                             xtype: 'gridcolumn',
+                            width: 30,
                             dataIndex: 'userNick',
                             text: '操作者'
                         },
@@ -2268,11 +2270,13 @@ Ext.define('GURUAdmin.view.MainViewport', {
                                     return Ext.util.Format.date(new Date(value*1000), "Y-m-d H:i:s");
                                 }
                             },
+                            width: 30,
                             dataIndex: 'createTime',
                             text: '创建时间'
                         },
                         {
                             xtype: 'gridcolumn',
+                            width: 30,
                             dataIndex: 'logType',
                             text: '业务类型'
                         },
@@ -2285,7 +2289,7 @@ Ext.define('GURUAdmin.view.MainViewport', {
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'message',
-                            text: '操作对象'
+                            text: '信息'
                         }
                     ]
                 }

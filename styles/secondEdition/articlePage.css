@@ -52,6 +52,7 @@ html a {
 }
 #glh-logo img {
 	vertical-align: middle;
+	height: 53px;
 }
 #not-login {
 	position: absolute;

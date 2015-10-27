@@ -1,0 +1,95 @@
+.stockpage-wrap .stock-bg {
+	width: 100%;
+	padding-top: 80px;
+	background-color: #fff;
+}
+#stockInfoWrap {
+	width: 1000px;
+	margin: 50px auto 0;
+}
+#stockInfoWrap .stock-info {
+	display: inline-block;
+	vertical-align: top;
+}
+.stockpage-wrap .stock-data {
+	display: inline-block;
+	width: 700px;
+}
+.stockpage-wrap .stock-table {
+	display: table;
+	width: 300px;
+	text-align: right;
+}
+.stockpage-wrap .stock-data .table-row {
+	display: table-row;
+}
+.stockpage-wrap .stock-data span {
+	display: table-cell;
+}
+.stockpage-wrap .stock-data span.ups {
+	font-size: 16px;
+	color: #ff6057;
+}
+.stockpage-wrap .stock-data span.downs {
+	font-size: 16px;
+	color: #8fc31f;
+}
+#stockDetail {
+	margin-top: 20px;
+	margin-left: 43px;
+}
+#stockDetail li {
+	display: inline-block;
+	width: 100px;
+}
+.stockpage-wrap .stock-data > p {
+	margin-left: 43px;
+}
+/*tabs*/
+#tab-nav {
+	border-top: 1px solid #f2f2f2;
+}
+#tab-nav li {
+	display: inline-block;
+	background-color: #fff;
+	padding: 17px 25px;
+}
+#tab-nav li.active {
+	border-bottom: 1px solid #22aee6;
+}
+#tab-nav li.active a {
+	color: #22aee6;
+}
+#tab-nav a {
+	color: #333;
+}
+.tab-wrap {
+	background-color: #fff;
+	border-radius: 4px;
+	width: 1000px;
+	margin: 30px auto;
+}
+#myTabContent {
+	padding: 0 48px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

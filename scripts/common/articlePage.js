@@ -489,7 +489,7 @@ var Comment = {
 			dataType: "json",
 			data: pageData,
 			url: "/api/post/" + postId + "/comment",
-			async: false,
+			async: true,
 			cache: false,
 			success: function(response) {
 				if (response.statusCode == 200) {
@@ -530,7 +530,7 @@ var Comment = {
 		var returnInfo = response.result;
 		for (var i = returnInfo.length - 1; i >= 0; i--) {
 
-			var commentInfo = '<div class="reader-comment" data-num="' + returnInfo[i].commentId + '" data-uid="' + returnInfo[i].userId + '"><div class="reader-info"></div><div class="comment-info"><a href="/#/userInfo/' + returnInfo[i].userId + '"><img src="' + returnInfo[i].avatar + '"/ ></a><div class="cmt-name">' + returnInfo[i].nickname + '</div><span>' + Comment.formatTime(returnInfo[i].createDate);
+			var commentInfo = '<div class="reader-comment" data-num="' + returnInfo[i].commentId + '" data-uid="' + returnInfo[i].userId + '"><div class="comment-info"><a href="/#/userInfo/' + returnInfo[i].userId + '"><img src="' + returnInfo[i].avatar + '"/ ></a><div class="cmt-name">' + returnInfo[i].nickname + '</div><span>' + Comment.formatTime(returnInfo[i].createDate);
 			if (returnInfo[i].replyCommentId) {
 				commentInfo += '回复了评论</span></div>';
 			} else {
