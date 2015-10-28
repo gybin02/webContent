@@ -571,9 +571,9 @@ var Comment = {
 			success: function(response) {
 				if (response.statusCode == 200) {
 					Comment.initPagination();
-					
-//					location.reload();
-					
+
+					//					location.reload();
+
 				} else {
 					//提交失败
 					alert(response.message);
@@ -707,57 +707,99 @@ function atUser(val) {
 
 /*前段加上股票和用户的链接*/
 function addLink(text) {
-	if (text == null) {
-		return text;
-	}
-	//var uReg=/@[^\s]+\s?/;
-	//匹配开头已@结尾是空格或者冒号 远端原则
-	//var uReg = /@\S+?\s|@\S+?\s|@\S+?:/
-	var uReg = /@([^(|:| |<|@|&)]*)(|:| |<|@|&)/g;
-	//var uReg = /@(.*?)(@| |:|<)/g
-	var uRegLen = 0;
+		if (text == null) {
+			return text;
+		}
+		//var uReg=/@[^\s]+\s?/;
+		//匹配开头已@结尾是空格或者冒号 远端原则
+		//var uReg = /@\S+?\s|@\S+?\s|@\S+?:/
+		var uReg = /@([^(|:| |<|@|&)]*)(|:| |<|@|&)/g;
+		//var uReg = /@(.*?)(@| |:|<)/g
+		var uRegLen = 0;
 
-	var regText = text;
-	do {
-		var uArr = uReg.exec(regText);
-		uRegLen = uArr == null ? 0 : uArr.length;
-		if (uArr != null && uArr.length > 0) {
-			for (var i = 0; i < uArr.length; i++) {
-				if (uArr[i].indexOf("@") >= 0 && uArr[i].length > 1) {
-					var nick = uArr[i].substring(1, uArr[i].length);
-					var uHtml = '<a user-popover user-Nick="' + nick + '">' + uArr[i] + '</a>';
-					text = text.replace(new RegExp(uArr[i], 'gm'), uHtml);
+		var regText = text;
+		do {
+			var uArr = uReg.exec(regText);
+			uRegLen = uArr == null ? 0 : uArr.length;
+			if (uArr != null && uArr.length > 0) {
+				for (var i = 0; i < uArr.length; i++) {
+					if (uArr[i].indexOf("@") >= 0 && uArr[i].length > 1) {
+						var nick = uArr[i].substring(1, uArr[i].length);
+						var uHtml = '<a user-popover user-Nick="' + nick + '">' + uArr[i] + '</a>';
+						text = text.replace(new RegExp(uArr[i], 'gm'), uHtml);
+					}
 				}
 			}
-		}
-	} while (uRegLen > 0)
+		} while (uRegLen > 0)
 
 
-	//匹配以$开头,$+空格结尾的字符
-	var sReg = /\$(.*?)\((.*?)\)\$/g;
-	var sRegLen = 0;
-	var regSText = text;
-	do {
-		var sArr = sReg.exec(regSText);
-		sRegLen = sArr == null ? 0 : sArr.length;
-		if (sArr != null && sArr.length >= 3) {
-			if (sArr[0].indexOf("$") >= 0 && sArr[0].indexOf("(") >= 0 && sArr[0].indexOf(")") >= 0 && sArr[0].length > 3 && sArr[1].length > 0 && sArr[2].length > 0) {
-				//提取股票代码
-				sArrNew = sArr[2].replace(')', '\\)').replace('(', '\\(');
-				dReg = /[a-zA-Z.0-9]+|[0-9]+/;
-				stockCode = dReg.exec(sArrNew);
-				var replaceTarget = '\\$' + sArr[1] + '\\(' + sArrNew + '\\)\\$';
-				var sHtml = '<a href="/#/stockDetail/' + stockCode + '" target="flag">' + sArr[0] + '</a>';
-				//var replaceTarget = sArr[2].replace("(", "/(").replace(")", "/)");
-				text = text.replace(new RegExp(replaceTarget, 'gm'), sHtml);
+		//匹配以$开头,$+空格结尾的字符
+		var sReg = /\$(.*?)\((.*?)\)\$/g;
+		var sRegLen = 0;
+		var regSText = text;
+		do {
+			var sArr = sReg.exec(regSText);
+			sRegLen = sArr == null ? 0 : sArr.length;
+			if (sArr != null && sArr.length >= 3) {
+				if (sArr[0].indexOf("$") >= 0 && sArr[0].indexOf("(") >= 0 && sArr[0].indexOf(")") >= 0 && sArr[0].length > 3 && sArr[1].length > 0 && sArr[2].length > 0) {
+					//提取股票代码
+					sArrNew = sArr[2].replace(')', '\\)').replace('(', '\\(');
+					dReg = /[a-zA-Z.0-9]+|[0-9]+/;
+					stockCode = dReg.exec(sArrNew);
+					var replaceTarget = '\\$' + sArr[1] + '\\(' + sArrNew + '\\)\\$';
+					var sHtml = '<a href="/#/stockDetail/' + stockCode + '" target="flag">' + sArr[0] + '</a>';
+					//var replaceTarget = sArr[2].replace("(", "/(").replace(")", "/)");
+					text = text.replace(new RegExp(replaceTarget, 'gm'), sHtml);
+				}
 			}
-		}
-	} while (sRegLen > 0)
-	$(".main-content").html(text);
-	//return text;
-}
-/*开始加入文章中的股票与用户链接*/
+		} while (sRegLen > 0)
+		$(".main-content").html(text);
+		//return text;
+	}
+	/*开始加入文章中的股票与用户链接*/
 $(document).ready(function() {
-	var content = $(".main-content").html();
-	addLink(content);
+		var content = $(".main-content").html();
+		addLink(content);
+	})
+	/*@股票和用户*/
+var n = new Mention({
+	textInput: $("#comment-text"),
+	items: [],
+	symbols: ["@", "$"],
+	config: [{
+			items: "",
+			url: "/api/post/lastCalls?key=",
+			title: "想要用@提到谁？",
+			name: "userNick",
+			pinyin: "",
+			attach: "",
+			symbol: "@",
+			type: ""
+
+
+		}, {
+			items: "",
+			url: "/api/search/stock?keyword=",
+			title: "搜索股票",
+			name: "stockName",
+			pinyin: "stockCode",
+			attach: "$",
+			symbol: "$",
+			type: "type"
+		}
+
+	]
+
+})._init();
+
+
+$(document).keydown(function(e) {
+
+	if (e.keyCode == 8) {
+		if ($("#user-keywords").val().length == 0 && $("#user-search-box").hide()) {
+			$("#user-search-box").hide();
+			$("#comment-text").focus();
+		}
+	}
+
 })

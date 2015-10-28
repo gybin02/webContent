@@ -82,7 +82,7 @@ GLHApp.controller('UserFavoriteController', ['$scope', '$rootScope', '$location'
 
         //跳转到帖子详情
         $scope.postDetail = function (postId) {
-            $location.path("/articleDetail/" + postId);
+            window.location.href="/p/" + postId+".html";
         }
         
         //@面板显示

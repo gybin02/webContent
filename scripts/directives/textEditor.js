@@ -46,7 +46,7 @@ GLHApp.directive("textEditor",["$timeout","$UserService","ApiService","CommServi
     			position:function(pos){
     				return {
     					'x':pos.x,
-            			'y':pos.y+20,
+            			'y':pos.y+220,
             			'zIndex':10000,
             			'scopeId':_scopeId,
             			'$editor':_editor
@@ -225,7 +225,7 @@ GLHApp.directive("textEditor",["$timeout","$UserService","ApiService","CommServi
             	contents=$.trim(_$editor.html().replace(/<\/?[^>]*>/g,'').replace(/&nbsp;/ig,''));//禁止空文本提交
             	if(param.title && contents){  
             		$("#submit-btn").attr("disabled",'disabled');//禁用按钮可点
-            		ApiService.post(ApiService.getApiUrl().publishCommit,{},param,function(response){
+            		ApiService.post(ApiService.getApiUrl().articleCommit,{},param,function(response){
             			if(response.statusCode == 200){
                     		scope.hideTextEditor();
                             scope.htmlContent = scope.textTitle = '';

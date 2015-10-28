@@ -56,30 +56,30 @@
 					<li ng-repeat="columnItem in navColumns"
 						ng-class="{columnSelect:columnItem.columnCode==columnCode}">
 						<a ng-click="chooseColumn(columnItem.columnCode)">{{columnItem.columnName}}</a>
-			</li>
-			<!--<li ng-class="{columnSelect:columnCode=='all'}"><a ng-click="chooseColumn('all')" >全部</a></li>-->
-			</ul>
-	</div>
-	<div id="naviRight">
-		<div style="float: left; margin-right: 36px;">
-			<!-- <input type="text" id="dropdown-search" style="height: 34px;width: 218px"
-                           autocomplete="off"class="form-control" placeholder="搜索 文章/股票/用户"/> -->
-			<div search-box></div>
+					</li>
+					<!--<li ng-class="{columnSelect:columnCode=='all'}"><a ng-click="chooseColumn('all')" >全部</a></li>-->
+				</ul>
 		</div>
-		<div class="dropdown i-want">
-			<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
-				<span><img style="height: 80%; padding-left: 24px;"
-							src="images/secondEdition/NAVicon_Write_2.png"></span> <span style="padding-top: 0px;">&nbsp;我要发表</span>
-			</button>
-
-			<ul class="dropdown-menu i-want-post" aria-labelledby="dropdownMenu1">
-				<li><a ng-click="showShortMsg()">哔哔一下</a></li>
-				<li><a ng-click="showTextEditor()">发表文章</a></li>
-				<li><a ng-click="showUploadPdf()">上传PDF</a></li>
-			</ul>
+		<div id="naviRight">
+			<div style="float: left; margin-right: 36px;">
+				<!-- <input type="text" id="dropdown-search" style="height: 34px;width: 218px"
+	                           autocomplete="off"class="form-control" placeholder="搜索 文章/股票/用户"/> -->
+				<div search-box></div>
+			</div>
+			<div class="dropdown i-want">
+				<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+					<span><img style="height: 80%; padding-left: 24px;"
+								src="images/secondEdition/NAVicon_Write_2.png"></span> <span style="padding-top: 0px;">&nbsp;我要发表</span>
+				</button>
+	
+				<ul class="dropdown-menu i-want-post" aria-labelledby="dropdownMenu1">
+					<li><a ng-click="showShortMsg()">哔哔一下</a></li>
+					<li><a ng-click="showTextEditor()">发表文章</a></li>
+					<li><a ng-click="showUploadPdf()">上传PDF</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
 
 <div class="naviWhite-ml navi-li visible-ml-inline-block">
 	<div id="naviUl">
@@ -158,15 +158,15 @@
                     <tm-pagination-gl conf="topicPaginationConf"></tm-pagination-gl>
                 </div>-->
 			<!--<div style="clear: both"/>-->
-
+         
+         <!--
+            
+            	描述：新的幻灯片暂时注释掉
             <div class=" slider">
 				<img ng-src="images/secondEdition/welcome.jpg" style="width: 488px; height: 310px;" src="images/secondEdition/welcome.jpg">
 			</div>
            
-            <!--
-            	作者：165256676@qq.com
-            	时间：2015-10-12
-            	描述：新的幻灯片暂时注释掉
+            -->
            
                
 			<div class="slider">
@@ -174,10 +174,10 @@
 
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" ng-repeat="slide in slideList">
-							<div class="imgs-box"><a href="{{slide.linkUrl}}"><img ng-src="{{ slide.picUrl }}" alt="{{slide.title}}" /></a>
+							<div class="imgs-box"><a ng-href="{{slide.linkUrl}}"><img ng-src="{{ slide.picUrl }}" alt="{{slide.title}}" /></a>
 							<div class="ggt">{{slide.ggt}}</div><div class="hgt">{{slide.hgt}}</div>
 							</div>
-							<div class="titles">
+							<div class="titles" ng-if="slide.title==null || ''" style="display: none;" >
 								<a href="{{slide.linkUrl}}">{{slide.title}}</a>
 							</div>
 						</div>
@@ -190,7 +190,7 @@
 					<div class="swiper-button-prev"></div>
 				</div>
 			</div>
-             -->
+             
 			<div ng-repeat="article in topicList track by $index">
 				<div id="text-container">
 					<div id="text-block" style="margin-right: 16px">

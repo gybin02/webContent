@@ -37,8 +37,8 @@
 		    .data-table table th{ color: #666; border-bottom: 1px solid #ddd;}
 		    .data-table table td{ color: #666; border-bottom: 1px dashed #ddd;}
 		    .data-table table tr.ggt-tr td{ border-bottom: 0px;}
-		     span.up{ color: #ff6057;}
-		     span.down{ color:#8fc31f !important;}
+		     span.up{ color: #ff6057;font-weight: 600}
+		     span.down{ color:#8fc31f !important;font-weight: 600;}
 		    .chart-box{ margin: 0 auto; width:100%;max-width: 1000px; margin-top: 40px; height: 600px;}
 		    .chart-box h3{ text-align: center; font-weight: 100;}
 		    .chart-box .update-time{ line-height: 15px;height: 15px; color: #666; text-align: center; font-family:sans-serif; font-size: 13px;}
@@ -54,6 +54,9 @@
             }
             .big_title{
                 color: #333333;
+            }
+            .money{
+                font-weight: 600;
             }
 		</style>
 		
@@ -84,11 +87,11 @@
                     </tr>
 					<tr>
                         <td>沪股通</td>
-                        <td>{{shMarketFlowDetail.transactionStatus}</td>
-                        <td><span class="money">{{shMarketFlowDetail.daliyInflow  }}</span><!--<span class="pieces">亿元</span>--></td>
+                        <td>{{shMarketFlowDetail.transactionStatus}}</td>
+                        <td><span class="money">{{shMarketFlowDetail.daliyInflow}}</span><!--<span class="pieces">亿元</span>--></td>
                         <td><span class="money">{{shMarketFlowDetail.dailyBalance}}</span><!--<span class="pieces">亿元</span>--></td>
                         <td><span class="up"  >{{shMarketFlowDetail.risingCount}}</span></td>
-                        <td><span class="">{{shMarketFlowDetail.flatCount}}</span></td>
+                        <td><span class="money">{{shMarketFlowDetail.flatCount}}</span></td>
                         <td><span class="down">{{shMarketFlowDetail.fallCount}}</span></td>
                         <td>{{shMarketFlowDetail.leadRisingStock}}</td>
                         <td><span class="up">{{shMarketFlowDetail.change}}</span></td>
@@ -98,14 +101,14 @@
                         <td><span class="money">{{hkMarketFlowDetail.daliyInflow}}</span><!--<span class="pieces">亿元</span>--></td>
                         <td><span class="money">{{hkMarketFlowDetail.dailyBalance}}</span><!--<span class="pieces">亿元</span>--></td>
                         <td><span class="up" >{{hkMarketFlowDetail.risingCount}}</span></td>
-                        <td><span class="">{{hkMarketFlowDetail.flatCount}}</span></td>
+                        <td><span class="money">{{hkMarketFlowDetail.flatCount}}</span></td>
                         <td><span class="down">{{hkMarketFlowDetail.fallCount}}</span></td>
                         <td>{{hkMarketFlowDetail.leadRisingStock}}</td>
                         <td><span class="up">{{hkMarketFlowDetail.change}}</span></td>
                     </tr>
 				</table>
 			</div>
-			
+
 			<!--图表折线图--->
 			
 			<div class="chart-box">

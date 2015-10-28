@@ -8,7 +8,7 @@ GLHApp.controller('StockDetailController', ['$scope', '$location', '$routeParams
         //个股编号（行业编号+个股编号：hk00243）
         $scope.stockCode = $routeParams.stockCode;
         $scope.type = $scope.stockCode.slice(0,2)
-        $scope.code = $scope.stockCode.slice(2,7);
+        $scope.code = $scope.stockCode.slice(2,$scope.stockCode.length);
 
         $scope.stockInfo = {};
 
@@ -318,7 +318,7 @@ GLHApp.controller('StockDetailController', ['$scope', '$location', '$routeParams
 
         //跳转到帖子详情
         $scope.postDetail = function (postId) {
-            $location.path("/articleDetail/" + postId);
+            window.location.href="/p/" + postId+".html";
         }
 
         //添加自选股

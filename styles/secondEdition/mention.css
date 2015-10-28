@@ -1,0 +1,47 @@
+#user-search-box {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 198px;
+	border-radius: 4px 4px 0 0;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .15);
+	border: 1px solid #bbb;
+	background: #ffffff;
+	z-index: 99999;
+	overflow: hidden;
+}
+#user-search-box .inputs {
+	padding: 5px 10px;
+}
+#user-search-box .inputs input {
+	height: 20px;
+	line-height: 20px;
+	border: 0px solid #ddd;
+	font-size: 12px;
+	outline: none;
+}
+#user-search-box .placeholder {
+	padding: 5px 10px;
+	font-size: 12px;
+	background: #f1f1f1;
+	color: #666;
+}
+.user-list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	padding: 10px 0;
+}
+.user-list ul li {
+	line-height: 30px;
+	height: 30px;
+	font-size: 14px;
+	color: #333;
+	padding: 0 10px;
+	cursor: pointer; overflow: hidden;
+}
+.user-list ul li.selected,
+.user-list ul li:hover {
+	background: #0066AA;
+	color: #FFF;
+}

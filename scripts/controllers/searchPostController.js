@@ -25,6 +25,9 @@ GLHApp.controller('SearchPostController', ['$rootScope','$scope','$routeParams',
 
         //页面跳转
         $scope.jump = function(path,param){
+          	if(path=='/articleDetail'){
+          		window.location="/p/"+param+".html";/*帖子跳到新链接 zhongyi 2015 10 27*/
+          	} 
             $location.path(path+"/"+param);
         }
 

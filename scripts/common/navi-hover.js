@@ -76,7 +76,12 @@ $(document).ready(function(){
             $(".gl-user-ul").css("display","none");
         }
     });
-    /*公共悬浮框隐藏*/
-                
+    /*老旧的文章链接跳转到新的链接*/
+   
+        oldLink=window.location.hash;
+        newLink=oldLink.split("/");
+        if(newLink[1]=="articleDetail"){
+           window.location="/p/"+newLink[2]+".html";
+        }
     
 });

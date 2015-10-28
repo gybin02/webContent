@@ -55,7 +55,7 @@
 	padding: 17px 25px;
 }
 #tab-nav li.active {
-	border-bottom: 1px solid #22aee6;
+	border-bottom: 2px solid #22aee6;
 }
 #tab-nav li.active a {
 	color: #22aee6;
@@ -63,6 +63,8 @@
 #tab-nav a {
 	color: #333;
 }
+
+/*tab content*/
 .tab-wrap {
 	background-color: #fff;
 	border-radius: 4px;
@@ -72,7 +74,12 @@
 #myTabContent {
 	padding: 0 48px;
 }
-
+#myTabContent .tabdiv {
+	display: none;
+}
+#myTabContent .tabdiv.active {
+	display: block;
+}
 
 
 

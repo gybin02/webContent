@@ -5,7 +5,8 @@
 <link rel="stylesheet" type="text/css" href="styles/secondEdition/stockPage.css"/>
 
 
-<div class="stockpage-container" style="background-color: #f2f2f2;">
+
+<div class="stockpage-container" style="background-color: #f2f2f2;" ng-controller="stockPageController">
 
 	<!--我是主内容页-->
 	<div class="stockpage-wrap ">
@@ -42,8 +43,8 @@
 				</div>
 				<!--tab标签-->
 				<ul id="tab-nav">
-					<li><a href="F10Tab">F10信息</a></li>
-					<li class="active"><a href="articleTab">相关文章</a></li>
+					<li class="active"><a href="F10Tab">F10信息</a></li>
+					<li><a href="articleTab">相关文章</a></li>
 					<li><a href="smgTab">相关哔哔</a></li>
 					<li><a href="newsTab">新闻&amp;公告</a></li>
 				</ul>
@@ -54,12 +55,18 @@
 		<!--我是tab页-->
 		<div class="tab-wrap">
 			<div id="myTabContent" class = "tab-content">
-				<div class="tab1 tabdiv" id="F10Tab">
+				<div class="tab1 tabdiv active" id="F10Tab">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit vel harum neque sed expedita nemo voluptas! Vitae assumenda dolore non ducimus accusantium quia molestiae dolor ab alias vel. Sint optio!
 				</div>
-				<div class="tab2 tabdiv" id="articleTab"></div>
-				<div class="tab3 tabdiv" id="smgTab"></div>
-				<div class="tab4 tabdiv" id="newsTab"></div>
+				<div class="tab2 tabdiv" id="articleTab">
+					2222222222222
+				</div>
+				<div class="tab3 tabdiv" id="smgTab">
+					3333333333
+				</div>
+				<div class="tab4 tabdiv" id="newsTab">
+					44444444444444
+				</div>
 			</div>
 	
 		</div>
