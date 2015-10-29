@@ -11,39 +11,68 @@
 	display: inline-block;
 	vertical-align: top;
 }
+#stockInfoWrap .stock-info h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+#stockInfoWrap .stock-info p {
+	font-size: 12px;
+	color: #999;
+}
+#stockInfoWrap .stock-info button {
+	width: 117px;
+	height: 32px;
+	margin-top: 85px;
+	border-radius: 4px;
+	margin-right: 10px;
+	border: 0;
+	color: #fff;
+}
+#addUserStock {
+	background-color: #f74;
+}
+#trade {
+	background-color: #ebd7b3;
+}
 .stockpage-wrap .stock-data {
 	display: inline-block;
-	width: 700px;
+	width: 600px;
+	margin-left: 130px;
+	position: relative;
 }
-.stockpage-wrap .stock-table {
-	display: table;
-	width: 300px;
-	text-align: right;
+.stockpage-wrap .stock-data > img {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
-.stockpage-wrap .stock-data .table-row {
-	display: table-row;
-}
-.stockpage-wrap .stock-data span {
-	display: table-cell;
+.stockpage-wrap .stock-table span {
+	width: 190px;
+	color: #999;
+	display: inline-block;
 }
 .stockpage-wrap .stock-data span.ups {
-	font-size: 16px;
+	font-size: 20px;
+	font-weight: bold;
 	color: #ff6057;
 }
 .stockpage-wrap .stock-data span.downs {
-	font-size: 16px;
+	font-size: 20px;
+	font-weight: bold;
 	color: #8fc31f;
 }
 #stockDetail {
-	margin-top: 20px;
-	margin-left: 43px;
+	margin-top: 35px;
+	margin-bottom: 0;
+	color: #666;
 }
 #stockDetail li {
 	display: inline-block;
-	width: 100px;
+	margin-right: 17px;
 }
 .stockpage-wrap .stock-data > p {
-	margin-left: 43px;
+	margin: 30px 0;
+	color: #d8d8d8;
 }
 /*tabs*/
 #tab-nav {
@@ -53,15 +82,21 @@
 	display: inline-block;
 	background-color: #fff;
 	padding: 17px 25px;
+	border-bottom: 2px solid #fff;
+	cursor: pointer;
 }
 #tab-nav li.active {
 	border-bottom: 2px solid #22aee6;
+}
+#tab-nav li:hover a {
+	color: #22aee6;
 }
 #tab-nav li.active a {
 	color: #22aee6;
 }
 #tab-nav a {
-	color: #333;
+	font-size: 14px;
+	color: #999;
 }
 
 /*tab content*/

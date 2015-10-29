@@ -14,18 +14,15 @@
 		<div class="stock-bg">
 			<div id="stockInfoWrap">
 				<div class="stock-info">
-					<h3>酷派集团(HK:02369)</h3>
-					<p>已收盘&nbsp;&nbsp;2015-10-27&nbsp;&nbsp;09:33:23&nbsp;&nbsp;[北京时间]</p>
-					<button>加入自选</button><button>交易</button>
+					<h3>酷派集团（HK:02369）</h3>
+					<p>已收盘&nbsp;&nbsp;2015-10-27&nbsp;&nbsp;09:33:23&nbsp;&nbsp;(北京时间)</p>
+					<button id="addUserStock">加入自选</button><button id="trade">交易</button>
 				</div>
 				<div class="stock-data">
+					<img id="reload" src="images/secondEdition/reload.gif"/>
 					<div class="stock-table">
-						<div class="table-row">
-							<span>最新价格</span><span>涨跌(%)</span>
-						</div>
-						<div class="table-row">
-							<span class="ups">$1.6</span><span class="downs">+0.02(+1.27%)</span>
-						</div>
+						<span>最新价格</span><span>涨跌(%)</span> <br />
+						<span class="ups">$1.6</span><span class="downs">+0.02(+1.27%)</span>
 					</div>
 					<ul id="stockDetail">
 						<li>昨收：1.57</li>
@@ -43,10 +40,10 @@
 				</div>
 				<!--tab标签-->
 				<ul id="tab-nav">
-					<li class="active"><a href="F10Tab">F10信息</a></li>
-					<li><a href="articleTab">相关文章</a></li>
-					<li><a href="smgTab">相关哔哔</a></li>
-					<li><a href="newsTab">新闻&amp;公告</a></li>
+					<li class="active"><a href="javascript:;" data-name="extract">精华</a></li>
+					<li><a href="javascript:;" data-name="discuss">讨论</a></li>
+					<li><a href="javascript:;" data-name="F10Tab">格隆汇F10</a></li>
+					<li><a href="javascript:;" data-name="newsTab">公告</a></li>
 				</ul>
 			</div>
 		</div> 
@@ -55,13 +52,13 @@
 		<!--我是tab页-->
 		<div class="tab-wrap">
 			<div id="myTabContent" class = "tab-content">
-				<div class="tab1 tabdiv active" id="F10Tab">
+				<div class="tab1 tabdiv active" id="extract">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit vel harum neque sed expedita nemo voluptas! Vitae assumenda dolore non ducimus accusantium quia molestiae dolor ab alias vel. Sint optio!
 				</div>
-				<div class="tab2 tabdiv" id="articleTab">
+				<div class="tab2 tabdiv" id="discuss">
 					2222222222222
 				</div>
-				<div class="tab3 tabdiv" id="smgTab">
+				<div class="tab3 tabdiv" id="F10Tab">
 					3333333333
 				</div>
 				<div class="tab4 tabdiv" id="newsTab">

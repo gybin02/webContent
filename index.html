@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="styles/home.css"/>
         <link rel="stylesheet" href="styles/btn-ext.css"/>
         <link rel="stylesheet" href="styles/secondEdition/glhLogin.css"/>
-
+         <link rel="stylesheet" type="text/css" href="scripts/vendor/swiper/swiper3.css"/>
         <script src="scripts/vendor/jquery-2.1.3.min.js"></script>
         <script src="scripts/vendor/bootstrap-3.3.4/js/bootstrap.js"></script>
         
@@ -148,12 +148,10 @@
         <script src="scripts/services/stockService.js"></script>
         <script src="scripts/vendor/Jcrop/js/jquery.Jcrop.min.js"></script>
         <script src="scripts/vendor/ng-jcrop.js"></script>
-
         <script src="scripts/common/navi-hover.js"></script>
         <script src="scripts/common/glhLogin.js"></script>
+        <script src="scripts/common/common.js"></script>
         
-		
-		<link rel="stylesheet" type="text/css" href="scripts/vendor/swiper/swiper3.css"/>
 		
 
 
@@ -163,21 +161,7 @@
     
 		<div ng-controller="MainController" >
 		
-           <!--手机端登录提示下载APP-->
-            <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #434343;"ng-if="mobileFlag">
-                <div id="textTip" >
-                    <img ng-src="images/logo.png" style="height:25px;">
-                </div>
-                <div id="buttonTip">
-                    <button type="button" class="btn btn-primary"
-                            ng-click="downloadAppLink()">点击下载APP</button>
-                    <button type="button" class="close" aria-label="Close" ng-click="hideHover()"
-                            style="padding-right: 15px;">
-                        <span aria-hidden="true" style="color: #ffffff;font-size: 30px;">&times;</span>
-                    </button>
-                </div>
-            </nav>
-            
+         
 				<div class="naviBlue navbar-fixed-top"  >
                 <!--非大屏显示-->
                 <div class="naviBlue-auto visible-sl-inline-block visible-ml-inline-block">

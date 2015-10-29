@@ -43,7 +43,7 @@ Mention.prototype._init = function(symbol) {
 				"font-family": textarea.css("font-family"),
 				"line-height": textarea.css("line-height")
 
-			})
+			},1000)
 		}
 
 		if ($("#user-search-box").length < 1) {
@@ -72,7 +72,7 @@ Mention.prototype._init = function(symbol) {
 		if(e.keyCode==50 || e.keyCode==52 ){
 		 $this.active=true;
 		}
-		console.log(e.keyCode);
+		console.log(e.which);
 	});
 	this.oninput();
 	$("#user-keywords").blur(function() {
