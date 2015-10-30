@@ -1007,6 +1007,7 @@ function(t, e) {
 				return function() {
 					return e._pasteArea.is(":empty") ? o = null : (o = t("<div/>").append(e._pasteArea.contents()), o.find("table colgroup").remove(), e.editor.formatter.format(o), e.editor.formatter.decorate(o), e.editor.formatter.beautify(o.children()), o = o.contents()), e._pasteArea.empty(), l = e.editor.selection.restore(), a(o)
 				}
+				
 			}(this), 10))
 		}, n.prototype._onDrop = function(t) {
 			return this.editor.triggerHandler(t) === !1 ? !1 : this.throttledValueChanged()
@@ -1730,12 +1731,13 @@ function(t, e) {
 		function i() {
 			return i.__super__.constructor.apply(this, arguments)
 		}
-		return O(i, e), i.prototype.name = "bold", i.prototype.icon = "bold", i.prototype.htmlTag = "b, strong", i.prototype.disableTag = "pre", i.prototype.shortcut = "cmd+b", i.prototype._init = function() {
+		return O(i, e), i.prototype.name = "bold", i.prototype.icon = "bold", i.prototype.htmlTag = "h1", i.prototype.disableTag = "pre", i.prototype.shortcut = "cmd+b", i.prototype._init = function() {
 			return this.editor.util.os.mac ? this.title = this.title + " ( Cmd + b )" : (this.title = this.title + " ( Ctrl + b )", this.shortcut = "ctrl+b"), i.__super__._init.call(this)
 		}, i.prototype._activeStatus = function() {
 			var t;
 			return t = document.queryCommandState("bold") === !0, this.setActive(t), this.active
 		}, i.prototype.command = function() {
+			//alert(1)
 			return document.execCommand("bold"), this.editor.util.support.oninput || this.editor.trigger("valuechanged"), t(document).trigger("selectionchange")
 		}, i
 	}(a), N.Toolbar.addButton(s), y = function(e) {
@@ -3467,7 +3469,7 @@ function(t, e) {
 			n = e.align ? "<" + i + ' style="text-align:' + e.align + '">' : "<" + i + ">";
 		return n + t + "</" + i + ">\n"
 	}, i.prototype.strong = function(t) {
-		return "<strong>" + t + "</strong>"
+		//return "<strong>" + t + "</strong>"
 	}, i.prototype.em = function(t) {
 		return "<em>" + t + "</em>"
 	}, i.prototype.codespan = function(t) {
@@ -3726,7 +3728,7 @@ function(t, e) {
 				s = e.find("textarea.doc-content");
 			s.closest(".doc-editor")
 		}
-		if (a = t(e).data("draft-name"), l = 1 * t(e).data("current-version") || 0, u = "1" === t("#is-markdown").val() ? mcw.mdeditor({
+		if (a = "localData_"+$.parseJSON(localStorage.user).user.userId, l = 1 * t(e).data("current-version") || 0, u = "1" === t("#is-markdown").val() ? mcw.mdeditor({
 			textarea: s,
 			tabIndent: !0,
 			toolbar: ["title", "bold", "italic", "deleteline", "|", "ol", "ul", "blockquote", "code", "|", "link", "image", "hr"]
@@ -3768,9 +3770,10 @@ function(t, e) {
 				upload:  {
 					url: '/api/file/post/image'
 				} ,
+				
 				mention: {
 				//items:userList(),
-				url:"/api/post/lastCalls?keyword=*&page=1&count=10",
+				url:"/api/post/lastCalls?key=*&page=1&count=10",
 				nameKey:"userNick",
                 pinyinKey:"",
                 abbrKey:"" ,

@@ -41,7 +41,7 @@
 		     span.down{ color:#8fc31f !important;font-weight: 600;}
 		    .chart-box{ margin: 0 auto; width:100%;max-width: 1000px; margin-top: 40px; height: 600px;}
 		    .chart-box h3{ text-align: center; font-weight: 100;}
-		    .chart-box .update-time{ line-height: 15px;height: 15px; color: #666; text-align: center; font-family:sans-serif; font-size: 13px;}
+		    .chart-box .update-time{ line-height: 15px;height: 15px; color: #999; text-align: center; font-family:sans-serif; font-size: 12px;}
 		    .hgt-chart{ height: 400px; padding-top: 0px;}
 		    .footer{clear: both; padding-top: 30px; text-align: center; width: 100%; background: #EFF2F5; height: 60px;}
             .text_block{
@@ -53,13 +53,24 @@
                 margin-top: -5px;   z-index: -48;
             }
             .big_title{
+                font-weight: 600 !important;
+                font-size: 14px;
                 color: #333333;
+                margin-bottom: 5px;
             }
             .money{
                 font-weight: 600;
             }
+            .red{
+                color: #ff6057 !important;
+                font-weight: 600;
+            }
+            .green{
+                color: #8fc31f  !important;
+                font-weight: 600;
+            }
 		</style>
-		
+
 		
 	</head>
 	<body ng-controller="ggtController">
@@ -88,18 +99,35 @@
 					<tr>
                         <td>沪股通</td>
                         <td>{{shMarketFlowDetail.transactionStatus}}</td>
-                        <td><span class="money">{{shMarketFlowDetail.daliyInflow}}</span><!--<span class="pieces">亿元</span>--></td>
-                        <td><span class="money">{{shMarketFlowDetail.dailyBalance}}</span><!--<span class="pieces">亿元</span>--></td>
+
+                        <td ng-if="shMarketFlowDetail.daliyInflow>=0"><span class="red">
+                            {{shMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                        </span></td>
+                        <td ng-if="shMarketFlowDetail.daliyInflow<0"><span class="green">
+                            {{shMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                        </span></td>
+
+
+                        <td><span class="money">{{shMarketFlowDetail.dailyBalance}}</span></td>
                         <td><span class="up"  >{{shMarketFlowDetail.risingCount}}</span></td>
                         <td><span class="money">{{shMarketFlowDetail.flatCount}}</span></td>
                         <td><span class="down">{{shMarketFlowDetail.fallCount}}</span></td>
                         <td>{{shMarketFlowDetail.leadRisingStock}}</td>
                         <td><span class="up">{{shMarketFlowDetail.change}}</span></td>
                     </tr>
-					<tr class="ggt-tr"><td>港股通</td>
+					<tr class="ggt-tr"> 
+                        <td>港股通</td>
                         <td>{{hkMarketFlowDetail.transactionStatus}}</td>
-                        <td><span class="money">{{hkMarketFlowDetail.daliyInflow}}</span><!--<span class="pieces">亿元</span>--></td>
-                        <td><span class="money">{{hkMarketFlowDetail.dailyBalance}}</span><!--<span class="pieces">亿元</span>--></td>
+
+                        <td ng-show="hkMarketFlowDetail.daliyInflow>=0"><span class="red">
+                            {{hkMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                        </span></td>
+                        <td ng-show="hkMarketFlowDetail.daliyInflow<0"><span class="green">
+                            {{hkMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                        </span></td>
+ 
+
+                        <td><span class="money">{{hkMarketFlowDetail.dailyBalance}}</span></td>
                         <td><span class="up" >{{hkMarketFlowDetail.risingCount}}</span></td>
                         <td><span class="money">{{hkMarketFlowDetail.flatCount}}</span></td>
                         <td><span class="down">{{hkMarketFlowDetail.fallCount}}</span></td>
@@ -114,7 +142,7 @@
 			<div class="chart-box">
 				<h3 class="big_title">当日沪港通资金流向</h3>
 				<div class="update-time text_block">更新时间：{{timestamp[timestamp.length-1]}}</div>
-				<div class="update-time text_block">www.gelonghui.com</div>
+				<div class="update-time text_block" style="margin-bottom: 20px">www.gelonghui.com</div>
 
                 
 				<div id="hgt-chart"  class="hgt_chart_cl" >

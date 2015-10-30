@@ -614,6 +614,8 @@ input:-webkit-autofill {
 	margin-top: 15px;
 	margin-bottom: 5px;
 	border-radius: 4px;
+	padding:10px;
+	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
 .comment-wrap .submit-btn {
@@ -682,6 +684,14 @@ input:-webkit-autofill {
 	opacity: 0;
 	transition: all .3s;
 }
+/*强制所有字体微软雅黑这个真是不太好*/
+.main-content *{
+	font-family: "微软雅黑" !important;
+	
+}
+
+
+
 .reader-comment:hover .comment-content span {
 	opacity: 1;
 }

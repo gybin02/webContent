@@ -69,10 +69,10 @@ Mention.prototype._init = function(symbol) {
 		opacity: 1
 	});
 	textarea.keydown(function(e){
-		if(e.keyCode==50 || e.keyCode==52 ){
+		if(e.keyCode==50 || e.keyCode==52 || e.keyCode==229 ){
 		 $this.active=true;
 		}
-		console.log(e.which);
+		//console.log(e.which);
 	});
 	this.oninput();
 	$("#user-keywords").blur(function() {
@@ -225,7 +225,7 @@ Mention.prototype.oninput = function() {
 				$this.active = false;
 				}
 		 });
-		console.log($this.active);
+		//console.log($this.active);
 
 	})
 

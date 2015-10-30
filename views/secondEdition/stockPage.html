@@ -9,7 +9,7 @@
 <div class="stockpage-container" style="background-color: #f2f2f2;" ng-controller="stockPageController">
 
 	<!--我是主内容页-->
-	<div class="stockpage-wrap ">
+	<div class="stockpage-wrap" ng-show="isBaseInfoLoaded">
 		<!--个股信息-->
 		<div class="stock-bg">
 			<div id="stockInfoWrap">
@@ -39,12 +39,28 @@
 					<p>@港股数据由电资讯国际有限公司提供（报价延迟15分钟）</p>
 				</div>
 				<!--tab标签-->
-				<ul id="tab-nav">
-					<li class="active"><a href="javascript:;" data-name="extract">精华</a></li>
-					<li><a href="javascript:;" data-name="discuss">讨论</a></li>
-					<li><a href="javascript:;" data-name="F10Tab">格隆汇F10</a></li>
-					<li><a href="javascript:;" data-name="newsTab">公告</a></li>
-				</ul>
+				<div class="tabcolumn">
+					<ul id="tab-nav">
+						<li class="active"><a href="javascript:;" data-name="extract">精华</a></li>
+						<li><a href="javascript:;" data-name="discuss">讨论</a></li>
+						<li><a href="javascript:;" data-name="F10Tab">格隆汇F10</a></li>
+						<li><a href="javascript:;" data-name="newsTab">公告</a></li>
+					</ul>
+					
+					<div class="dropdown i-want">
+						<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+							<span><img style="height: 80%; padding-left: 24px;" src="images/secondEdition/NAVicon_Write_2.png"></span> 
+							<span style="padding-top: 0px;">&nbsp;我要发表</span>
+						</button>
+			
+						<ul class="dropdown-menu i-want-post" aria-labelledby="dropdownMenu1">
+							<li><a ng-click="showShortMsg()">哔哔一下</a></li>
+							<li><a ng-click="showTextEditor()">发表文章</a></li>
+							<li><a ng-click="showUploadPdf()">上传PDF</a></li>
+						</ul>
+					</div>
+				</div>
+				
 			</div>
 		</div> 
 		<!--end 个股信息-->

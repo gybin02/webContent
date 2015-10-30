@@ -31,12 +31,12 @@ function glhLogin(opts) {
 		loginStatus: function() {
 			/*获得服务器用户状态*/
 			var $this = this;
-			$.get("/api/user/status/get", function(response) {
+			return $.get("/api/user/status/get", function(response) {
 				if (response.statusCode == 403) {
-					
-						$this.showLogin();
-					
-				}
+					$this.showLogin();
+			     }else{
+			     	return response;
+			     }
 			});
 		},
 		needLogin: function(e) {
@@ -163,7 +163,9 @@ function glhLogin(opts) {
 						setTimeout(function(){
 							/*显示头部dom*/
 						$("#noLogin").addClass("ng-hide");
+						$(".noLogin-big").addClass("ng-hide");
 						$("#loginStatus-auto").removeClass("ng-hide");
+						$("#loginStatus").removeClass("ng-hide");
 						$(".gl-user a .article-img-circle").attr("src",response.result.user.avatar);
 						
 						window.localStorage.user = JSON.stringify(response.result);

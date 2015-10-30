@@ -93,8 +93,8 @@
 .swiper-button-next,.swiper-button-prev {
 	position: absolute;
 	top: 50%;
-	width: 20px;
-	height: 44px;
+	width: 28px;
+	height: 46px;
 	margin-top: -22px;
 	z-index: 10;
 	cursor: pointer;
@@ -112,7 +112,7 @@
 }
 
 .swiper-button-prev,.swiper-container-rtl .swiper-button-next {
-	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+	background:url("/images/sl-bar-l.png?s=8") 8px 13px rgba(000,000,000,.5) no-repeat;
 	left: 10px;
 	right: auto
 }
@@ -126,11 +126,11 @@
 }
 
 .swiper-button-next,.swiper-container-rtl .swiper-button-prev {
-	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+	background:url("/images/sl-bar-r.png?s=8") 9px 13px rgba(000,000,000,.5) no-repeat;
 	right: 10px;
 	left: auto
 }
-
+.swiper-button-next:hover,.swiper-button-prev:hover{ background-color: rgba(000,000,000,1);}
 .swiper-button-next.swiper-button-black,.swiper-container-rtl .swiper-button-prev.swiper-button-black {
 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E")
 }
@@ -496,8 +496,8 @@ button.swiper-pagination-bullet {
 	border: 0px solid #ddd;
 	top: 120px;
 	text-align: center;
-	font-size: 30px;
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 40px;
+	font-family: Impact;
 }
 
 .imgs-box div.hgt{
@@ -514,23 +514,28 @@ button.swiper-pagination-bullet {
 	width: 100%;
 	left: 0px;
 	position: absolute;
-	height: 40px;
-	line-height: 36px;
+	height: 50px;
+	line-height: 50px;
 	bottom: 0px;
 	z-index: 100;
 	text-align: left;
-	background: #FFF;
+	background: rgba(000,000,000,0.6);
 	clear: both;
 	bottom: -50px;
 	transition: bottom ease .3s
 }
 
-.swiper-slide .titles a {
-	margin-left: 20px;
+.swiper-slide .titles a,.swiper-slide .titles .title-text {
+	float: left;
+	margin-left: 16px;
 	text-decoration: none;
-	font-size: 14px;
-	color: #333;
+	font-size: 12px;
+	color: #FFF;
 }
+.swiper-slide .titles a.a-more{ border: 1px solid #fff; 
+margin-top: 13px;
+ border-radius: 20px; padding: 0 16px;
+ height: 24px; line-height: 22px;}
 
 .swiper-slide:hover .titles {
 	bottom: 0px

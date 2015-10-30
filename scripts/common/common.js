@@ -1,7 +1,6 @@
 /*
  * 公共js脚本，一些全局的方法写在这里  zhongyi 2015-10-28
  */
-
 /*将所有页面动态插入下载app的dom*/
 	function appendDownLoad() {
         var downHtml = "";
@@ -22,7 +21,7 @@
 			$("#downLoadDialog").show();
 		}
     }
-
+	
 	$(document).ready(function() {
 		appendDownLoad();
 	})

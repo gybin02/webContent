@@ -310,7 +310,7 @@ GLHApp.directive("textEditorBeta", ["$timeout", "$UserService", "ApiService", "C
 								},1000);
 								$(".modal.short .modal-content").css("background","#22AEE6");
 								$(".success-window a.detail-link").
-								attr('href', '/#/articleDetail/' + $.trim(response.result));
+								attr('href', '/p/' + $.trim(response.result)+".html");
 								setTimeout(function() {
 									/*还原初始状态*/
 									scope.htmlContent = scope.textTitle = '';

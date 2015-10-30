@@ -42,6 +42,7 @@
 	overflow: hidden;
 	margin: 0 auto;
 	margin-bottom: 7px;
+	border: 1px solid #ddd;
 }
 .block-row .user-wrap a img {
 	width: 100%;

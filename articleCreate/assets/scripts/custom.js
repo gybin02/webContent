@@ -29,7 +29,7 @@ function userList(val) {
 
 		}
 	});
-	console.log("111");
+	
 }
 
 function stockList(val) {
@@ -74,7 +74,8 @@ $("#glh-submit").click(function() {
 	content = $("#doc-content").val();
 	//过滤掉外链
 	//content = clearAlink(content);
-    content=addLink(content);
+	/*在提交时候处理不合适*/
+   // content=addLink(content);
    //alert(content);return;
 	var $this = $(this);
 	if (!title || !content) {
@@ -221,5 +222,5 @@ function clearAlink(text) {
 
 	/*验证登录*/
 $(document).ready(function() {
-	glhLogin.loginStatus(1);
+glhLogin.loginStatus(1)
 })

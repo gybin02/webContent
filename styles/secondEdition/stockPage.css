@@ -28,6 +28,7 @@
 	margin-right: 10px;
 	border: 0;
 	color: #fff;
+	outline: none;
 }
 #addUserStock {
 	background-color: #f74;
@@ -45,6 +46,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
+	cursor: pointer;
 }
 .stockpage-wrap .stock-table span {
 	width: 190px;
@@ -74,6 +76,30 @@
 	margin: 30px 0;
 	color: #d8d8d8;
 }
+/*dropdown*/
+.tabcolumn {
+	position: relative;
+}
+.tabcolumn .i-want {
+	position: absolute;
+	top: 12px;
+	right: 0;
+}
+.tabcolumn button {
+	height: 34px;
+	padding-left: 0;
+	padding-right: 30px;
+	transition: all .5s;
+}
+.tabcolumn .btn-primary:hover,
+ .tabcolumn .btn-primary:focus {
+	background-color: #0088c3;
+	border-color: #0088c3;
+}
+.tabcolumn button img {
+	height: 80%;
+}
+
 /*tabs*/
 #tab-nav {
 	border-top: 1px solid #f2f2f2;

@@ -175,10 +175,10 @@
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" ng-repeat="slide in slideList">
 							<div class="imgs-box"><a ng-href="{{slide.linkUrl}}"><img ng-src="{{ slide.picUrl }}" alt="{{slide.title}}" /></a>
-							<div class="ggt">{{slide.ggt}}</div><div class="hgt">{{slide.hgt}}</div>
+							<a ng-href="{{slide.linkUrl}}"><div class="ggt">{{slide.ggt}}</div><div class="hgt">{{slide.hgt}}</div></a>
 							</div>
-							<div class="titles" ng-if="slide.title==null || ''" style="display: none;" >
-								<a href="{{slide.linkUrl}}">{{slide.title}}</a>
+							<div  class="titles" ng-if="slide.title==null || ''" style="display: none;"  >
+							<div class="title-text">{{slide.title}}</div>	<a class="a-more" href="{{slide.linkUrl}}">查看详情</a>
 							</div>
 						</div>
 
