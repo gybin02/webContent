@@ -17,7 +17,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
             //console.info($routeParams.stockCode+":::$routeParams.stockCode");
             scope.stockCode = $routeParams.stockCode;
             scope.type = scope.stockCode.slice(0,2)
-            scope.code = scope.stockCode.slice(2,7);
+            scope.code = scope.stockCode.slice(2,scope.stockCode.length);
 
             //总收入
             scope.income = [];
@@ -58,7 +58,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
 
                     $.each(item, function(name,element){
                         if(name==='income'){
-                            scope.income[index] = element;
+                            scope.income[index] = element/1000000;
                             console.debug("income:"+scope.income[index]);
                         }
                         if(name==='endDate'){
@@ -69,7 +69,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                             scope.incomeRate[index] = element;
                         }
                         if(name==='profit'){
-                            scope.profit[index] = element;
+                            scope.profit[index] = element/1000000;
                         }
                         if(name==='profitRate'){
                             scope.profitRate[index] = element;
@@ -114,14 +114,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'pillar-income'
                     },
                     title: {
-                        text: '总收入及其增长率'
+                        text: ''
                     },
                     xAxis: {
                         categories: scope.dateArray
                     },
                     yAxis: [{ // Primary yAxis
                         labels: {
-                            format: '{value}RMB',
+                            format: '{value}百万RMB',
                             style: {
                                 color: '#5C5C61'
                             }
@@ -169,14 +169,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
-                            x: 4,
-                            y: 10,
+                            x: 0,
+                            y: 5,
                             style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                fontSize: '15px',
+                                fontFamily: 'Consolas',
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -189,14 +189,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#000000',
                             align: 'right',
                             x: 4,
-                            y: 10,
+                            y: 20,
                             style: {
-                                fontSize: '13px',
+                                fontSize: '15px',
                                 fontFamily: 'Consolas',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         yAxis: 1,
@@ -218,14 +218,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'pillar-profit'
                     },
                     title: {
-                        text: '净利润及其增长率'
+                        text: ''
                     },
                     xAxis: {
                         categories: scope.dateArray
                     },
                     yAxis: [{ // Primary yAxis
                         labels: {
-                            format: '{value}千RMB',
+                            format: '{value}百万RMB',
                             style: {
                                 color: '#5C5C61'
                             }
@@ -272,14 +272,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
-                            x: 4,
-                            y: 10,
+                            x: 0,
+                            y: 5,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -292,14 +292,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: 'black',
                             align: 'right',
                             x: 4,
-                            y: 10,
+                            y: 0,
                             style: {
-                                fontSize: '13px',
+                                fontSize: '14px',
                                 fontFamily: 'Consolas',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         yAxis: 1,
@@ -320,7 +320,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'pillar-ratio'
                     },
                     title: {
-                        text: '毛利率，净利率'
+                        text: ''
                     },
                     xAxis: {
                         categories: scope.dateArray
@@ -353,14 +353,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                             dataLabels: {					//显示数值
                                 enabled: true,
                                 rotation: 0,
-                                color: '#FFFFFF',
+                                color: '#415e71',
                                 align: 'right',
                                 x: 4,
-                                y: 10,
+                                y: 0,
                                 style: {
                                     fontSize: '13px',
                                     fontFamily: 'Verdana, sans-serif',
-                                    textShadow: '0 0 3px black'
+                                    textShadow: '0 0 0px black'
                                 }
                             },
                             marker: {
@@ -378,14 +378,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                             dataLabels: {					//显示数值
                                 enabled: true,
                                 rotation: 0,
-                                color: '#FFFFFF',
+                                color: '#415e71',
                                 align: 'right',
                                 x: 4,
-                                y: 10,
+                                y: 0,
                                 style: {
                                     fontSize: '13px',
                                     fontFamily: 'Verdana, sans-serif',
-                                    textShadow: '0 0 3px black'
+                                    textShadow: '0 0 0px black'
                                 }
                             },
                             marker: {
@@ -407,7 +407,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'line-roa'
                     },
                     title: {
-                        text: 'ROA 与 ROE'
+                        text: ''
                     },
                     /*subtitle: {
                      text: ''
@@ -447,14 +447,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
-                            y: 10,
+                            y: 0,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -470,14 +470,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
-                            y: 10,
+                            y: 0,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -493,7 +493,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'pillar-pe'
                     },
                     title: {
-                        text: '每股收益 , PE'
+                        text: ''
                     },
                     xAxis: {
                         categories: scope.dateArray
@@ -548,14 +548,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
                             y: 10,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -568,14 +568,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
                             y: 20,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Consolas',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         yAxis: 1,
@@ -597,7 +597,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         renderTo:'pillar-pb'
                     },
                     title: {
-                        text: '每股净资产 , PB'
+                        text: ''
                     },
                     xAxis: {
                         categories: scope.dateArray
@@ -652,14 +652,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
                             y: 10,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{
@@ -672,14 +672,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {					//显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
                             y: 10,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Consolas',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         yAxis: 1,
@@ -705,7 +705,7 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         plotShadow: false
                     },
                     title: {
-                        text: '每股现金流'
+                        text: ''
                     },
                     yAxis:{
                         labels: {
@@ -745,14 +745,14 @@ GLHApp.directive('chartIncome',  ['ApiService','$routeParams', function (ApiServ
                         dataLabels: {                   //显示数值
                             enabled: true,
                             rotation: 0,
-                            color: '#FFFFFF',
+                            color: '#415e71',
                             align: 'right',
                             x: 4,
                             y: 10,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif',
-                                textShadow: '0 0 3px black'
+                                textShadow: '0 0 0px black'
                             }
                         },
                         tooltip:{

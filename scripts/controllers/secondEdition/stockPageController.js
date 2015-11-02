@@ -1,12 +1,12 @@
 GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams', 'ApiService', 'CommService', 'DialogService', '$UserService', 'StockService',
     function ($scope, $location, $routeParams, ApiService, CommService, DialogService, $UserService, StockService) {
 		//tabs 切换
-		$("#tab-nav li").on("click", function() {
-			$this = $(this);
-			var tabName = $this.find("a").data("name");
-			$this.addClass("active").siblings("li").removeClass("active");
-			$("#"+tabName).addClass("active").siblings("div").removeClass("active");
-		})
+//		$("#tab-nav li").on("click", function() {
+//			$this = $(this);
+//			var tabName = $this.find("a").data("name");
+//			$this.addClass("active").siblings("li").removeClass("active");
+//			$("#"+tabName).addClass("active").siblings("div").removeClass("active");
+//		})
 		
 		//个股编号（行业编号+个股编号：hk00243）
         $scope.stockCode = $routeParams.stockCode;
@@ -17,10 +17,10 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 
         $scope.isUserStock = false;
         //精华帖子列表
-//      $scope.creamList = [];
+        $scope.creamList = [];
 
         //帖子列表
-//      $scope.postList = [];
+        $scope.postList = [];
 
         //监视登录框，登录的情况下重新刷新是否添加自选
         $scope.$on("initAfterLogin", function (event, options) {
@@ -47,6 +47,7 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                 $scope.defaultStockCode.push("$"+response.result[0].name+"("+$routeParams.stockCode+")$ ");
                 if($scope.stockInfo.extInfo){
                 	$scope.stockInfo.tradeInfo = [];
+                	//extInfo list
                 	var tmpInfoList = [];
                 	var tmpInfo = {};
                 	for(var i=0; i<$scope.stockInfo.extInfo.length; i++){
@@ -58,14 +59,13 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                 			tmpInfo.name = $scope.stockInfo.extInfo[i];
                 		}
                 	}
-                	
                 	var detail = [];
                 	for(var i=0; i<tmpInfoList.length; i++){
                 		detail.push(tmpInfoList[i]);
-                		if((i+1)%4 == 0){
+                		if((i+1)%tmpInfoList.length == 0){
                 			$scope.stockInfo.tradeInfo.push(detail);
                 			detail = [];
-                		}
+                		} 
                 	}
                 	
                 	if(detail.length > 0){
@@ -120,4 +120,209 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         }, function (response) {
         	//
         });
+        
+        $scope.$on('loadFeeds', function() {
+        	if($scope.currentTab == "post"){
+        		$scope.getPostList();
+        	}else{
+        		$scope.currentTab = "post";
+        	}
+        });
+        
+        $scope.paginationNoticeConf = {
+            //当前页码
+            currentPageNum: 1,
+            //每页显示数
+            itemsPerPage: 10,
+            //页码显示个数
+            pagesLength: 9,
+            //总页数
+            numberOfPages: 0,
+            //总记录数
+            totalItems: 0,
+            onChange: function () {
+                //获取分页数据
+                $scope.getNoticeList();
+            }
+        };
+
+        $scope.paginationCreamConf = {
+            //当前页码
+            currentPageNum: 1,
+            //每页显示数
+            itemsPerPage: 10,
+            //页码显示个数
+            pagesLength: 9,
+            //总页数
+            numberOfPages: 0,
+            //总记录数
+            totalItems: 0,
+            onChange: function () {
+                $scope.getCreamList();
+            }
+        };
+
+        $scope.paginationPostConf = {
+            //当前页码
+            currentPageNum: 1,
+            //每页显示数
+            itemsPerPage: 10,
+            //页码显示个数
+            pagesLength: 9,
+            //总页数
+            numberOfPages: 0,
+            //总记录数
+            totalItems: 0,
+            onChange: function () {
+                $scope.getPostList();
+            }
+        };
+        
+        //获取公告列表
+        $scope.getNoticeList = function () {
+            $scope.isNoticeLoaded = false;
+            $scope.NoticeList = new Array();
+            var params = {page: $scope.paginationNoticeConf.currentPageNum,
+                count: $scope.paginationNoticeConf.itemsPerPage,
+                stockCode: $scope.stockCode};
+            ApiService.get(ApiService.getApiUrl().stockNotice, params,
+                function (response) {
+                    $scope.isNoticeLoaded = true;
+                    $scope.NoticeList = response.result;
+                    if($scope.NoticeList){
+                    	for(var i in $scope.NoticeList){
+                    		if($scope.NoticeList[i].fileType){
+                    			$scope.NoticeList[i].fileType = $scope.NoticeList[i].fileType.toLowerCase();
+                    		}
+                    	}
+                    }
+                    $scope.paginationNoticeConf.totalItems = response.totalCount;
+                    $scope.paginationNoticeConf.currentCounts = response.result.length;
+                }, function (response) {
+                    $scope.isNoticeLoaded = true;
+                }
+            );
+        }
+
+        //获取精华帖子
+        $scope.getCreamList = function () {
+            $scope.creamList = [];
+            var params = {page: $scope.paginationCreamConf.currentPageNum,
+                count: $scope.paginationCreamConf.itemsPerPage,
+                stockCode: $scope.stockCode, cream: true};
+            $scope.isCreamLoaded = false;
+            ApiService.get(ApiService.getApiUrl().getStockPost, params,
+                function (response) {
+                    $scope.paginationCreamConf.totalItems = response.totalCount;
+                    $scope.paginationCreamConf.currentCounts = response.result.length;
+                    //异步用户信息
+                    var userIdCollections = [];
+                    for (var index in response.result) {
+                        var temp = response.result[index];
+                        CommService.formatPubTime(temp, temp.createDate);
+                        $scope.creamList.push({
+                            postId: temp.postId,
+                            userId: temp.userId,
+                            avatar: "",
+                            nickname: "",
+                            title: temp.title,
+                            summary: temp.summary,
+                            file: temp.file,
+                            publishTimeLoc: temp.publishTimeLoc,
+                            userType: temp.userType
+                        })
+
+                        if (userIdCollections.indexOf(temp.userId) == -1) {
+                            userIdCollections.push(temp.userId);
+                        }
+                    }
+                    $scope.isCreamLoaded = true;
+                    //异步获取用户信息
+                    var userIds = userIdCollections.join(',');
+                    $scope.asyncLoadUser(userIds, $scope.creamList);
+
+                }, function (response) {
+                    $scope.isCreamLoaded = true;
+                }
+            );
+        }
+
+        //获取全部帖子
+        $scope.getPostList = function () {
+            $scope.postList = [];
+            var params = {page: $scope.paginationPostConf.currentPageNum,
+                count: $scope.paginationPostConf.itemsPerPage,
+                stockCode: $scope.stockCode, cream: false};
+            $scope.isPostLoaded = false;
+            ApiService.get(ApiService.getApiUrl().getStockPost, params,
+                function (response) {
+                    $scope.paginationPostConf.totalItems = response.totalCount;
+                    $scope.paginationPostConf.currentCounts = response.result.length;
+                    //异步用户信息
+                    var userIdCollections = [];
+                    for (var index in response.result) {
+                        var temp = response.result[index];
+                        CommService.formatPubTime(temp, temp.createDate);
+                        $scope.postList.push({
+                            postId: temp.postId,
+                            userId: temp.userId,
+                            avatar: "",
+                            nickname: "",
+                            title: temp.title,
+                            summary: temp.summary,
+                            file: temp.file,
+                            publishTimeLoc: temp.publishTimeLoc,
+                            userType: temp.userType
+                        })
+
+                        if (userIdCollections.indexOf(temp.userId) == -1) {
+                            userIdCollections.push(temp.userId);
+                        }
+                    }
+                    $scope.isPostLoaded = true;
+                    //异步获取用户信息
+                    var userIds = userIdCollections.join(',');
+                    $scope.asyncLoadUser(userIds, $scope.postList);
+
+                }, function (response) {
+                    $scope.isPostLoaded = true;
+                }
+            );
+        }
+
+
+        //f10股票信息
+        $scope.companyInfo = new Object();
+        ApiService.get(ApiService.getApiUrl().chartCompanyInfo, {type: $scope.type,code: $scope.code}, function (response) {
+            $scope.companyInfo=response.result;
+        });
+        
+        //异步加载用户信息
+        $scope.asyncLoadUser = function (userIds, data) {
+            ApiService.get(ApiService.getApiUrl().getUserList, { userIds: userIds }, function (response) {
+                if (response.result.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        angular.forEach(response.result, function (u) {
+                            if (data[i].userId == u.userId) {
+                                data[i].nickname = u.nickname;
+                                data[i].avatar = u.avatar;
+                            }
+                        })
+                    }
+                }
+            });
+        }
+
+        $scope.showTab = function (currentTab) {
+            $scope.currentTab = currentTab;
+        }
+
+        //跳转到帖子详情
+        $scope.postDetail = function (postId) {
+            window.location.href="/p/" + postId+".html";
+        }
+        
+        
+        
+        
 }]);

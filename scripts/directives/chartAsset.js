@@ -19,7 +19,7 @@ GLHApp.directive('chartAsset',   ['ApiService','$routeParams', function (ApiServ
             //console.info($routeParams.stockCode+":::$routeParams.stockCode");
             scope.stockCode = $routeParams.stockCode;
             scope.type = scope.stockCode.slice(0,2)
-            scope.code = scope.stockCode.slice(2,7);
+            scope.code = scope.stockCode.slice(2,scope.stockCode.length);
 
 
             //f10股权结构信息
@@ -33,7 +33,7 @@ GLHApp.directive('chartAsset',   ['ApiService','$routeParams', function (ApiServ
                 $.each(scope.assetList, function(index,item){
                     scope.subItem = new Object();
                     scope.subItem.name = index ;
-                    scope.subItem.data = [item] ;
+                    scope.subItem.data = [item/1000000] ;
                     ideas[inx] = scope.subItem ;
                     inx ++ ;
                 });
@@ -44,7 +44,7 @@ GLHApp.directive('chartAsset',   ['ApiService','$routeParams', function (ApiServ
                         type: 'column'
                     },
                     title: {
-                        text: '资产'
+                        text: ''
                     },
                     xAxis: {
                         categories: ['资产']
@@ -60,13 +60,25 @@ GLHApp.directive('chartAsset',   ['ApiService','$routeParams', function (ApiServ
                                 fontWeight: 'bold',
                                 color:  (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                             }
+                        },
+                        labels: {
+                            format: '{value}百万',
+                            style: {
+                                color: '#5C5C61'
+                            }
+                        },
+                        title: {
+                            text: '金额(RMB)',
+                            style: {
+                                color: '#5C5C61'
+                            }
                         }
                     },
                     legend: { //图例
-                        align: 'right',
-                        x: -10,
-                        verticalAlign: 'top',
-                        y: -14,
+                        align: 'left', 
+                        x: 5, 
+                        verticalAlign: 'bottom',
+                        y: -0,      
                         floating: false,
                         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
                         borderColor: '#CCC',
@@ -86,7 +98,8 @@ GLHApp.directive('chartAsset',   ['ApiService','$routeParams', function (ApiServ
                             stacking: 'normal',
                             dataLabels: {
                                 enabled: true,
-                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                color: '#126ca5' || (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                textShadow: '0 0 0px black'
                             }
                         }
                     },

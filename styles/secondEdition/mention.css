@@ -45,3 +45,25 @@
 	background: #0066AA;
 	color: #FFF;
 }
+
+.symbol-box{
+	width: 100px; float: left; height: 60px;
+	
+}
+.symbol-box a{
+	
+	width: 30px; height: 30px;
+	display: block;
+	float: left;
+	
+	 
+}
+.symbol-box a.symbol_user{
+	  text-indent: -9999px;
+	background: url(/images/@-blue.png) no-repeat;
+}
+.symbol-box a.symbol_stock{
+	 text-indent: -9999px ;
+	background: url(/images/$_blue.png) no-repeat;
+	background-size: 30% auto;
+}

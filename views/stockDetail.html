@@ -230,38 +230,76 @@
                         </div>
 
                         <!--股权结构 -->
-                        <div id="pie-equity" ><div chart-equity/></div>
+						<div class="chart_banner">
+		                 股权结构
+                        </div>
+                        <div id="pie-equity" >
+                            <div chart-equity/>
+                        </div>
 
                         <!-- 资产表和资产负债表 -->
                         <div style="clear:both;"/>
-                        <div id="pie-box">
-                            <div id="pie-asset" style="width:50%;float: left;"><div chart-asset/></div>
-                            <div id="pie-debt" style="width:50%; float:right"><div chart-debt /></div>
+
+                        <div style="width: 50%;float: left">
+                            <div class="chart_banner" style="width: 99%">
+                                资产
+                            </div>
+                            <div id="pie-asset" style="width:100%;float: left;"><div chart-asset/></div>
                         </div>
+
+
+                        <div style="width: 50%;float: left">
+                            <div class="chart_banner">
+                                资产负债表和所有者权益
+                            </div>
+                            <div id="pie-debt" style="width:100%; float:right"><div chart-debt /></div>
+                        </div>
+
 
                         <!-- 总收入及其增长率-->
                         <div style="clear:both;"/>
 
+                        <div class="chart_banner">
+                            总收入及其增长率
+                        </div>
                         <div chart-income />
                      
                         <div id="pillar-income" ></div>
 
                         <!-- 净利润及其增长率-->
+                        <div class="chart_banner">
+                            净利润及其增长率
+                        </div>
                         <div id="pillar-profit" ></div>
 
                         <!-- 毛利率，净利率-->
+                        <div class="chart_banner">
+                            毛利率，净利率
+                        </div>
                         <div id="pillar-ratio" ></div>
 
                         <!-- roa,roe-->
+                        <div class="chart_banner">
+                            roa,roe
+                        </div>
                         <div id="line-roa" ></div>
 
-                        <!-- 每股收益以及pe-->
+                        <!-- 每股收益，pe-->
+                        <div class="chart_banner">
+                            每股收益以及pe
+                        </div>
      					<div id="pillar-pe" > </div>
 
-                        <!--每股净资产以及pb-->
+                        <!--每股净资产，pb-->
+                        <div class="chart_banner">
+                            每股净资产以及pb
+                        </div>
      					<div id="pillar-pb" ></div>
 
                         <!-- 每股现金流-->
+                        <div class="chart_banner">
+                            每股净现金流
+                        </div>
      					<div id="pillar-cash" ></div>
                      </div>
                 </div>

@@ -85,7 +85,7 @@ GLHApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
         templateUrl: 'views/glhExponent.html'
     }).when('/recommendedUsers', {
         templateUrl: 'views/secondEdition/recommendedUsers.html'
-    }).when('/stockPage', {
+    }).when('/stockPage/:stockCode', {
         templateUrl: 'views/secondEdition/stockPage.html'
     }).otherwise({ redirectTo: '/' });
     //$locationProvider.html5Mode(true);

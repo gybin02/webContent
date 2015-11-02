@@ -6,7 +6,7 @@
 }
 
 #pie-asset{
-    width: 50%  !important;
+    width: 100%  ;
     height: auto;
     float: left !important;
     margin-top: 30px;
@@ -14,7 +14,7 @@
 }
 
 #pie-debt{
-    width: 50% !important;
+    width: 100% ;
     height: auto;
     float: right !important;
     margin-top: 30px;

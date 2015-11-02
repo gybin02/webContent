@@ -14,10 +14,12 @@
 	<link rel="stylesheet" href="/styles/login.css">
 	<link rel="stylesheet" type="text/css" href="/styles/secondEdition/pagination.css"/>
 	<link rel="stylesheet" type="text/css" href="/styles/secondEdition/mention.css"/>
+	<link rel="stylesheet" type="text/css" href="/styles/secondEdition/userPopover.css"/>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="/scripts/vendor/prefixfree.min.js"></script>
     <script src="/scripts/common/mention.js" ></script>
     <script src="/scripts/common/common.js"></script>
+    <!--<script src="/scripts/common/userPopover.js" type="text/javascript" charset="utf-8"></script>-->
    
 
 
@@ -169,6 +171,10 @@
 					<div class="add-comment">
 						<h3>发表评论</h3>
 						<textarea id="comment-text" name="" rows="" cols=""></textarea>
+						<div class="symbol-box">
+							<a class="symbol_user" href="javascript:atUser('@');">　</a> <a class="symbol_stock" href="javascript:atUser('$')">　</a>
+						</div>
+						 
 						<button class="submit-btn" id="comment-btn" type="button">发表评论</button>
 					</div>
 					  <div id="main">

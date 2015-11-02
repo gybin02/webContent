@@ -1,4 +1,4 @@
-function Mention(opts) {
+var Mention = function(opts) {
 
 	this.opts = $.extend(this.defaultOpts, opts);
 
@@ -43,7 +43,7 @@ Mention.prototype._init = function(symbol) {
 				"font-family": textarea.css("font-family"),
 				"line-height": textarea.css("line-height")
 
-			},1000)
+			}, 1000)
 		}
 
 		if ($("#user-search-box").length < 1) {
@@ -58,21 +58,17 @@ Mention.prototype._init = function(symbol) {
 			userDiv += '</div>';
 			userDiv += '</div>';
 			$(userDiv).appendTo("body");
-
-
-
-		}
+          }
 
 	}, 1000)
 
-   textarea.css({
+	textarea.css({
 		opacity: 1
 	});
-	textarea.keydown(function(e){
-		if(e.keyCode==50 || e.keyCode==52 || e.keyCode==229 ){
-		 $this.active=true;
+	textarea.keydown(function(e) {
+		if (e.keyCode == 50 || e.keyCode == 52 || e.keyCode == 229) {
+			$this.active = true;
 		}
-		//console.log(e.which);
 	});
 	this.oninput();
 	$("#user-keywords").blur(function() {
@@ -81,7 +77,7 @@ Mention.prototype._init = function(symbol) {
 		}, 250);
 
 	})
-	
+
 
 };
 
@@ -99,14 +95,14 @@ Mention.prototype._getItems = function(val) {
 	$this.url = this.opts.config[this.module].url;
 	$this.items = this.opts.config[this.module].items;
 	$this.symbol = this.opts.config[this.module].symbol;
-	console.log(this.opts.config[this.module].symbol);
+	
 	val = val == "" ? "*" : val;
 
 	if (!$.isArray($this.items)) {
 
 		return $.ajax({
 			type: 'get',
-			url: $this.url + val + "&page=1&count=10",
+			url: $this.url + encodeURIComponent(val) + "&page=1&count=10",
 			cache: false,
 		}).done((function($this) {
 			return function(result) {
@@ -141,15 +137,10 @@ Mention.prototype._renderPopover = function(result) {
 
 	if (len > 0) {
 		for (var i = 0; i < len; i++) {
-
-
-
-			name = data[i].userNick || data[i].stockName;
+            name = data[i].userNick || data[i].stockName;
 			pinyin = data[i].pinyin || data[i].stockCode;
 			type = data[i].type || data[i].type;
-
-
-			$nick = name.replace(/<\/?[^>]*>/g, '');
+            $nick = name.replace(/<\/?[^>]*>/g, '');
 			if (this.module == 1) {
 				li += "<li>" + $nick + "(" + type + pinyin + ")" + "</li>";
 			} else {
@@ -166,36 +157,23 @@ Mention.prototype._renderPopover = function(result) {
 /*搜索字符串*/
 Mention.prototype._filter = function() {
 	var $this = this;
-
-	$("#user-keywords").bind('input propertychange', function(e) {
-
-		console.log(e);
-		var p = 0;
+        $("#user-keywords").bind('input propertychange', function(e) {
+        var p = 0;
 		var s = $(this).val();
-		console.log(s.length);
 		if (s.length < 1) return false;
 		setTimeout(function() {
-
-			userlist = $this._getItems(s);
-
-
-		}, 0)
-
-
-
-	})
-
+          userlist = $this._getItems(s);
+        }, 0)
+     })
 }
 
 Mention.prototype.oninput = function() {
 	var $this = this;
 	var textObj = document.getElementById("comment-text");
+    $("#comment-text").bind("input propertychange", function(event) {
 
-
-	$("#comment-text").bind("input propertychange", function(event) {
-
-		var target = event.target,
-			cursor = target.selectionStart; //通过 selectionStart 获得光标所在位置
+       var target = event.target,
+	    cursor = target.selectionStart; //通过 selectionStart 获得光标所在位置
 		symbol = target.value.charAt(cursor - 1);
 
 		//检测符号是否有被设置
@@ -207,11 +185,12 @@ Mention.prototype.oninput = function() {
 				}
 			}
 		}
+
 		$this.module = key;
-        if(!$this.active) return false;
+
+		if (!$this.active) return false;
 		if ($.inArray(symbol, $this.opts.symbols) > -1) { //判断光标前的字符是不是'@'
-			$this._getItems("*");
-            $this.showSearchBox(target, symbol);
+			$this.showSearchBox(target, symbol);
 		} else {
 			html = target.value;
 			html = html.replace(/([\n\r])/g, "<br />");
@@ -219,17 +198,7 @@ Mention.prototype.oninput = function() {
 			$this.active = false;
 		}
 
-		$(".user-list ul ").delegate("li", "click", function() {
-			    if($this.active){
-                $this.show(target, $(this).text() + $this.opts.config[$this.module].attach);
-				$this.active = false;
-				}
-		 });
-		//console.log($this.active);
-
 	})
-
-
 };
 
 Mention.prototype.show = function(target, name) {
@@ -240,7 +209,9 @@ Mention.prototype.show = function(target, name) {
 }
 
 Mention.prototype.showSearchBox = function(target, symbol) {
-
+	this._getItems("*");
+	var $this = this,
+		$target = target;
 	var a = target.value;
 	var b = a.substring(a.lastIndexOf(symbol)); //这样就获取到了最后的'ba'
 	var c = a.substring(0, a.lastIndexOf(symbol));
@@ -250,10 +221,8 @@ Mention.prototype.showSearchBox = function(target, symbol) {
 	//浮窗的位置
 	var pos = {};
 	span = $("#u-editor").find("span:last");
-	console.log(span);
 	pos.left = span.offset().left;
 	pos.top = span.offset().top;
-	console.log(pos);
 	$("#user-search-box").show();
 	$("#user-search-box").css({
 		"left": pos.left + 26,
@@ -263,9 +232,15 @@ Mention.prototype.showSearchBox = function(target, symbol) {
 	$("#user-search-box input").val("");
 	$("#user-search-box input").focus();
 	$("#user-search-box .placeholder").text(this.opts.config[this.module].title);
-	this._filter();
-	//console.log(this.opts.config[this.module].title);
+	$(".user-list ul ").delegate("li", "click", function() {
 
+		if ($this.active) {
+			$this.show($target, $(this).text() + $this.opts.config[$this.module].attach);
+			$this.active = false;
+		}
+	});
+	this._filter();
+	
 };
 
 Mention.prototype._hide = function() {

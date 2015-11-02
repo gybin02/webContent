@@ -46,9 +46,9 @@ ggtApp.controller('ggtController', ['$scope','ggtApiService', function ($scope,g
             inx = 1;
             $.each($scope.hkData,function(index,item){
                 $.each(item,function(ind,ele){
-                   /* if(ind === 'timestamp'){
+                    if(ind === 'timestamp'){
                         $scope.hktimestamp[inx] = ele;
-                    }*/
+                    }
                     if(ind ==='balance'){
                         $scope.hkBalance[inx] = ele;
                     }

@@ -558,6 +558,8 @@ var Comment = {
 
 			$("#comment-area").prepend(commentInfo + commentContent + replyComment);
 		}
+		/*加入连接*/
+		addCommentLink();
 	},
 
 	deleteComment: function(commentId) {
@@ -606,7 +608,7 @@ var Comment = {
 						prev_show_always: false,
 						next_show_always: false
 					});
-
+                  
 				} else {
 					//提交失败
 					alert(response.message);
@@ -649,64 +651,9 @@ var Comment = {
 
 }
 
-/*at $ 功能*/
-//   var userList=['xiaomao','xiaogou'];
-//   var stockList=['zhongguo(000252)','xanghang(002255)'];
-//    var at_config = {
-//    at: "@",
-//    data: userList,
-//    limit: 200
-//  }
-//  var $_config = {
-//    at: "$",
-//    data: stockList,
-//    limit: 200,
-//    insertTpl: '$${name}$',
-//  }
-//   
-/*用户列表*/
-function atUser(val) {
-
-	if (!val) val = "*";
-	$.ajax({
-		type: "GET",
-		url: "/api/post/lastCalls?key=" + val + "&page=1&count=10",
-		async: true,
-		beforeSend: function() {},
-		success: function(data) {
-
-
-			data = data.result;
-			var htmls = "";
-			//如果没关注用户
-			if (data == null) {
-				data = [{
-					userNick: "搜索用户"
-				}];
-			}
-			var userList = [];
-			var len = data.length;
-
-			if (len > 0) {
-				for (var i = 0; i < len; i++) {
-					$nick = data[i].userNick.replace(/<\/?[^>]*>/g, '');
-					userList[i] = $nick;
-				}
-			}
-			var at_config = {
-				at: "@",
-				data: userList,
-				limit: 200
-			}
-			$('#comment-text').atwho(at_config);
-		}
-
-	})
-
-}
 
 /*前段加上股票和用户的链接*/
-function addLink(text) {
+function addLink(text,target) {
 		if (text == null) {
 			return text;
 		}
@@ -725,7 +672,7 @@ function addLink(text) {
 				for (var i = 0; i < uArr.length; i++) {
 					if (uArr[i].indexOf("@") >= 0 && uArr[i].length > 1) {
 						var nick = uArr[i].substring(1, uArr[i].length);
-						var uHtml = '<a user-popover user-Nick="' + nick + '">' + uArr[i] + '</a>';
+						var uHtml = '<a class="user-popover" href="javascript:;" user-Nick="' + nick + '">' + uArr[i] + '</a>';
 						text = text.replace(new RegExp(uArr[i], 'gm'), uHtml);
 					}
 				}
@@ -753,14 +700,26 @@ function addLink(text) {
 				}
 			}
 		} while (sRegLen > 0)
-		$(".main-content").html(text);
+		target.html(text);
 		//return text;
 	}
 	/*开始加入文章中的股票与用户链接*/
 $(document).ready(function() {
-		var content = $(".main-content").html();
-		addLink(content);
+	     setTimeout(function(){
+	      var content = $(".main-content").html();
+		  
+	     },1000);
+		addCommentLink();
 	})
+
+function addCommentLink(){
+	setTimeout(function(){
+	   $(".comment-content").each(function(index){
+		    	addLink($(this).html(),$(this));
+	   })
+	},500);
+}
+
 	/*@股票和用户*/
 var n = new Mention({
 	textInput: $("#comment-text"),
@@ -790,8 +749,19 @@ var n = new Mention({
 
 	]
 
-})._init();
+});
 
+n._init();
+function atUser(symbol){
+	if(symbol=="$"){
+		n.module=1;
+	} else{
+		n.module=0;
+	}
+	insertAtCursor(document.getElementById("comment-text"),symbol);
+	n.showSearchBox(document.getElementById("comment-text"),symbol);
+	n.active=true;
+}
 
 $(document).keydown(function(e) {
 

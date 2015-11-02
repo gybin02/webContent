@@ -54,3 +54,16 @@
 	margin-bottom:20px;
 	color:#888;
 }
+
+.chart_banner{
+    height:48px;
+    width:100%;
+    margin-top: 15px;
+    /*border-bottom:solid 1px #d8d8d8;*/
+    background-color: #e5e8ed;
+    padding-top: 15px;
+    font-size: 14px;
+    padding-left: 26px;
+    margin-bottom:60px;
+    font-weight: 600;
+}

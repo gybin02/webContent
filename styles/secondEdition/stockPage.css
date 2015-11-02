@@ -48,29 +48,36 @@
 	right: 0;
 	cursor: pointer;
 }
+.stockpage-wrap .stock-table {
+	margin-bottom: 35px;
+}
 .stockpage-wrap .stock-table span {
 	width: 190px;
 	color: #999;
 	display: inline-block;
 }
-.stockpage-wrap .stock-data span.ups {
+.stockpage-wrap .stock-data span.font_red {
 	font-size: 20px;
 	font-weight: bold;
 	color: #ff6057;
 }
-.stockpage-wrap .stock-data span.downs {
+.stockpage-wrap .stock-data span.font_green {
 	font-size: 20px;
 	font-weight: bold;
 	color: #8fc31f;
 }
 #stockDetail {
-	margin-top: 35px;
+	/*margin-top: 35px;*/
 	margin-bottom: 0;
 	color: #666;
+	display: inline;
+}
+#stockDetail div {
+	display: inline;
 }
 #stockDetail li {
 	display: inline-block;
-	margin-right: 17px;
+	width: 120px;
 }
 .stockpage-wrap .stock-data > p {
 	margin: 30px 0;
@@ -111,15 +118,15 @@
 	border-bottom: 2px solid #fff;
 	cursor: pointer;
 }
-#tab-nav li.active {
+#tab-nav li.current-tab {
 	border-bottom: 2px solid #22aee6;
 }
 #tab-nav li:hover a {
 	color: #22aee6;
 }
-#tab-nav li.active a {
+/*#tab-nav li.active a {
 	color: #22aee6;
-}
+}*/
 #tab-nav a {
 	font-size: 14px;
 	color: #999;

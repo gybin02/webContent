@@ -219,7 +219,7 @@ GLHApp.controller('UserInfoController', ['$scope', '$routeParams', '$location', 
 
 		//跳转到帖子详情
 		$scope.postDetail = function(pid){
-			$location.path("/articleDetail/" + pid);
+			window.location.href="/p/" + pid+".html";
 		}
 
 		//跳转到用户详情
