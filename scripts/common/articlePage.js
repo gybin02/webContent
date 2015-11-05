@@ -263,7 +263,7 @@ var interactiveFunc = {};
 interactiveFunc.getArticleDetail = function(postId) {
 	$.ajax({
 		type: "GET",
-		url: "/api/post/" + postId,
+		url: "/api/post/" + postId + "/info",
 		success: function(response) {
 			if (response.statusCode == 200) {
 				if (!window.localStorage.user) return;
@@ -496,7 +496,7 @@ var Comment = {
 					Comment.publishComment(response);
 
 					//删除评论、操作评论
-					$(".comment-content span").on("click", function() {
+					$(".comment-content").on("click","span", function() {
 						var $this = $(this);
 						var commentId = $this.parents(".reader-comment").data("num");
 						var replyUid = $this.parents(".reader-comment").data("uid");
@@ -672,7 +672,7 @@ function addLink(text,target) {
 				for (var i = 0; i < uArr.length; i++) {
 					if (uArr[i].indexOf("@") >= 0 && uArr[i].length > 1) {
 						var nick = uArr[i].substring(1, uArr[i].length);
-						var uHtml = '<a class="user-popover" href="javascript:;" user-Nick="' + nick + '">' + uArr[i] + '</a>';
+						var uHtml = '<a class="user-popover" href="javascript:userPopover.openUser();" user-Nick="' + nick + '">' + uArr[i] + '</a>';
 						text = text.replace(new RegExp(uArr[i], 'gm'), uHtml);
 					}
 				}
@@ -707,7 +707,7 @@ function addLink(text,target) {
 $(document).ready(function() {
 	     setTimeout(function(){
 	      var content = $(".main-content").html();
-		  
+		  addLink(content,$(".main-content"));
 	     },1000);
 		addCommentLink();
 	})
@@ -715,7 +715,7 @@ $(document).ready(function() {
 function addCommentLink(){
 	setTimeout(function(){
 	   $(".comment-content").each(function(index){
-		    	addLink($(this).html(),$(this));
+		     addLink($(this).html(),$(this));
 	   })
 	},500);
 }

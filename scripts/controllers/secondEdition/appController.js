@@ -238,7 +238,9 @@ GLHApp.controller('appController', ['$scope', '$root$scope', '$http', '$location
         $scope.getArticleDatas = function (page) {
 	    	$scope.topicPaginationConf.currentPageNum = page || $scope.topicPaginationConf.currentPageNum;
         	var articleCode =$scope.columnCode/* $routeParams.topicCode*/;
-            var params = {columnCode: $scope.columnCode, limit: 2, page: page};
+           /*为了页面整齐加入幻灯片这样就需要去掉何增加条2015.11.03 zhongyi*/
+        	var limit=articleCode=='GLH' ? 22 : 24;
+            var params = {columnCode: $scope.columnCode, limit: limit, page: page};
             ApiService.get(ApiService.getApiUrl().getArticleList, params, function (response) {
                     $scope.topicList = [];
                     $scope.columnName = response.result.columnName;

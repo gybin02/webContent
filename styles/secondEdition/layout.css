@@ -1622,7 +1622,7 @@ d1c0a5
 }
 
 .user-button{
-    height: 144px !important;
+    height: 154px !important;
     width: 158px !important;
     border: none !important;
     margin: 0px !important;
@@ -1632,6 +1632,7 @@ d1c0a5
 
 .editor-button{
     background-color: #0088c3 !important;
+    top: 99%;
 }
 
 .editor-button li{

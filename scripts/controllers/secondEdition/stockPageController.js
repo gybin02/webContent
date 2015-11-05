@@ -14,6 +14,7 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         $scope.code = $scope.stockCode.slice(2,$scope.stockCode.length);
 
         $scope.stockInfo = {};
+        $scope.currentTab = "cream";
 
         $scope.isUserStock = false;
         //精华帖子列表
@@ -30,7 +31,6 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         $scope.init = function () {
             ApiService.get(ApiService.getApiUrl().isUserStock, {stockCodes: $scope.stockCode}, function (response) {
                 $scope.isUserStock = response.result[$scope.stockCode];
-
             }, function (response) {
                 $scope.isUserStock = false;
             });
@@ -39,87 +39,92 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         $scope.init();
         
         $scope.defaultStockCode = [];
+        
         //获取个股行情
-        ApiService.get(ApiService.getApiUrl().stockDetail, {stocks: $scope.stockCode, detail:true}, function (response) {
-            $scope.isBaseInfoLoaded = true;
-            if (response.result != null && response.result.length > 0) {
-                $scope.stockInfo = angular.copy(response.result[0]);
-                $scope.defaultStockCode.push("$"+response.result[0].name+"("+$routeParams.stockCode+")$ ");
-                if($scope.stockInfo.extInfo){
-                	$scope.stockInfo.tradeInfo = [];
-                	//extInfo list
-                	var tmpInfoList = [];
-                	var tmpInfo = {};
-                	for(var i=0; i<$scope.stockInfo.extInfo.length; i++){
-                		if((i+1)%2 == 0){
-                			tmpInfo.value = $scope.stockInfo.extInfo[i];
-                			tmpInfoList.push(tmpInfo);
-                			tmpInfo = {};
-                		}else{
-                			tmpInfo.name = $scope.stockInfo.extInfo[i];
-                		}
-                	}
-                	var detail = [];
-                	for(var i=0; i<tmpInfoList.length; i++){
-                		detail.push(tmpInfoList[i]);
-                		if((i+1)%tmpInfoList.length == 0){
-                			$scope.stockInfo.tradeInfo.push(detail);
-                			detail = [];
-                		} 
-                	}
-                	
-                	if(detail.length > 0){
-                		$scope.stockInfo.tradeInfo.push(detail);
-                	}
-                }
-                
-                if($scope.stockInfo.name == null){
-                	$scope.stockInfo.name = "--";
-                }
-                
-                if($scope.stockInfo.code){
-                	$scope.stockInfo.stockCodeExtShow = $scope.stockInfo.type.toUpperCase()+":"+$scope.stockInfo.code;
-                }
-                
-                if($scope.stockInfo.price == null){
-                	$scope.stockInfo.price = "--";
-                }else{
-                	if ($scope.stockInfo.type == "sh" || $scope.stockInfo.type == "sz") {
-                		$scope.stockInfo.price = "￥" + $scope.stockInfo.price;
-                	} else {
-                		$scope.stockInfo.price = "$" + $scope.stockInfo.price;
-                	}
-                }
-                if ($scope.stockInfo.change > 0) {
-                    $scope.stockInfo.fontColor = "font_red";
-                    $scope.stockInfo.changeRate = "+" + $scope.stockInfo.change + " (+" + $scope.stockInfo.netChange + "%)";
-                } else if ($scope.stockInfo.change < 0) {
-                    $scope.stockInfo.fontColor = "font_green";
-                    $scope.stockInfo.changeRate = $scope.stockInfo.change + " (" + $scope.stockInfo.netChange + "%)";
-                } else {
-                	$scope.stockInfo.fontColor = "font_normal";
-                	if($scope.stockInfo.change == null){
-                		if($scope.stockInfo.netChange == null){
-                			$scope.stockInfo.changeRate = "-- (--)";
-                		}else{
-                			$scope.stockInfo.changeRate = "-- (" + $scope.stockInfo.netChange + ".00%)";
-                		}
-                	}else{
-                		if($scope.stockInfo.netChange == null){
-                			$scope.stockInfo.changeRate = $scope.stockInfo.change + ".00 (--)";
-                		}else{
-                			$scope.stockInfo.changeRate = $scope.stockInfo.change + ".00 (" + $scope.stockInfo.netChange + ".00%)";
-                		}
-                	}
-                }
-            } else {
-                $location.path("/error/stockNotFound/" + $scope.stockCode);
-            }
-
-
-        }, function (response) {
-        	//
-        });
+        $scope.getStockInfo = function() {
+        	$scope.stockInfoload = false;
+        	ApiService.get(ApiService.getApiUrl().stockDetail, {stocks: $scope.stockCode, detail:true}, function (response) {
+	            $scope.isBaseInfoLoaded = true;
+	            if (response.result != null && response.result.length > 0) {
+	                $scope.stockInfo = angular.copy(response.result[0]);
+	                $scope.defaultStockCode.push("$"+response.result[0].name+"("+$routeParams.stockCode+")$ ");
+	                if($scope.stockInfo.extInfo){
+	                	$scope.stockInfo.tradeInfo = [];
+	                	//extInfo list
+	                	var tmpInfoList = [];
+	                	var tmpInfo = {};
+	                	for(var i=0; i<$scope.stockInfo.extInfo.length; i++){
+	                		if((i+1)%2 == 0){
+	                			tmpInfo.value = $scope.stockInfo.extInfo[i];
+	                			tmpInfoList.push(tmpInfo);
+	                			tmpInfo = {};
+	                		}else{
+	                			tmpInfo.name = $scope.stockInfo.extInfo[i];
+	                		}
+	                	}
+	                	var detail = [];
+	                	for(var i=0; i<tmpInfoList.length; i++){
+	                		detail.push(tmpInfoList[i]);
+	                		if((i+1)%tmpInfoList.length == 0){
+	                			$scope.stockInfo.tradeInfo.push(detail);
+	                			detail = [];
+	                		} 
+	                	}
+	                	
+	                	if(detail.length > 0){
+	                		$scope.stockInfo.tradeInfo.push(detail);
+	                	}
+	                }
+	                
+	                if($scope.stockInfo.name == null){
+	                	$scope.stockInfo.name = "--";
+	                }
+	                
+	                if($scope.stockInfo.code){
+	                	$scope.stockInfo.stockCodeExtShow = $scope.stockInfo.type.toUpperCase()+":"+$scope.stockInfo.code;
+	                }
+	                
+	                if($scope.stockInfo.price == null){
+	                	$scope.stockInfo.price = "--";
+	                }else{
+	                	if ($scope.stockInfo.type == "sh" || $scope.stockInfo.type == "sz") {
+	                		$scope.stockInfo.price = "￥" + $scope.stockInfo.price;
+	                	} else {
+	                		$scope.stockInfo.price = "$" + $scope.stockInfo.price;
+	                	}
+	                }
+	                if ($scope.stockInfo.change > 0) {
+	                    $scope.stockInfo.fontColor = "font_red";
+	                    $scope.stockInfo.changeRate = "+" + $scope.stockInfo.change + " (+" + $scope.stockInfo.netChange + "%)";
+	                } else if ($scope.stockInfo.change < 0) {
+	                    $scope.stockInfo.fontColor = "font_green";
+	                    $scope.stockInfo.changeRate = $scope.stockInfo.change + " (" + $scope.stockInfo.netChange + "%)";
+	                } else {
+	                	$scope.stockInfo.fontColor = "font_normal";
+	                	if($scope.stockInfo.change == null){
+	                		if($scope.stockInfo.netChange == null){
+	                			$scope.stockInfo.changeRate = "-- (--)";
+	                		}else{
+	                			$scope.stockInfo.changeRate = "-- (" + $scope.stockInfo.netChange + ".00%)";
+	                		}
+	                	}else{
+	                		if($scope.stockInfo.netChange == null){
+	                			$scope.stockInfo.changeRate = $scope.stockInfo.change + ".00 (--)";
+	                		}else{
+	                			$scope.stockInfo.changeRate = $scope.stockInfo.change + ".00 (" + $scope.stockInfo.netChange + ".00%)";
+	                		}
+	                	}
+	                }
+	            } else {
+	                $location.path("/error/stockNotFound/" + $scope.stockCode);
+	            }
+        		$scope.stockInfoload = true;
+	
+	        }, function (response) {
+	        	//
+	        });
+        };
+        $scope.getStockInfo();
         
         $scope.$on('loadFeeds', function() {
         	if($scope.currentTab == "post"){
@@ -229,7 +234,8 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             summary: temp.summary,
                             file: temp.file,
                             publishTimeLoc: temp.publishTimeLoc,
-                            userType: temp.userType
+                            userType: temp.userType,
+                            type: temp.type
                         })
 
                         if (userIdCollections.indexOf(temp.userId) == -1) {
@@ -272,7 +278,8 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             summary: temp.summary,
                             file: temp.file,
                             publishTimeLoc: temp.publishTimeLoc,
-                            userType: temp.userType
+                            userType: temp.userType,
+                            type: temp.type
                         })
 
                         if (userIdCollections.indexOf(temp.userId) == -1) {
@@ -322,6 +329,35 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
             window.location.href="/p/" + postId+".html";
         }
         
+        //添加自选股
+        $scope.addUserStock = function () {
+            console.info("add user stock:"+$scope.stockInfo.code+"-"+$scope.stockInfo.type);
+            StockService.addUserStock($scope.stockInfo.code, $scope.stockInfo.type, $scope, $("#btnAddUserStock"));
+        }
+
+        //删除自选股
+        $scope.delUserStock = function () {
+            StockService.delUserStock($scope.stockInfo.code, $scope.stockInfo.type, $scope, $("#btnDelUserStock"));
+        }
+        
+        //回复框弹出 
+        $scope.reply = function($event,postId,userId){
+	        var _user_editor = angular.element($event.target).parent().parent().next();
+	        var _scopId = _user_editor.attr('data-scope-id');
+	        CommService.prepForBroadcast('replyComment-scope-'+_scopId,{ "postId":postId,"userId":userId,"_broadcastId":_scopId,"commentId":null});
+	        if(_user_editor.hasClass('hide')){
+	        	_user_editor.removeClass('hide');
+	        }else{
+	        	_user_editor.addClass('hide');
+	        }
+        }
+        
+        
+        //股票交易功能
+        $scope.trade = function(code){
+			$scope.stockCode = code;
+			$scope.showSecBrokers = !$scope.showSecBrokers;
+		}
         
         
         

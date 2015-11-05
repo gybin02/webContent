@@ -141,7 +141,7 @@ $("#glh-submit").click(function() {
 
 /*清除预设内容*/
 function clearData() {
-		localStorage.removeItem("index.html");
+		localStorage.removeItem("localData_"+$.parseJSON(localStorage.user).user.userId);
 		$("#doc-title").val("");
 		$("#doc-content").val("");
 		$(".simditor-body").html("");

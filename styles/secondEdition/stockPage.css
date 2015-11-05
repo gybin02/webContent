@@ -148,14 +148,64 @@
 #myTabContent .tabdiv.active {
 	display: block;
 }
-
-
-
-
-
-
-
-
+/*精华*/
+.elite-list .list-row-avatar .img-el {
+	margin-top: 30px;
+	text-align: center;
+	width: 8%;
+}
+.elite-list .list-row-avatar .content-main {
+	margin-top: 30px;
+}
+.elite-list .publish-time {
+	float: none;
+	display: inline-block;
+	font-size: 12px;
+}
+.elite-list .content-nick a {
+	color: #333;
+}
+.elite-list .content-bar a,
+.content-list a {
+	color: #22aee6;
+}
+.elite-list .content-nick a:hover,
+.elite-list .content-bar a:hover,
+.content-list a:hover {
+	text-decoration: none;
+}
+.content-html a {
+	color: #22aee6;
+}
+.elite-list .content-nick span {
+	margin-right: 0;
+	vertical-align: 0px;
+}
+.elite-list .content-nick .publish-time {
+	margin-left: 15px;
+}
+.elite-list .content-bar .bar-right a {
+	margin: 0;
+}
+.elite-list .content-bar {
+	width: auto;
+	float: none;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 10px;
+}
+.send-diy {
+	background-color: #22aee6;
+    height: 30px;
+    width: 125px;
+    padding: 0px;
+    margin-top: 10px;
+}
+.no-data-list {
+	font-size: 14px;
+	color: #999;
+	padding: 18px 0;
+}
 
 
 

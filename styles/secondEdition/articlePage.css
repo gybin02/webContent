@@ -599,6 +599,8 @@ input:-webkit-autofill {
 }
 .main-content a{
 	color: #0088C3;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 
 /*评论区*/

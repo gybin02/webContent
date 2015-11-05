@@ -76,7 +76,8 @@ $(document).ready(function(){
             $(".gl-user-ul").css("display","none");
         }
     });
-    /*老旧的文章链接跳转到新的链接*/
+    
+       /*老旧的文章链接跳转到新的链接*/
    
         oldLink=window.location.hash;
         newLink=oldLink.split("/");
@@ -84,4 +85,15 @@ $(document).ready(function(){
            window.location="/p/"+newLink[2]+".html";
         }
     
-});
+    /*只有是格隆汇导航才出现幻灯片*/
+   setTimeout(function(){
+   	 $("#naviUl>ul>li").on("click","a",function(){
+   	 if($(this).text()!="格隆汇"){
+        $(".slider").hide();
+   	 }else{
+   	 	$(".slider").show();
+   	 }
+   	})
+    },1000)
+  });
+

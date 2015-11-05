@@ -249,9 +249,12 @@ GLHApp.controller('MainController', ['$scope', '$rootScope', '$http', '$location
 	    }
 
         $scope.getArticleDatas = function (page) {
-	    	$scope.topicPaginationConf.currentPageNum = page || $scope.topicPaginationConf.currentPageNum;
+            $scope.topicPaginationConf.currentPageNum = page || $scope.topicPaginationConf.currentPageNum;
         	var articleCode =$scope.columnCode/* $routeParams.topicCode*/;
-            var params = {columnCode: $scope.columnCode, limit: 22, page: page};
+        	/*为了实现页面整齐，在导航是格隆汇的时候需要加入幻灯片这样就需要去掉何增加条*/
+        	var limit=articleCode=='GLH' ? 22 : 24;
+            var params = {columnCode: $scope.columnCode, limit: limit, page: page};
+            
             ApiService.get(ApiService.getApiUrl().getArticleList, params, function (response) {
                     $scope.topicList = [];
                     $scope.columnName = response.result.columnName;

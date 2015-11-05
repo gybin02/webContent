@@ -2,6 +2,18 @@
 <text-editor></text-editor>
 <text-editor-beta></text-editor-beta>
 <upload-pdf></upload-pdf>
+
+<link rel="stylesheet" href="styles/modal.css">
+<link rel="stylesheet" href="styles/at-user.css">
+<link rel="stylesheet" href="styles/home.css"/>
+<link rel="stylesheet" href="styles/tmPagination.css">
+<link rel="stylesheet" href="styles/user-editor.css">
+<link rel="stylesheet" href="styles/user-home.css">
+<link rel="stylesheet" href="styles/sec-brokers.css">
+<link rel="stylesheet" href="styles/f10.css">
+	
+<script src="scripts/vendor/highCharts/highcharts.js"></script>
+<script src="scripts/vendor/highCharts/highcharts-more.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/secondEdition/stockPage.css"/>
 
 
@@ -16,10 +28,15 @@
 				<div class="stock-info">
 					<h3><span ng-bind="stockInfo.name">酷派集团</span><span ng-if="stockInfo.stockCodeExtShow">({{stockInfo.stockCodeExtShow}})</span></h3>
 					<p>已收盘&nbsp;&nbsp;2015-10-27&nbsp;&nbsp;09:33:23&nbsp;&nbsp;(北京时间)</p>
-					<button id="addUserStock">加入自选</button><button id="trade">交易</button>
+					<button id="addUserStock" ng-if="!isUserStock" ng-click="addUserStock()">加入自选</button>
+					<button id="delUserStock" ng-if="isUserStock" ng-click="delUserStock()">取消自选</button>
+					<button id="trade" ng-disabled="stockInfo.type != 'us' && stockInfo.type != 'hk'" ng-click="trade(stockInfo.code)">交易</button>
 				</div>
 				<div class="stock-data">
-					<img id="reload" src="images/secondEdition/reload.gif"/>
+					<div ng-show="!stockInfoload">
+	                    <waiting wait-text="刷新ing..." is-center="true"></waiting>
+	                </div>
+					<img id="reload" src="images/secondEdition/reload.gif" ng-click="getStockInfo()" />
 					<div class="stock-table">
 						<span>最新价格</span><span>涨跌(%)</span> <br />
 						<span ng-class="stockInfo.fontColor" ng-bind="stockInfo.price">$1.6</span>
@@ -35,10 +52,6 @@
 				<!--tab标签-->
 				<div class="tabcolumn">
 					<ul id="tab-nav">
-						<!--<li class="active"><a href="javascript:;" data-name="extract">精华</a></li>
-						<li><a href="javascript:;" data-name="discuss">讨论</a></li>
-						<li><a href="javascript:;" data-name="F10Tab">格隆汇F10</a></li>
-						<li><a href="javascript:;" data-name="newsTab">公告</a></li>-->
 						<li ng-class="{'current-tab': currentTab == 'cream'}" ng-click="showTab('cream')">精华</li>
                         <li ng-class="{'current-tab': currentTab == 'post'}" ng-click="showTab('post')">讨论</li>
                          <!--<li ng-class="{'current-tab': currentTab == 'f10'}" ng-click="showTab('f10')">F10信息</li>-->
@@ -65,57 +78,57 @@
 	
 		<!--我是tab页-->
 		<div class="tab-wrap" ng-switch on="currentTab">
-			<!--<div id="myTabContent" class = "tab-content">
-				<div class="tab1 tabdiv active" id="extract">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit vel harum neque sed expedita nemo voluptas! Vitae assumenda dolore non ducimus accusantium quia molestiae dolor ab alias vel. Sint optio!
-				</div>
-				<div class="tab2 tabdiv" id="discuss">
-					2222222222222
-				</div>
-				<div class="tab3 tabdiv" id="F10Tab">
-					3333333333
-				</div>
-				<div class="tab4 tabdiv" id="newsTab">
-					44444444444444
-				</div>
-			</div>-->
+			<sec-brokers show="showSecBrokers" stock-code="stockCode"></sec-brokers>
 			<div ng-switch-when="cream">
                 <div ng-show="!isCreamLoaded">
                     <waiting wait-text="精华加载中,请稍候..." is-center="true"></waiting>
                 </div>
                 <div ng-if="creamList.length==0&&isCreamLoaded" class="no-data-list">暂时没有该股票相关的精华内容</div>
-                <div class="content-list" ng-repeat="item in creamList">
+                <div class="content-list elite-list" ng-repeat="item in creamList">
                     <div class="list-row-avatar">
                         <div class="img-el">
-                            <img alt="" ng-src="{{item.avatar}}" class="avator">
+                            <img alt="" ng-src="{{item.avatar}}" class="avator" onerror="imageError(this)">
                         </div>
                         <div class="content-main">
                             <div class="content-nick">
                                 <span><a user-popover user-Nick="{{item.nickname}}">{{item.nickname}}</a></span>
-                                <img src="../images/vip.png" ng-show="item.userType"/></div>
-                            <div ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">
-                                <b><span>{{item.title}}</span></b>
+                                <!--<img src="../images/vip.png" ng-show="item.userType"/>-->
+                                <!--1是橙色 代表个人-->
+								<div ng-if="item.userType==1" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px no-repeat"></div>
+								<!--2是绿色 代表机构-->
+								<div ng-if="item.userType==2" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -38px no-repeat" class="ng-scope"></div>
+								<!--3是蓝色  代表公司-->
+								<div ng-if="item.userType==3" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -19px no-repeat" class="ng-scope"></div>
+								<!--4是紫色 代表IR-->
+								<div ng-if="item.userType==4" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -57px no-repeat" class="ng-scope"></div>
+                                <div class="publish-time">
+                                	<span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
+                                      style="cursor: pointer"></span>
+                                    <span ng-if="item.type==0" class="cream-type">发表了哔哔</span>
+                                    <span ng-if="item.type==1" class="cream-type">发表了文章</span>
+                                    <span ng-if="item.type==2" class="cream-type">发表了研报</span>
+                                </div>
                             </div>
-                            <div class="content-summary">
+                            <div>
+                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">{{item.title}}</span>
+                                <div class="content-bar">
+	                                <div class="bar-right">
+	                                    <a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
+                                        <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看</a>
+                                        <a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>
+	                                    <!--<a ng-click="likePost($event,item.postId)">赞</a>
+	                                    <a ng-click="favPost($event,item.postId)">收藏</a>-->
+	                                </div>
+	                            </div>
+	                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
+                            </div>
+                            <!--文章详情-->
+                            <!--<div class="content-summary">
                                 <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
-                            </div>
+                            </div>-->
                             <div ng-if="item.file">
                                 <a ng-href="{{item.file}}" target="_blank">查看PDF原文</a>
                             </div>
-                            <div>
-                                <div class="publish-time">
-                                <span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
-                                      style="cursor: pointer"></span>
-                                </div>
-                                <div class="content-bar">
-                                    <div class="bar-right">
-                                        <a ng-click="postDetail(item.postId)">查看详情</a>
-                                         <a ng-click="reply($event,item.postId,item.userId)">评论</a>
-                                        <a ng-click="likePost($event,item.postId)">赞</a>
-                                        <a ng-click="favPost($event,item.postId)">收藏</a></div>
-                                </div>
-                            </div>
-                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
                         </div>
                     </div>
                 </div>
@@ -127,41 +140,51 @@
                     <waiting wait-text="帖子加载中,请稍候..." is-center="true"></waiting>
                 </div>
                 <div ng-if="postList.length==0&&isPostLoaded" class="no-data-list">暂时没有该股票相关的讨论</div>
-                <div class="content-list" ng-repeat="item in postList">
+                <div class="content-list elite-list" ng-repeat="item in postList">
                     <div class="list-row-avatar">
                         <div class="img-el">
-                            <img alt="" ng-src="{{item.avatar}}" class="commentAvatar">
+                            <img alt="" ng-src="{{item.avatar}}" class="commentAvatar" onerror="imageError(this)">
                         </div>
                         <div class="content-main">
                             <div class="content-nick">
                                 <span><a user-popover user-Nick="{{item.nickname}}">{{item.nickname}}</a></span>
-                                <img src="../images/vip.png" ng-show="item.userType"/></div>
-                            <div ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">
-                                <b><span>{{item.title}}</span></b>
+                                <!--<img src="../images/vip.png" ng-show="item.userType"/></div>-->
+                                <!--1是橙色 代表个人-->
+								<div ng-if="item.userType==1" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px no-repeat"></div>
+								<!--2是绿色 代表机构-->
+								<div ng-if="item.userType==2" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -38px no-repeat" class="ng-scope"></div>
+								<!--3是蓝色  代表公司-->
+								<div ng-if="item.userType==3" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -19px no-repeat" class="ng-scope"></div>
+								<!--4是紫色 代表IR-->
+								<div ng-if="item.userType==4" style="display: inline-block; bottom: 0px; left: 0px; width: 25px; height: 19px; background: url('images/secondEdition/Authentication.png') left 0px top -57px no-repeat" class="ng-scope"></div>
+								<div class="publish-time">
+	                                <span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
+	                                      style="cursor: pointer"></span>
+	                                <span ng-if="item.type==0" class="cream-type">发表了哔哔</span>
+                                    <span ng-if="item.type==1" class="cream-type">发表了文章</span>
+                                    <span ng-if="item.type==2" class="cream-type">发表了研报</span>
+	                            </div>
+	                        </div>
+                            <div>
+                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">{{item.title}}</span>
+                                <div class="content-bar">
+                                    <div class="bar-right">
+                                    	<a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
+                                        <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看详情</a>
+                                        <a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>
+	                                </div>
+	                            </div>
+	                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
                             </div>
-                            <div class="content-summary">
+                            <!--<div class="content-summary">
                                 <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
-                            </div>
+                            </div>-->
                             <div ng-if="item.fileName">
                                 <a ng-href="{{item.file}}" target="_blank">{{item.fileName}}</a>
                             </div>
-                            <div>
-                                <div class="publish-time">
-                                <span ng-bind="item.publishTimeLoc" ng-click="postDetail(item.postId)"
-                                      style="cursor: pointer"></span>
-                                </div>
-                                <div class="content-bar">
-                                    <div class="bar-right">
-                                        <a ng-click="postDetail(item.postId)">查看详情</a>
-                                         <a ng-click="reply($event,item.postId,item.userId)">评论</a>
-                                        <a ng-click="likePost($event,item.postId)">赞</a>
-                                        <a ng-click="favPost($event,item.postId)">收藏</a></div>
-                                </div>
-                            </div>
-                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
-                        </div>
-                    </div>
-                </div>
+	                    </div>
+	                </div>
+	            </div>
                 <tm-pagination conf="paginationPostConf"></tm-pagination>
             </div>
             
@@ -204,5 +227,13 @@
 			<div id="annoucement">温馨提示：格隆汇里任何用户或者嘉宾的发言，都有其特定立场，投资决策需要建立在独立思考之上。</div>
 		</div>
 	</div>
-
+	
 </div>
+
+<script type="text/javascript">
+	//图片损坏处理
+	function imageError(element) {
+	    element.onerror='';
+	    element.src='/images/default.jpg';
+	}
+</script>

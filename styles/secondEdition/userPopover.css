@@ -1,0 +1,108 @@
+.popover-container {
+	width: 295px;
+	border: 1px solid #ddd;
+	border-left: 5px solid #22aee6;
+	box-shadow: 0 7px 16px #ddd;
+	position:absolute;
+	display: none;
+	background: #fff;
+}
+.popover-container:after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border: 10px solid;
+	border-color: #fff transparent transparent transparent;
+	position: absolute;
+	bottom: -20px;
+	left: 20px;
+}
+.popover-container p {
+	margin: 0;
+}
+.user-info {
+	padding: 10px 0;
+}
+.user-info > span {
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	line-height: 80px;
+	text-align: center;
+}
+.user-info > span img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.user-info .info-box {
+	display: inline-block;
+	vertical-align: middle;
+}
+.info-box .name, 
+.followNum, 
+.postNum, 
+.fanNum {
+	color: #22aee6;
+}
+.info-box img {
+	margin-right: 7px;
+}
+.info-box .address {
+	margin-left: 30px;
+}
+.info-box p span {
+	margin-left: 5px;
+	margin-right: 8px;
+}
+.popover-container .brief {
+	height: 50px;
+	padding: 5px 15px;
+	background-color: #f5f4f2;
+}
+#interactive {
+	padding: 7px 0;
+	color: #22aee6;
+	text-align: right;
+}
+#interactive span {
+	margin-right: 15px;
+	text-decoration: underline;
+}
+
+
+.user-popover:hover{
+	
+	color: #333;
+}
+span.userFollow{ cursor: pointer;}
+span.userUnfollow{ cursor: pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
