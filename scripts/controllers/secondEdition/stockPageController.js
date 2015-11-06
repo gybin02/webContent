@@ -239,7 +239,8 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             file: temp.file,
                             publishTimeLoc: temp.publishTimeLoc,
                             userType: temp.userType,
-                            type: temp.type
+                            type: temp.type,
+                            postCount: temp.postCount.read
                         })
 
                         if (userIdCollections.indexOf(temp.userId) == -1) {

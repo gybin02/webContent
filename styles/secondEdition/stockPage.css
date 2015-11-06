@@ -194,8 +194,44 @@
 	vertical-align: bottom;
 	margin-left: 10px;
 }
+.elite-list .statistics {
+	margin-top: 25px;
+	color: #999;
+	font-size: 12px;
+}
+.elite-list .statistics span {
+	margin-left: 5px;
+	line-height: 20px;
+}
+/*公告*/
+.notice-list .publish-time {
+	float: right;
+	width: auto;
+	padding-right: 10px;
+}
+#noticeList {
+	padding: 1px 18px;
+}
+#noticeList .list-sig {
+	display: inline-block;
+	vertical-align: 14px;
+	margin-right: 10px;
+	width: 1%;
+}
+#noticeList .list-sig span {
+	display: block;
+	width: 8px;
+	height: 8px;
+	background-color: #d5dde1;
+}
+#noticeList .content-main {
+	display: inline-block;
+	width: 96%;
+	padding-bottom: 20px;
+}
+
 .waiting > .center_waiting {
-	padding-top: 115px;
+	padding-top: 100px;
 }
 .send-diy {
 	background-color: #22aee6;

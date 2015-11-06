@@ -79,6 +79,7 @@
 		<!--我是tab页-->
 		<div class="tab-wrap" ng-switch on="currentTab">
 			<sec-brokers show="showSecBrokers" stock-code="stockCode"></sec-brokers>
+			<!--精华推荐-->
 			<div ng-switch-when="cream">
                 <div ng-if="creamList.length==0&&isCreamLoaded" class="no-data-list">暂时没有该股票相关的精华内容</div>
                 <div class="content-list elite-list" ng-repeat="item in creamList">
@@ -120,11 +121,14 @@
 	                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
                             </div>
                             <!--文章详情-->
-                            <!--<div class="content-summary">
+                            <div class="content-summary">
                                 <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
-                            </div>-->
+                            </div>
                             <div ng-if="item.file">
                                 <a ng-href="{{item.file}}" target="_blank">查看PDF原文</a>
+                            </div>
+                            <div class="statistics">
+                            	<img src="images/look.png" alt="" /><span>{{item.postCount}}</span>
                             </div>
                         </div>
                     </div>
@@ -196,16 +200,18 @@
                 <!--<tm-pagination conf="paginationPostConf"></tm-pagination>-->
             </div>
             
-            <div ng-switch-when="notice">
+            <div ng-switch-when="notice" id="noticeList">
                 <div ng-show="!isNoticeLoaded">
                     <waiting wait-text="公告加载中,请稍候..." is-center="true"></waiting>
                 </div>
                 <div ng-if="NoticeList.length==0&&isNoticeLoaded" class="no-data-list">暂时没有该股票相关的公告</div>
-                <div class="content-list" ng-repeat="item in NoticeList">
+                <div class="content-list notice-list" ng-repeat="item in NoticeList">
                     <div class="list-row">
+                    	<div class="list-sig"><span></span></div>
                         <div class="content-main">
                             <div>
                                 <b><span>{{item.title}}</span></b>
+                                <div class="publish-time"><span ng-bind="item.publishTime | datetimeFormat"></span></div>
                             </div>
                             <div class="content-summary" ng-if="item.fileType=='htm'||item.fileType=='html'">
                                 <span class="original-label">原文地址：</span><a ng-href="{{item.fileUrl}}"
@@ -216,11 +222,8 @@
                                 <span class="original-label">PDF文件下载：</span><a ng-href="{{item.fileUrl}}"
                                                                                target="_blank">{{item.fileUrl}}</a>
                             </div>
-                            <div style="cursor: pointer">
-                                <div class="publish-time"><span ng-bind="item.publishTime | datetimeFormat"></span>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+                            
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
