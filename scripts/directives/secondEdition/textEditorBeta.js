@@ -204,7 +204,7 @@ GLHApp.directive("textEditorBeta", ["$timeout", "$UserService", "ApiService", "C
 							$this.trigger('change');
 						}
 						var numb = $(".word-number");
-						numb.text(188 - calcByteCount($this.text()));
+						numb.text(188 - $this.text().length);
 						if (parseInt(numb.text()) <= 0) {
 							console.log(numb.text());
 							$("span.word-number").css({

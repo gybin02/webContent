@@ -80,9 +80,6 @@
 		<div class="tab-wrap" ng-switch on="currentTab">
 			<sec-brokers show="showSecBrokers" stock-code="stockCode"></sec-brokers>
 			<div ng-switch-when="cream">
-                <div ng-show="!isCreamLoaded">
-                    <waiting wait-text="精华加载中,请稍候..." is-center="true"></waiting>
-                </div>
                 <div ng-if="creamList.length==0&&isCreamLoaded" class="no-data-list">暂时没有该股票相关的精华内容</div>
                 <div class="content-list elite-list" ng-repeat="item in creamList">
                     <div class="list-row-avatar">
@@ -132,7 +129,14 @@
                         </div>
                     </div>
                 </div>
-                <tm-pagination conf="paginationCreamConf"></tm-pagination>
+                <div ng-show="!isCreamLoaded">
+                    <waiting wait-text="精华加载中,请稍候..." is-center="true"></waiting>
+                </div>
+                <div class="view-button" data-conf="{{creamconf}}">
+                	<button ng-if="isCreamLeft" class="view-more" ng-click="viewMoreCream()">加载更多</button>
+                	<button ng-if="!isCreamLeft" class="no-more">没有更多内容了</button>
+                </div>
+                <!--<tm-pagination conf="paginationCreamConf"></tm-pagination>-->
             </div>
             
             <div ng-switch-when="post">
@@ -185,7 +189,11 @@
 	                    </div>
 	                </div>
 	            </div>
-                <tm-pagination conf="paginationPostConf"></tm-pagination>
+	            <div class="view-button" data-conf="{{postconf}}">
+                	<button ng-if="isPostLeft" class="view-more" ng-click="viewMorePost()">加载更多</button>
+                	<button ng-if="!isPostLeft" class="no-more">没有更多内容了</button>
+                </div>
+                <!--<tm-pagination conf="paginationPostConf"></tm-pagination>-->
             </div>
             
             <div ng-switch-when="notice">

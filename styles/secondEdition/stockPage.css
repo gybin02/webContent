@@ -194,6 +194,9 @@
 	vertical-align: bottom;
 	margin-left: 10px;
 }
+.waiting > .center_waiting {
+	padding-top: 115px;
+}
 .send-diy {
 	background-color: #22aee6;
     height: 30px;
@@ -206,8 +209,23 @@
 	color: #999;
 	padding: 18px 0;
 }
-
-
+.view-button {
+	text-align: center;
+}
+.view-button .view-more, .view-button  .no-more {
+	width: 160px;
+	height: 25px;
+	border-radius: 4px;
+	color: #fff;
+	margin: 30px auto 20px;
+	border: 0;
+}
+.view-button .view-more {
+	background-color: #d5dde1;
+}
+.view-button .no-more {
+	background-color: #999;
+}
 
 
 

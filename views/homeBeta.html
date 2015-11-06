@@ -43,7 +43,7 @@
 		<button type="button" class="btn btn-default clarity-ios" ng-click="appDownloadIos()">
 			<a>iOS版APP下载</a>
 		</button>
-		<button type="button" class="btn btn-default clarity" ng-click="appDownload()">
+		<button type="button" class="btn btn-default clarity"  ng-click="appDownload()">
 			&nbsp;&nbsp;<a>安卓版下载<a>&nbsp;&nbsp;&nbsp;
 		</button>
 	</div>
@@ -55,7 +55,7 @@
 				<ul>
 					<li ng-repeat="columnItem in navColumns"
 						ng-class="{columnSelect:columnItem.columnCode==columnCode}">
-						<a ng-click="chooseColumn(columnItem.columnCode)">{{columnItem.columnName}}</a>
+						<a data-btn="{{columnItem.columnCode}}"  ng-click="chooseColumn(columnItem.columnCode)">{{columnItem.columnName}}</a>
 					</li>
 					<!--<li ng-class="{columnSelect:columnCode=='all'}"><a ng-click="chooseColumn('all')" >全部</a></li>-->
 				</ul>
@@ -73,9 +73,9 @@
 				</button>
 	
 				<ul class="dropdown-menu i-want-post" aria-labelledby="dropdownMenu1">
-					<li><a ng-click="showShortMsg()">哔哔一下</a></li>
-					<li><a ng-click="showTextEditor()">发表文章</a></li>
-					<li><a ng-click="showUploadPdf()">上传PDF</a></li>
+					<li><a  class="bb-add" ng-click="showShortMsg()">哔哔一下</a></li>
+					<li><a  class="article-add" ng-click="showTextEditor()">发表文章</a></li>
+					<li><a  class="upload-pdf" ng-click="showUploadPdf()">上传PDF</a></li>
 				</ul>
 			</div>
 		</div>
@@ -85,7 +85,7 @@
 	<div id="naviUl">
 		<ul>
 			<li ng-repeat="columnItem in navColumns" ng-class="{columnSelect:columnItem.columnCode==columnCode}">
-				<a ng-click="chooseColumn(columnItem.columnCode)">{{columnItem.columnName}}</a>
+				 <a data-btn="{{columnItem.columnCode}}" ng-click="chooseColumn(columnItem.columnCode)">{{columnItem.columnName}}</a>
 			</li>
 			<!--<li ng-class="{columnSelect:columnCode=='all'}"><a ng-click="chooseColumn('all')" >全部</a></li>-->
 		</ul>
@@ -306,20 +306,20 @@
 								</div>
 								<div id="hot-msg-container-content-timer">{{item.publishTimeLoc}}</div>
 							</div>
-							<div id="hot-msg-container-content-text" href="{{item.postId}}" ng-click="viewDetail(item.postId)">
+							<div id="hot-msg-container-content-text" class="bb-text" href="{{item.postId}}" ng-click="viewDetail(item.postId)">
 								<a href="javascript:;" style="color: #333333;">{{item.summary}}</a>
 								<img src="../images/secondEdition/icon_Goto.png" />
 							</div>
 						</div>
 
-						<div id="hot-msg-container-content" ng-if="$last" style="border-bottom: none">
+						<div id="hot-msg-container-content"  ng-if="$last" style="border-bottom: none">
 							<div id="hot-msg-container-content-label">
 								<div id="hot-msg-container-content-user">
 									<a href="/#/userInfo/{{item.userId}}" target="_blank">{{item.nickname}}</a>
 								</div>
 								<div id="hot-msg-container-content-timer">{{item.publishTimeLoc}}</div>
 							</div>
-							<div id="hot-msg-container-content-text" href="{{item.postId}}" ng-click="viewDetail(item.postId)">
+							<div id="hot-msg-container-content-text" class="bb-text" href="{{item.postId}}" ng-click="viewDetail(item.postId)">
 								<a href="javascript:;" style="color: #333333;">{{item.summary}}</a>
 								<img src="../images/secondEdition/icon_Goto.png" />
 							</div>
@@ -342,7 +342,7 @@
 				<div id="hot-msg-container">
 					<div id="hot-msg-container-user" ng-repeat="recomUser in recommendUserList track by $index">
 						<!--userId-->
-						<a href="/#/userInfo/{{recomUser.userId}}" target="_blank"> <img class="index-img-circle" ng-src="{{recomUser.avatar}}" />
+						<a  href="/#/userInfo/{{recomUser.userId}}" target="_blank"> <img class="index-img-circle" ng-src="{{recomUser.avatar}}" />
 							<br>
 						</a> <span><a href="/#/userInfo/{{recomUser.userId}}"
 							target="_blank">{{recomUser.nickname}}</a></span>

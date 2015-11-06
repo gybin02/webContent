@@ -151,21 +151,21 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
             }
         };
 
-        $scope.paginationCreamConf = {
-            //当前页码
-            currentPageNum: 1,
-            //每页显示数
-            itemsPerPage: 10,
-            //页码显示个数
-            pagesLength: 9,
-            //总页数
-            numberOfPages: 0,
-            //总记录数
-            totalItems: 0,
-            onChange: function () {
-                $scope.getCreamList();
-            }
-        };
+//      $scope.paginationCreamConf = {
+//          //当前页码
+//          currentPageNum: 1,
+//          //每页显示数
+//          itemsPerPage: 10,
+//          //页码显示个数
+//          pagesLength: 9,
+//          //总页数
+//          numberOfPages: 0,
+//          //总记录数
+//          totalItems: 0,
+//          onChange: function () {
+//              $scope.getCreamList();
+//          }
+//      };
 
         $scope.paginationPostConf = {
             //当前页码
@@ -208,18 +208,22 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                 }
             );
         }
-
+        
+        
         //获取精华帖子
+        var creampage = 1;
+        $scope.creamList = [];
+        $scope.isCreamLeft = true;
         $scope.getCreamList = function () {
-            $scope.creamList = [];
-            var params = {page: $scope.paginationCreamConf.currentPageNum,
-                count: $scope.paginationCreamConf.itemsPerPage,
+            var params = {page: creampage,
+                count: 10,
                 stockCode: $scope.stockCode, cream: true};
             $scope.isCreamLoaded = false;
             ApiService.get(ApiService.getApiUrl().getStockPost, params,
                 function (response) {
-                    $scope.paginationCreamConf.totalItems = response.totalCount;
-                    $scope.paginationCreamConf.currentCounts = response.result.length;
+//                  $scope.paginationCreamConf.totalItems = response.totalCount;
+//                  $scope.paginationCreamConf.currentCounts = response.result.length;
+					$scope.creamconf = response.totalCount;
                     //异步用户信息
                     var userIdCollections = [];
                     for (var index in response.result) {
@@ -249,21 +253,33 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 
                 }, function (response) {
                     $scope.isCreamLoaded = true;
-                }
-            );
+                });
+                
+        }
+        $scope.getCreamList();
+        
+        $scope.viewMoreCream = function() {
+            creampage++;
+            if (creampage*10 >= $scope.creamconf) {
+            	$scope.isCreamLeft = false;
+            }
+        	$scope.getCreamList();
         }
 
         //获取全部帖子
+        var postpage = 1;
+        $scope.postList = [];
+        $scope.isPostLeft = true;
         $scope.getPostList = function () {
-            $scope.postList = [];
-            var params = {page: $scope.paginationPostConf.currentPageNum,
-                count: $scope.paginationPostConf.itemsPerPage,
+            var params = {page: postpage,
+                count: 10,
                 stockCode: $scope.stockCode, cream: false};
             $scope.isPostLoaded = false;
             ApiService.get(ApiService.getApiUrl().getStockPost, params,
                 function (response) {
-                    $scope.paginationPostConf.totalItems = response.totalCount;
-                    $scope.paginationPostConf.currentCounts = response.result.length;
+//                  $scope.paginationPostConf.totalItems = response.totalCount;
+//                  $scope.paginationPostConf.currentCounts = response.result.length;
+					$scope.postconf = response.totalCount;
                     //异步用户信息
                     var userIdCollections = [];
                     for (var index in response.result) {
@@ -296,6 +312,15 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                 }
             );
         }
+        $scope.getPostList();
+        
+        $scope.viewMorePost = function() {
+            postpage++;
+            if (postpage*10 >= $scope.postconf) {
+            	$scope.isPostLeft = false;
+            }
+        	$scope.getPostList();
+        }
 
 
         //f10股票信息
@@ -326,7 +351,7 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 
         //跳转到帖子详情
         $scope.postDetail = function (postId) {
-            window.location.href="/p/" + postId+".html";
+            window.open("/p/" + postId+".html");
         }
         
         //添加自选股

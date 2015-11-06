@@ -187,9 +187,9 @@
                                     <img src="images/secondEdition/NAVicon_Write.png">
                                 </a>
                                 <ul class="dropdown-menu editor-button gl-post-ul" >
-                                    <li><a ng-click="showShortMsg()">哔哔一下</a></li>
-                                    <li><a ng-click="showTextEditor()">发表文章</a></li>
-                                    <li><a ng-click="showUploadPdf()">上传PDF</a></li>
+                                    <li><a class="bb-add" ng-click="showShortMsg()">哔哔一下</a></li>
+                                    <li><a class="article-add" ng-click="showTextEditor()">发表文章</a></li>
+                                    <li><a class="pdf-upload"  ng-click="showUploadPdf()">上传PDF</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -249,10 +249,10 @@
                                     <img src="images/secondEdition/NAVicon_Write.png">
 
                                 </a>
-                                <ul class="gl-post-ul dropdown-menu editor-button"  >
-                                    <li><a ng-click="showShortMsg()">哔哔一下</a></li>
-                                    <li><a ng-click="showTextEditor()">发表文章</a></li>
-                                    <li><a ng-click="showUploadPdf()">上传PDF</a></li>
+                                 <ul class="dropdown-menu editor-button gl-post-ul" >
+                                    <li><a class="bb-add" ng-click="showShortMsg()">哔哔一下</a></li>
+                                    <li><a class="article-add" ng-click="showTextEditor()">发表文章</a></li>
+                                    <li><a class="pdf-upload"  ng-click="showUploadPdf()">上传PDF</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -281,9 +281,9 @@
                                     <img src="images/secondEdition/icon_HeadSubscript.png">
                                 </a>
                                 <ul class="dropdown-menu user-button gl-user-ul" style="display: none" >
-                                    <li><a href="/#/userHome">我的主页</a></li>
-                                    <li><a ng-click="updateInfo()">个人设置</a></li>
-                                    <li><a ng-click="exit()">退出登录</a></li>
+                                    <li><a class="my-home" href="/#/userHome">我的主页</a></li>
+                                    <li><a class="my-set" ng-click="updateInfo()">个人设置</a></li>
+                                    <li><a class="logout" ng-click="exit()">退出登录</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -350,9 +350,7 @@
                 </div>
             </div>
         </div>
-        
-	
-<script src="scripts/vendor/swiper/swiper3.js"></script>	
+
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -363,7 +361,11 @@ var _hmt = _hmt || [];
 })();
 
 </script>
-     
+<script src="/scripts/vendor/swiper/swiper3.js"></script>	
+<script src="/scripts/common/tongji.js"></script>
+<script type="text/javascript">
+	tongji.homePage();
+</script>
     </body>
 
 </html>
