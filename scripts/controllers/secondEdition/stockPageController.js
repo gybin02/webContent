@@ -42,6 +42,7 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         
         //获取个股行情
         $scope.getStockInfo = function() {
+        	var x, n = 0, rotINT;
         	$scope.stockInfoload = false;
         	ApiService.get(ApiService.getApiUrl().stockDetail, {stocks: $scope.stockCode, detail:true}, function (response) {
 	            $scope.isBaseInfoLoaded = true;
@@ -122,9 +123,51 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 	
 	        }, function (response) {
 	        	//
+	        	//$("#reload").css("transform", "rotate(90deg)");
+	        	
 	        });
         };
         $scope.getStockInfo();
+        
+        var x, y, n = 0, ny = 0, rotINT, rotYINT
+		function rotateDIV() {
+		    x = document.getElementById("reload")
+		        clearInterval(rotINT)
+		        rotINT = setInterval("startRotate()", 10)
+		}
+		function rotateYDIV() {
+		    y = document.getElementById("rotatey1")
+		        clearInterval(rotYINT)
+		        rotYINT = setInterval("startYRotate()", 10)
+		}
+		function startRotate() {
+		    n = n + 1
+		        x.style.transform = "rotate(" + n + "deg)"
+		        x.style.webkitTransform = "rotate(" + n + "deg)"
+		        x.style.OTransform = "rotate(" + n + "deg)"
+		        x.style.MozTransform = "rotate(" + n + "deg)"
+		        if (n == 180 || n == 360) {
+		            clearInterval(rotINT)
+		            if (n == 360) {
+		                n = 0
+		            }
+		        }
+		}
+		function startYRotate() {
+		    ny = ny + 1
+		        y.style.transform = "rotateY(" + ny + "deg)"
+		        y.style.webkitTransform = "rotateY(" + ny + "deg)"
+		        y.style.OTransform = "rotateY(" + ny + "deg)"
+		        y.style.MozTransform = "rotateY(" + ny + "deg)"
+		        if (ny == 180 || ny >= 360) {
+		            clearInterval(rotYINT)
+		            if (ny >= 360) {
+		                ny = 0
+		            }
+		        }
+		}
+		
+		rotateDIV();
         
         $scope.$on('loadFeeds', function() {
         	if($scope.currentTab == "post"){
@@ -225,15 +268,15 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 //                  $scope.paginationCreamConf.currentCounts = response.result.length;
 					$scope.creamconf = response.totalCount;
                     //异步用户信息
-                    var userIdCollections = [];
+//                  var userIdCollections = [];
                     for (var index in response.result) {
                         var temp = response.result[index];
                         CommService.formatPubTime(temp, temp.createDate);
                         $scope.creamList.push({
                             postId: temp.postId,
                             userId: temp.userId,
-                            avatar: "",
-                            nickname: "",
+                            avatar: temp.avatar,
+                            nickname: temp.nickname,
                             title: temp.title,
                             summary: temp.summary,
                             file: temp.file,
@@ -243,14 +286,14 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             postCount: temp.postCount.read
                         })
 
-                        if (userIdCollections.indexOf(temp.userId) == -1) {
-                            userIdCollections.push(temp.userId);
-                        }
+//                      if (userIdCollections.indexOf(temp.userId) == -1) {
+//                          userIdCollections.push(temp.userId);
+//                      }
                     }
                     $scope.isCreamLoaded = true;
                     //异步获取用户信息
-                    var userIds = userIdCollections.join(',');
-                    $scope.asyncLoadUser(userIds, $scope.creamList);
+//                  var userIds = userIdCollections.join(',');
+//                  $scope.asyncLoadUser(userIds, $scope.creamList);
 
                 }, function (response) {
                     $scope.isCreamLoaded = true;
@@ -289,8 +332,7 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                         $scope.postList.push({
                             postId: temp.postId,
                             userId: temp.userId,
-                            avatar: "",
-                            nickname: "",
+                            avatar: temp.avatar,
                             title: temp.title,
                             summary: temp.summary,
                             file: temp.file,
@@ -299,14 +341,14 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             type: temp.type
                         })
 
-                        if (userIdCollections.indexOf(temp.userId) == -1) {
-                            userIdCollections.push(temp.userId);
-                        }
+//                      if (userIdCollections.indexOf(temp.userId) == -1) {
+//                          userIdCollections.push(temp.userId);
+//                      }
                     }
                     $scope.isPostLoaded = true;
                     //异步获取用户信息
-                    var userIds = userIdCollections.join(',');
-                    $scope.asyncLoadUser(userIds, $scope.postList);
+//                  var userIds = userIdCollections.join(',');
+//                  $scope.asyncLoadUser(userIds, $scope.postList);
 
                 }, function (response) {
                     $scope.isPostLoaded = true;
@@ -330,22 +372,6 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
             $scope.companyInfo=response.result;
         });
         
-        //异步加载用户信息
-        $scope.asyncLoadUser = function (userIds, data) {
-            ApiService.get(ApiService.getApiUrl().getUserList, { userIds: userIds }, function (response) {
-                if (response.result.length > 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        angular.forEach(response.result, function (u) {
-                            if (data[i].userId == u.userId) {
-                                data[i].nickname = u.nickname;
-                                data[i].avatar = u.avatar;
-                            }
-                        })
-                    }
-                }
-            });
-        }
-
         $scope.showTab = function (currentTab) {
             $scope.currentTab = currentTab;
         }

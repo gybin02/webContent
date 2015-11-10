@@ -13,6 +13,7 @@ function glhLogin(opts) {
 
 	return {
 		opts: opt,
+		isShow:false,
 		logout: function() {
 			var $this = this;
 			            $("#noLogin").removeClass("ng-hide");
@@ -54,6 +55,7 @@ function glhLogin(opts) {
 		},
 		showLogin: function(callBack) {
 			//拼接html
+			$this=this;
 			var loginBoxHTML = '<div class="mask"></div>';
 			loginBoxHTML += '<div class="article-login">';
 			loginBoxHTML += '<p><span>登录到格隆汇</span><img id="closePopup" onClick="glhLogin.hideLogin()" src="/images/secondEdition/close.png"/></p>';
@@ -70,7 +72,7 @@ function glhLogin(opts) {
 			loginBoxHTML += '	<label><input type="checkbox" name="" id="keep-pwd" value="" />记住密码</label>';
 			loginBoxHTML += '	<a  onclick="glhLogin.hideLogin()"; href="/#/updatePwd">忘记密码？</a>';
 			loginBoxHTML += '</div>'
-			loginBoxHTML += '<input  type="button" onClick="glhLogin.submit()" value="登录" class="submit" id="glhLogin-submit"/>';
+			loginBoxHTML += '<input  type="submit" onClick="glhLogin.submit()" value="登录" class="submit" id="glhLogin-submit"/>';
 			loginBoxHTML += '<p class="err">登录失败，用户名或密码错误</p>';
 			loginBoxHTML += '</form>';
 			loginBoxHTML += '<p onclick="glhLogin.hideLogin()" class="register">还没有账号？<a href="/#/register">立即注册</a></p>';
@@ -84,8 +86,18 @@ function glhLogin(opts) {
 			if(callBack){
 				this.successCallback=callBack;
 			}
+			/*点回车自动登录*/
+			$(document).on("keydown keypress",function(e){
+				if(e.keyCode==13){
+					console.log(e.keyCode);
+					$this.submit();
+				}
+			})
+			
+			
 		},
 		hideLogin: function() {
+			$(document).unbind("keydown keypress");//隐藏登录时窗移除事件
 			$(".article-login").fadeOut(100);
 			$(".mask").fadeOut(100);
 			$("#glhLogin-submit").removeAttr("disabled"); 

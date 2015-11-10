@@ -101,13 +101,13 @@
                         <td>{{shMarketFlowDetail.transactionStatus}}</td>
 
                         <td ng-if="shMarketFlowDetail.daliyInflow>=0"><span class="red">
-                            {{shMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                            {{shMarketFlowDetail.daliyInflow}}&nbsp;{{hkMarketFlowDetail.daliyInflowUnit}}
                         </span></td>
                         <td ng-if="shMarketFlowDetail.daliyInflow<0"><span class="green">
-                            {{shMarketFlowDetail.daliyInflow}}&nbsp;亿元
+                            {{shMarketFlowDetail.daliyInflow}}&nbsp;{{shMarketFlowDetail.daliyInflowUnit}}
                         </span></td>
 
-
+  
                         <td><span class="money">{{shMarketFlowDetail.dailyBalance}}</span></td>
                         <td><span class="up"  >{{shMarketFlowDetail.risingCount}}</span></td>
                         <td><span class="money">{{shMarketFlowDetail.flatCount}}</span></td>

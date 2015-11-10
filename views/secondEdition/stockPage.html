@@ -27,7 +27,7 @@
 			<div id="stockInfoWrap">
 				<div class="stock-info">
 					<h3><span ng-bind="stockInfo.name">酷派集团</span><span ng-if="stockInfo.stockCodeExtShow">({{stockInfo.stockCodeExtShow}})</span></h3>
-					<p>已收盘&nbsp;&nbsp;2015-10-27&nbsp;&nbsp;09:33:23&nbsp;&nbsp;(北京时间)</p>
+					<!--<p>已收盘&nbsp;&nbsp;2015-10-27&nbsp;&nbsp;09:33:23&nbsp;&nbsp;(北京时间)</p>-->
 					<button id="addUserStock" ng-if="!isUserStock" ng-click="addUserStock()">加入自选</button>
 					<button id="delUserStock" ng-if="isUserStock" ng-click="delUserStock()">取消自选</button>
 					<button id="trade" ng-disabled="stockInfo.type != 'us' && stockInfo.type != 'hk'" ng-click="trade(stockInfo.code)">交易</button>
@@ -108,22 +108,20 @@
                                 </div>
                             </div>
                             <div>
-                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">{{item.title}}</span>
-                                <div class="content-bar">
-	                                <div class="bar-right">
-	                                    <a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
-                                        <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看</a>
-                                        <a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>
-	                                    <!--<a ng-click="likePost($event,item.postId)">赞</a>
-	                                    <a ng-click="favPost($event,item.postId)">收藏</a>-->
-	                                </div>
-	                            </div>
-	                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
+                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">《{{item.title}}》</span>
                             </div>
                             <!--文章详情-->
                             <div class="content-summary">
                                 <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
                             </div>
+                            <div class="content-bar">
+                                <div class="bar-right">
+                                	<a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
+                                    <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看详情</a>
+                                    <!--<a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>-->
+                                </div>
+                            </div>
+                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
                             <div ng-if="item.file">
                                 <a ng-href="{{item.file}}" target="_blank">查看PDF原文</a>
                             </div>
@@ -143,6 +141,7 @@
                 <!--<tm-pagination conf="paginationCreamConf"></tm-pagination>-->
             </div>
             
+            <!--讨论-->
             <div ng-switch-when="post">
                 <div ng-show="!isPostLoaded">
                     <waiting wait-text="帖子加载中,请稍候..." is-center="true"></waiting>
@@ -174,19 +173,19 @@
 	                            </div>
 	                        </div>
                             <div>
-                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">{{item.title}}</span>
-                                <div class="content-bar">
-                                    <div class="bar-right">
-                                    	<a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
-                                        <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看详情</a>
-                                        <a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>
-	                                </div>
-	                            </div>
-	                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
+                                <span ng-if="item.title" ng-click="postDetail(item.postId)" style="cursor: pointer">《{{item.title}}》</span>
                             </div>
-                            <!--<div class="content-summary">
+                            <div class="content-summary">
                                 <span content-html bind-html="{{item.summary|ellipsis:100}}"></span>
-                            </div>-->
+                            </div>
+                        	<div class="content-bar">
+                                <div class="bar-right">
+                                	<a ng-if="item.type==1||item.type==2" ng-click="postDetail(item.postId)">阅读</a>
+                                    <a ng-if="item.type==0" ng-click="postDetail(item.postId)">查看详情</a>
+                                    <!--<a ng-if="item.type==0" ng-click="reply($event,item.postId,item.userId)">评论</a>-->
+                                </div>
+                            </div>
+                            <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
                             <div ng-if="item.fileName">
                                 <a ng-href="{{item.file}}" target="_blank">{{item.fileName}}</a>
                             </div>

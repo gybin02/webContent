@@ -4,6 +4,7 @@ var articleUserId = $("#user-id").val();
 (function() {
 	$(function() {
 			Comment.initPagination();
+			articleLogin.needLogin();
 			//关注状态修改
 			articleLogin.followStatus(articleUserId);
 			//获取帖子收藏等信息
@@ -18,34 +19,35 @@ var articleUserId = $("#user-id").val();
 
 	//是否弹出登录框
 	$("#not-login .logging").on("click", function() {
-		$(".article-login, .mask").fadeIn(400);
+		articleLogin.showLogin();
 	})
 	$(".mask, #closePopup").on("click", function() {
-		$(".article-login, .mask").fadeOut(400);
-		$("#login-form .err").css("visibility", "hidden");
+		articleLogin.closeLogin();
 	})
+	
 
 	//提交登录验证
 	$("#submit").on("click", function(e) {
 		e.preventDefault();
 		articleLogin.loginSubmit();
 	})
+	
 
 	//文章作者链接
 	$(".author-info a").attr("href", "/#/userInfo/" + articleUserId);
 
 	//关注用户相关
 	$("#follow").on("click", function() {
-		if (!window.localStorage.user) {
-			$(".article-login, .mask").fadeIn(400);
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 			return;
 		} else {
 			interactiveFunc.follow(articleUserId);
 		}
 	});
 	$("#unfollow").on("click", function() {
-		if (!window.localStorage.user) {
-			$(".article-login, .mask").fadeIn(400);
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 			return;
 		} else {
 			interactiveFunc.unfollow(articleUserId);
@@ -55,8 +57,8 @@ var articleUserId = $("#user-id").val();
 
 	//帖子点赞
 	$(".favorite").on("click", function() {
-		if (!window.localStorage.user) {
-			$(".article-login, .mask").fadeIn(400);
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 		} else {
 			if ($(".favorite span").hasClass('active')) {
 				interactiveFunc.cancelFavorite(articleId);
@@ -67,8 +69,8 @@ var articleUserId = $("#user-id").val();
 	});
 	//帖子收藏
 	$(".collect").on("click", function() {
-		if (!window.localStorage.user) {
-			$(".article-login, .mask").fadeIn(400);
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 		} else {
 			if ($(".collect span").hasClass('active')) {
 				interactiveFunc.removeColloct(articleId);
@@ -81,8 +83,8 @@ var articleUserId = $("#user-id").val();
 	});
 	//发送私信
 	$("#sendmsg").on("click", function() {
-		if (!window.localStorage.user) {
-			$(".article-login, .mask").fadeIn(400);
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 		} else {
 			var userInfo = JSON.parse(window.localStorage.user);
 			$("#smg-popup i").html($("h3.author-name").text()); //取的文章作者的昵称 zhongyi
@@ -106,8 +108,8 @@ var articleUserId = $("#user-id").val();
 
 	//发表评论
 	$("#comment-btn").on("click", function() {
-		if (!window.localStorage.user) {
-			alert("请先登录");
+		if (!window.localStorage.user || need) {
+			articleLogin.showLogin();
 			return;
 		} else {
 			commentText = $("#comment-text").val();
@@ -143,7 +145,7 @@ var articleUserId = $("#user-id").val();
 var articleLogin = {};
 //登录状态检测，是否显示登录状态栏
 articleLogin.checkStatus = function() {
-	if (!window.localStorage.user) {
+	if (!window.localStorage.user || need) {
 		$("#not-login").css("display", "block");
 		$("#logged-in").css("display", "none");
 	} else {
@@ -208,6 +210,9 @@ articleLogin.loginSubmit = function() {
 				articleLogin.followStatus(articleUserId);
 				//获取帖子收藏等信息
 				interactiveFunc.getArticleDetail(articleId);
+				need = false;
+				//解绑keyup事件
+				$(document).unbind("keyup");
 			} else {
 				//验证失败
 				$("#login-form .err").css("visibility", "visible").html(response.message);
@@ -230,6 +235,38 @@ articleLogin.logOut = function() {
 	})
 	location.reload();
 };
+
+//判断是否需要登录
+var need = false;
+articleLogin.needLogin = function() {
+	/*获得服务器用户状态*/
+	$.get("/api/user/status/get", function(response) {
+		if (response.statusCode == 403) {
+			need = true;
+//			articleLogin.showLogin();
+		}
+	});
+}
+
+//是否显示登录窗
+articleLogin.showLogin = function() {
+	$(".article-login, .mask").fadeIn(400);
+	//Enter键登录  Esc键关闭
+    $(document).bind("keyup", function (event) {
+        if (event.keyCode == 13) {
+            articleLogin.loginSubmit();
+        }
+        if (event.keyCode == 27) {
+            articleLogin.closeLogin();
+        }
+    });
+}
+
+articleLogin.closeLogin = function() {
+	$(".article-login, .mask").fadeOut(400);
+	$("#login-form .err").css("visibility", "hidden");
+	$(document).unbind("keyup");
+}
 
 //获取用户关注状态
 articleLogin.followStatus = function(userId) {
@@ -766,7 +803,7 @@ function atUser(symbol){
 $(document).keydown(function(e) {
 
 	if (e.keyCode == 8) {
-		if ($("#user-keywords").val().length == 0 && $("#user-search-box").hide()) {
+		if ($("#user-keywords").val().length == 0 && $("#user-search-box").css("display")!="none") {
 			$("#user-search-box").hide();
 			$("#comment-text").focus();
 		}

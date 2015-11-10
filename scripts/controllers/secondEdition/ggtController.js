@@ -10,8 +10,20 @@ ggtApp.controller('ggtController', ['$scope','ggtApiService', function ($scope,g
             $scope.hkMarketFlowDetail = response.result.hkMarketFlowDetail; 
             $scope.shMarketFlowDetail = response.result.shMarketFlowDetail;
 
-            $scope.hkMarketFlowDetail.daliyInflow = $scope.hkMarketFlowDetail.daliyInflow.slice(0,$scope.hkMarketFlowDetail.daliyInflow.length-2);
-            $scope.shMarketFlowDetail.daliyInflow = $scope.shMarketFlowDetail.daliyInflow.slice(0,$scope.shMarketFlowDetail.daliyInflow.length-2);
+            $scope.hkText = $scope.hkMarketFlowDetail.daliyInflow;
+            $scope.shText = $scope.shMarketFlowDetail.daliyInflow;
+
+
+            $scope.hkMarketFlowDetail.daliyInflow = $scope.hkText.slice(0,$scope.hkText.length-2);
+            $scope.shMarketFlowDetail.daliyInflow = $scope.shText.slice(0,$scope.shText.length-2);
+
+            $scope.hkMarketFlowDetail.daliyInflowUnit =
+                $scope.hkText.slice($scope.hkText.length-2,$scope.hkText.length);
+            $scope.shMarketFlowDetail.daliyInflowUnit =
+                $scope.shText.slice($scope.shText.length-2,$scope.shText.length);
+
+            alert($scope.hkMarketFlowDetail.daliyInflowUnit);
+            alert($scope.shMarketFlowDetail.daliyInflowUnit);
 
         });
   

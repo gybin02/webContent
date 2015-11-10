@@ -168,6 +168,7 @@
 .elite-list .content-bar a,
 .content-list a {
 	color: #22aee6;
+	vertical-align: middle;
 }
 .elite-list .content-nick a:hover,
 .elite-list .content-bar a:hover,
@@ -191,17 +192,27 @@
 	width: auto;
 	float: none;
 	display: inline-block;
-	vertical-align: bottom;
+	vertical-align: top;
 	margin-left: 10px;
+	margin-top: 6px;
 }
 .elite-list .statistics {
-	margin-top: 25px;
+	margin-top: 15px;
 	color: #999;
 	font-size: 12px;
 }
 .elite-list .statistics span {
 	margin-left: 5px;
 	line-height: 20px;
+}
+.elite-list .content-summary {
+	display: inline-block;
+	max-width: 86%;
+	color: #999;
+	margin-top: 6px;
+}
+.elite-list .content-summary p {
+	margin-bottom: 0;
 }
 /*公告*/
 .notice-list .publish-time {
@@ -250,17 +261,17 @@
 }
 .view-button .view-more, .view-button  .no-more {
 	width: 160px;
-	height: 25px;
+	height: 31px;
 	border-radius: 4px;
 	color: #fff;
 	margin: 30px auto 20px;
 	border: 0;
 }
 .view-button .view-more {
-	background-color: #d5dde1;
+	background-color: #999;
 }
 .view-button .no-more {
-	background-color: #999;
+	background-color: #d5dde1;
 }
 
 
