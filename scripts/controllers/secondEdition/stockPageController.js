@@ -1,13 +1,6 @@
 GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams', 'ApiService', 'CommService', 'DialogService', '$UserService', 'StockService',
     function ($scope, $location, $routeParams, ApiService, CommService, DialogService, $UserService, StockService) {
-		//tabs 切换
-//		$("#tab-nav li").on("click", function() {
-//			$this = $(this);
-//			var tabName = $this.find("a").data("name");
-//			$this.addClass("active").siblings("li").removeClass("active");
-//			$("#"+tabName).addClass("active").siblings("div").removeClass("active");
-//		})
-		
+    	
 		//个股编号（行业编号+个股编号：hk00243）
         $scope.stockCode = $routeParams.stockCode;
         $scope.type = $scope.stockCode.slice(0,2)
@@ -41,9 +34,10 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
         $scope.defaultStockCode = [];
         
         //获取个股行情
+        var currentNum = 0;
         $scope.getStockInfo = function() {
-        	var x, n = 0, rotINT;
-        	$scope.stockInfoload = false;
+        	//旋转图标
+        	$("#reload").css("transform", "rotate(" + currentNum*180 + "deg)");
         	ApiService.get(ApiService.getApiUrl().stockDetail, {stocks: $scope.stockCode, detail:true}, function (response) {
 	            $scope.isBaseInfoLoaded = true;
 	            if (response.result != null && response.result.length > 0) {
@@ -119,7 +113,8 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 	            } else {
 	                $location.path("/error/stockNotFound/" + $scope.stockCode);
 	            }
-        		$scope.stockInfoload = true;
+	            
+				currentNum--;
 	
 	        }, function (response) {
 	        	//
@@ -128,46 +123,6 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
 	        });
         };
         $scope.getStockInfo();
-        
-        var x, y, n = 0, ny = 0, rotINT, rotYINT
-		function rotateDIV() {
-		    x = document.getElementById("reload")
-		        clearInterval(rotINT)
-		        rotINT = setInterval("startRotate()", 10)
-		}
-		function rotateYDIV() {
-		    y = document.getElementById("rotatey1")
-		        clearInterval(rotYINT)
-		        rotYINT = setInterval("startYRotate()", 10)
-		}
-		function startRotate() {
-		    n = n + 1
-		        x.style.transform = "rotate(" + n + "deg)"
-		        x.style.webkitTransform = "rotate(" + n + "deg)"
-		        x.style.OTransform = "rotate(" + n + "deg)"
-		        x.style.MozTransform = "rotate(" + n + "deg)"
-		        if (n == 180 || n == 360) {
-		            clearInterval(rotINT)
-		            if (n == 360) {
-		                n = 0
-		            }
-		        }
-		}
-		function startYRotate() {
-		    ny = ny + 1
-		        y.style.transform = "rotateY(" + ny + "deg)"
-		        y.style.webkitTransform = "rotateY(" + ny + "deg)"
-		        y.style.OTransform = "rotateY(" + ny + "deg)"
-		        y.style.MozTransform = "rotateY(" + ny + "deg)"
-		        if (ny == 180 || ny >= 360) {
-		            clearInterval(rotYINT)
-		            if (ny >= 360) {
-		                ny = 0
-		            }
-		        }
-		}
-		
-		rotateDIV();
         
         $scope.$on('loadFeeds', function() {
         	if($scope.currentTab == "post"){
@@ -333,12 +288,14 @@ GLHApp.controller('stockPageController', ['$scope', '$location', '$routeParams',
                             postId: temp.postId,
                             userId: temp.userId,
                             avatar: temp.avatar,
+                            nickname: temp.nickname,
                             title: temp.title,
                             summary: temp.summary,
                             file: temp.file,
                             publishTimeLoc: temp.publishTimeLoc,
                             userType: temp.userType,
-                            type: temp.type
+                            type: temp.type,
+                            postCount: temp.postCount.read
                         })
 
 //                      if (userIdCollections.indexOf(temp.userId) == -1) {

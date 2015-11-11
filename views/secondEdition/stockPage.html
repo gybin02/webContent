@@ -33,10 +33,9 @@
 					<button id="trade" ng-disabled="stockInfo.type != 'us' && stockInfo.type != 'hk'" ng-click="trade(stockInfo.code)">交易</button>
 				</div>
 				<div class="stock-data">
-					<div ng-show="!stockInfoload">
-	                    <waiting wait-text="刷新ing..." is-center="true"></waiting>
-	                </div>
-					<img id="reload" src="images/secondEdition/reload.gif" ng-click="getStockInfo()" />
+					<div id="reloadSig" ng-click="getStockInfo()">
+						<img id="reload" src="images/secondEdition/reload.png" />
+					</div>
 					<div class="stock-table">
 						<span>最新价格</span><span>涨跌(%)</span> <br />
 						<span ng-class="stockInfo.fontColor" ng-bind="stockInfo.price">$1.6</span>
@@ -65,7 +64,7 @@
 						</button>
 			
 						<ul class="dropdown-menu i-want-post" aria-labelledby="dropdownMenu1">
-							<li><a ng-click="showShortMsg()">哔哔一下</a></li>
+							<li><a ng-click="showStockMsg(stockInfo.name,stockCode)">哔哔一下</a></li>
 							<li><a ng-click="showTextEditor()">发表文章</a></li>
 							<li><a ng-click="showUploadPdf()">上传PDF</a></li>
 						</ul>
@@ -186,8 +185,14 @@
                                 </div>
                             </div>
                             <user-editor show-action="['@','$']" show="false" post-type="回复"></user-editor>
-                            <div ng-if="item.fileName">
+                            <!--<div ng-if="item.fileName">
                                 <a ng-href="{{item.file}}" target="_blank">{{item.fileName}}</a>
+                            </div>-->
+                            <div ng-if="item.file">
+                                <a ng-href="{{item.file}}" target="_blank">查看PDF原文</a>
+                            </div>
+                            <div class="statistics">
+                            	<img src="images/look.png" alt="" /><span>{{item.postCount}}</span>
                             </div>
 	                    </div>
 	                </div>

@@ -22,8 +22,8 @@ ggtApp.controller('ggtController', ['$scope','ggtApiService', function ($scope,g
             $scope.shMarketFlowDetail.daliyInflowUnit =
                 $scope.shText.slice($scope.shText.length-2,$scope.shText.length);
 
-            alert($scope.hkMarketFlowDetail.daliyInflowUnit);
-            alert($scope.shMarketFlowDetail.daliyInflowUnit);
+
+
 
         });
   

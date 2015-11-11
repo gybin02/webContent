@@ -42,11 +42,20 @@
 	margin-left: 130px;
 	position: relative;
 }
-.stockpage-wrap .stock-data > img {
+#reloadSig {
 	position: absolute;
 	top: 0;
 	right: 0;
 	cursor: pointer;
+	width: 37px;
+	height: 37px;
+	background-color: #393f4f;
+	border-radius: 4px;
+}
+#reload {
+	transition: all .5s;
+	display: block;
+	margin: 6px auto;
 }
 .stockpage-wrap .stock-table {
 	margin-bottom: 35px;
@@ -60,6 +69,10 @@
 	font-size: 20px;
 	font-weight: bold;
 	color: #ff6057;
+}
+.stockpage-wrap .stock-data span.font_normal {
+	font-size: 20px;
+	font-weight: bold;
 }
 .stockpage-wrap .stock-data span.font_green {
 	font-size: 20px;

@@ -427,6 +427,18 @@ GLHApp.controller('MainController', ['$scope', '$rootScope', '$http', '$location
             $scope.$broadcast('showMaskShortMsg');
            }
         }
+        
+        // 个股页显示短文发帖
+        $scope.showStockMsg = function (stockName, stockCode) {
+        	/*需要登陆应该写一个公共方法在最外侧*/
+        	if(!$UserService.isLoggedIn()){
+        		glhLogin.showLogin(function(){
+        			$scope.$broadcast('showStockShortMsg', stockCode);
+        		})
+        	}else{
+            $scope.$broadcast('showStockShortMsg', stockName, stockCode);
+           }
+        }
 
         //个人设置
         $scope.updateInfo = function () {

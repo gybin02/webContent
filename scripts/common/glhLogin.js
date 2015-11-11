@@ -72,7 +72,7 @@ function glhLogin(opts) {
 			loginBoxHTML += '	<label><input type="checkbox" name="" id="keep-pwd" value="" />记住密码</label>';
 			loginBoxHTML += '	<a  onclick="glhLogin.hideLogin()"; href="/#/updatePwd">忘记密码？</a>';
 			loginBoxHTML += '</div>'
-			loginBoxHTML += '<input  type="submit" onClick="glhLogin.submit()" value="登录" class="submit" id="glhLogin-submit"/>';
+			loginBoxHTML += '<input  type="button" onClick="glhLogin.submit()" value="登录" class="submit" id="glhLogin-submit"/>';
 			loginBoxHTML += '<p class="err">登录失败，用户名或密码错误</p>';
 			loginBoxHTML += '</form>';
 			loginBoxHTML += '<p onclick="glhLogin.hideLogin()" class="register">还没有账号？<a href="/#/register">立即注册</a></p>';

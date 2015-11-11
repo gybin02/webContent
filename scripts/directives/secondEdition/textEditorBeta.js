@@ -97,6 +97,16 @@ GLHApp.directive("textEditorBeta", ["$timeout", "$UserService", "ApiService", "C
 						"background-color": "rgba(0,0,0,.5)"
 					});
 				});
+				
+				// 个股页显示面板
+				scope.$on('showStockShortMsg', function(event, stockName, stockCode) {
+					document.body.style.overflow = "hidden";
+					element.css({
+						"display": "block",
+						"background-color": "rgba(0,0,0,.5)"
+					});
+					_$editor.html("$"+stockName+"("+stockCode+")$&nbsp;");
+				});
 
 				// 隐藏面板
 				scope.hideTextEditor = function() {
